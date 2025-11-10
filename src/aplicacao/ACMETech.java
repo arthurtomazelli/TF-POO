@@ -1,9 +1,7 @@
 package aplicacao;
 
-import entidades.Fornecedor;
-import entidades.GerenciaFornecedores;
-import entidades.GerenciaTecnologias;
-import entidades.Tecnologia;
+import entidades.*;
+import ui.CadastrarComprador;
 import ui.CadastrarTecnologia;
 
 import java.util.Date;
@@ -11,10 +9,12 @@ import java.util.Date;
 public class ACMETech {
     private GerenciaFornecedores gerenciaFornecedores;
     private GerenciaTecnologias gerenciaTecnologias;
+    private GerenciaCompradores gerenciaCompradores;
 
     public ACMETech() {
         gerenciaFornecedores = new GerenciaFornecedores();
         gerenciaTecnologias = new GerenciaTecnologias();
+        gerenciaCompradores = new GerenciaCompradores();
     }
 
     public void inicializar(){
@@ -25,6 +25,7 @@ public class ACMETech {
         adicionarTecnologiasProntas();
         adicionarFornecedoresProntos();
         new CadastrarTecnologia(gerenciaFornecedores, gerenciaTecnologias);
+        new CadastrarComprador(gerenciaCompradores);
     }
 
     private void adicionarTecnologiasProntas(){
