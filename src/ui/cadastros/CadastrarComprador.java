@@ -1,6 +1,6 @@
 
 
-package ui;
+package ui.cadastros;
 
 import entidades.*;
 

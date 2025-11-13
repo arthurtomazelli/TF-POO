@@ -1,9 +1,6 @@
 package aplicacao;
 
 import entidades.*;
-import ui.CadastrarComprador;
-import ui.CadastrarFornecedor;
-import ui.CadastrarTecnologia;
 import ui.MenuPrincipal;
 
 import java.util.Date;

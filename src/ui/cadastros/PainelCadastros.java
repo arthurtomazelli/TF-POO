@@ -1,8 +1,9 @@
-package ui;
+package ui.cadastros;
 
 import entidades.GerenciaCompradores;
 import entidades.GerenciaFornecedores;
 import entidades.GerenciaTecnologias;
+import ui.MenuPrincipal;
 
 import javax.swing.*;
 import java.awt.*;

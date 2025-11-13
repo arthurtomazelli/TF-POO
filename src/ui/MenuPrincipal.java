@@ -3,6 +3,8 @@ package ui;
 import entidades.GerenciaCompradores;
 import entidades.GerenciaFornecedores;
 import entidades.GerenciaTecnologias;
+import ui.cadastros.PainelCadastros;
+import ui.cadastros.PainelPrincipal;
 
 import javax.swing.*;
 
