@@ -221,7 +221,7 @@ public class CadastrarVenda extends JFrame implements ActionListener {
                     }
                 }
             } else {
-                JOptionPane.showMessageDialog(this, "Tecnologia já vendida. Selecione uma diferente e tente novamente.", "ERRO", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Tecnologia já vendida. Selecione uma diferente e tente novamente.", "ERRO", JOptionPane.WARNING_MESSAGE);
             }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Número deve ser um valor numérico.", "ERRO", JOptionPane.WARNING_MESSAGE);
