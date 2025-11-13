@@ -207,7 +207,7 @@ public class CadastrarVenda extends JFrame implements ActionListener {
 
             Venda venda = new Venda(numero, data, comprador, tecnologia, (double) desconto / 100);
 
-            //falta fazer ele verificar data, formato do email, mostrar os dados de vendas ja cadastradas e mostrar o valor final na tela
+            //falta fazer ele mostrar os dados de vendas ja cadastradas e mostrar o valor final na tela
 
             if (!verificaTecnologiaVendida(gerenciaVendas.getVendas(), venda)) {
                 if (!gerenciaVendas.addVenda(venda)) {
@@ -260,8 +260,6 @@ public class CadastrarVenda extends JFrame implements ActionListener {
             if(anoInt < 2000 || anoInt > LocalDate.now().getYear()) {
                 throw new IllegalArgumentException("Ano deve ser entre 2000 e 2025. Altere-o e tente novamente.");
             }
-
-            System.out.println(anoInt);
 
             int mesInt = Integer.parseInt(mes);
 
