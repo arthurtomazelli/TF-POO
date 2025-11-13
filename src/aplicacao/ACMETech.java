@@ -4,6 +4,7 @@ import entidades.*;
 import ui.CadastrarComprador;
 import ui.CadastrarFornecedor;
 import ui.CadastrarTecnologia;
+import ui.MenuPrincipal;
 
 import java.util.Date;
 
@@ -19,15 +20,14 @@ public class ACMETech {
     }
 
     public void inicializar(){
+        adicionarTecnologiasProntas();
+        adicionarFornecedoresProntos();
+
         executar();
     }
 
     public void executar(){
-        adicionarTecnologiasProntas();
-        adicionarFornecedoresProntos();
-        new CadastrarTecnologia(gerenciaFornecedores, gerenciaTecnologias);
-        new CadastrarComprador(gerenciaCompradores);
-        new CadastrarFornecedor(gerenciaFornecedores);
+        new MenuPrincipal(gerenciaFornecedores, gerenciaTecnologias);
     }
 
     private void adicionarTecnologiasProntas(){

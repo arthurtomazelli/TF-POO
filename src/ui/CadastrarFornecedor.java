@@ -43,12 +43,12 @@ public class CadastrarFornecedor extends JFrame implements ActionListener {
 
         painelPrincipal.add(painelBorda, BorderLayout.CENTER);
 
-        this.setContentPane(painelPrincipal);
+        this.add(painelPrincipal);
         this.setVisible(true);
     }
 
     private void setBasics() {
-        this.setTitle("Cadastrar Tecnologia");
+        this.setTitle("Cadastrar Fornecedor");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(1200, 800);
         this.setLocationRelativeTo(null);

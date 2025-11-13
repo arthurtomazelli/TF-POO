@@ -46,7 +46,7 @@ public class CadastrarComprador extends JFrame implements ActionListener {
 
         painelPrincipal.add(painelBorda, BorderLayout.CENTER);
 
-        this.setContentPane(painelPrincipal);
+        this.add(painelPrincipal);
         this.setVisible(true);
     }
 
