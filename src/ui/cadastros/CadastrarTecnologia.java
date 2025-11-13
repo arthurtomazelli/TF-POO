@@ -1,6 +1,7 @@
 package ui.cadastros;
 
 import entidades.*;
+import ui.relatorios.RelatorioTecnologias;
 
 import javax.swing.*;
 import java.awt.*;
@@ -51,7 +52,7 @@ public class CadastrarTecnologia extends JFrame implements ActionListener {
 
     private void setBasics() {
         this.setTitle("Cadastrar Tecnologia");
-        this.setSize(1200, 800);
+        this.setSize(800, 600);
         this.setLocationRelativeTo(null);
     }
 
@@ -127,55 +128,7 @@ public class CadastrarTecnologia extends JFrame implements ActionListener {
         List<Tecnologia> tecnologias = gerenciaTecnologias.getTecnologias();
         List<Fornecedor> fornecedores = gerenciaFornecedores.getFornecedores();
 
-        if (tecnologias.isEmpty() && fornecedores.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Não há tecnologias nem fornecedores cadastrados.", "ERRO", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-
-        JDialog dialogDados = new JDialog();
-        dialogDados.setTitle("Dados cadastrados");
-        dialogDados.setSize((int) (getWidth() * 0.8), (int)(getHeight() * 0.75));
-        dialogDados.setLocationRelativeTo(null);
-        dialogDados.setLayout(new BorderLayout());
-
-        JPanel painelTexto = new JPanel();
-        JTextArea areaTexto = new JTextArea(30, 50);
-        areaTexto.setEditable(false);
-        areaTexto.setFont(new Font("Arial", Font.PLAIN, 15));
-        painelTexto.add(areaTexto);
-
-        areaTexto.setText(areaTexto.getText() + "=-=-=-=-=-=-= Tecnologias =-=-=-=-=-=-=\n");
-
-        if (tecnologias.isEmpty()) {
-            areaTexto.setText(areaTexto.getText() + "Nenhuma tecnologia cadastrada.\n");
-        } else {
-            for (Tecnologia t : tecnologias) {
-                areaTexto.setText(areaTexto.getText() + t + "\n");
-            }
-        }
-
-        areaTexto.setText(areaTexto.getText() + "\n");
-        areaTexto.setText(areaTexto.getText() + "=-=-=-=-=-=-= Fornecedores =-=-=-=-=-=-=\n");
-
-        if (fornecedores.isEmpty()) {
-            areaTexto.setText(areaTexto.getText() + "Nenhum fornecedor cadastrado.\n");
-        } else {
-            for (Fornecedor f : fornecedores) {
-                areaTexto.setText(areaTexto.getText() + f.geraDescricao() + "\n");
-            }
-        }
-
-        JPanel painelChao = new JPanel();
-        JButton botaoOK = criarBotao("OK");
-        botaoOK.addActionListener(e -> dialogDados.dispose());
-        painelChao.add(botaoOK);
-
-        dialogDados.add(criarPainelTitulo("DADOS CADASTRADOS", 30), BorderLayout.NORTH);
-        dialogDados.add(painelTexto, BorderLayout.CENTER);
-        dialogDados.add(painelChao, BorderLayout.SOUTH);
-
-        dialogDados.setVisible(true);
-        dialogDados.setLocationRelativeTo(null);
+        new RelatorioTecnologias("DADOS CADASTRADOS", tecnologias, fornecedores);
     }
 
 

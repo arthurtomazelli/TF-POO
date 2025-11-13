@@ -4,13 +4,14 @@ import entidades.GerenciaCompradores;
 import entidades.GerenciaFornecedores;
 import entidades.GerenciaTecnologias;
 import ui.cadastros.PainelCadastros;
-import ui.cadastros.PainelPrincipal;
+import ui.cadastros.PainelRelatorios;
 
 import javax.swing.*;
 
 public class MenuPrincipal extends JFrame{
     private PainelPrincipal painelPrincipal;
     private PainelCadastros painelCadastros;
+    private PainelRelatorios painelRelatorios;
 
     public MenuPrincipal(GerenciaFornecedores gerenciaFornecedores, GerenciaTecnologias gerenciaTecnologias, GerenciaCompradores gerenciaCompradores) {
         super();
@@ -18,6 +19,7 @@ public class MenuPrincipal extends JFrame{
 
         this.painelPrincipal = new PainelPrincipal(this);
         this.painelCadastros = new PainelCadastros(this, gerenciaFornecedores, gerenciaTecnologias, gerenciaCompradores);
+        this.painelRelatorios = new PainelRelatorios(this, gerenciaFornecedores, gerenciaTecnologias, gerenciaCompradores);
 
         this.setContentPane(painelPrincipal);
         this.setVisible(true);
@@ -41,6 +43,12 @@ public class MenuPrincipal extends JFrame{
             case 2:
                 this.setContentPane(painelCadastros);
                 this.setTitle("Menu Cadastros");
+                this.pack();
+                this.setSize(1200,800);
+                break;
+            case 3:
+                this.setContentPane(painelRelatorios);
+                this.setTitle("Menu Relatórios");
                 this.pack();
                 this.setSize(1200,800);
                 break;

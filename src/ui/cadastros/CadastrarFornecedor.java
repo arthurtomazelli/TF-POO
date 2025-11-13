@@ -1,6 +1,7 @@
 package ui.cadastros;
 
 import entidades.*;
+import ui.relatorios.RelatorioFornecedores;
 
 import javax.swing.*;
 import java.awt.*;
@@ -49,7 +50,7 @@ public class CadastrarFornecedor extends JFrame implements ActionListener {
 
     private void setBasics() {
         this.setTitle("Cadastrar Fornecedor");
-        this.setSize(1200, 800);
+        this.setSize(800, 600);
         this.setLocationRelativeTo(null);
     }
 
@@ -124,45 +125,7 @@ public class CadastrarFornecedor extends JFrame implements ActionListener {
     private void mostrarFornecedoresCadastrados() {
         List<Fornecedor> fornecedores = gerenciaFornecedores.getFornecedores();
 
-        if (fornecedores.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Não há fornecedores cadastrados.", "ERRO", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-
-        JDialog dialogDados = new JDialog();
-        dialogDados.setTitle("Fornecedores cadastrados");
-        dialogDados.setSize((int) (getWidth() * 0.8), (int)(getHeight() * 0.75));
-        dialogDados.setLocationRelativeTo(null);
-        dialogDados.setLayout(new BorderLayout());
-
-        JPanel painelTexto = new JPanel();
-        JTextArea areaTexto = new JTextArea(30, 50);
-        areaTexto.setEditable(false);
-        areaTexto.setFont(new Font("Arial", Font.PLAIN, 15));
-        painelTexto.add(areaTexto);
-
-        areaTexto.setText(areaTexto.getText() + "\n");
-        areaTexto.setText(areaTexto.getText() + "=-=-=-=-=-=-= Fornecedores =-=-=-=-=-=-=\n");
-
-        if (fornecedores.isEmpty()) {
-            areaTexto.setText(areaTexto.getText() + "Nenhum fornecedor cadastrado.\n");
-        } else {
-            for (Fornecedor f : fornecedores) {
-                areaTexto.setText(areaTexto.getText() + f.geraDescricao() + "\n");
-            }
-        }
-
-        JPanel painelChao = new JPanel();
-        JButton botaoOK = criarBotao("OK");
-        botaoOK.addActionListener(e -> dialogDados.dispose());
-        painelChao.add(botaoOK);
-
-        dialogDados.add(criarPainelTitulo("DADOS CADASTRADOS", 30), BorderLayout.NORTH);
-        dialogDados.add(painelTexto, BorderLayout.CENTER);
-        dialogDados.add(painelChao, BorderLayout.SOUTH);
-
-        dialogDados.setVisible(true);
-        dialogDados.setLocationRelativeTo(null);
+        new RelatorioFornecedores(fornecedores);
     }
 
     private void cadastrarFornecedor() {

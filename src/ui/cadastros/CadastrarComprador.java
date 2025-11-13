@@ -3,6 +3,7 @@
 package ui.cadastros;
 
 import entidades.*;
+import ui.relatorios.RelatorioCompradores;
 
 import javax.swing.*;
 import java.awt.*;
@@ -52,7 +53,7 @@ public class CadastrarComprador extends JFrame implements ActionListener {
 
     private void setBasics() {
         this.setTitle("Cadastrar Comprador");
-        this.setSize(1200, 800);
+        this.setSize(800, 600);
         this.setLocationRelativeTo(null);
     }
 
@@ -127,44 +128,7 @@ public class CadastrarComprador extends JFrame implements ActionListener {
     private void mostrarCompradores() {
         List<Comprador> compradores = gerenciaCompradores.getCompradores();
 
-        if (compradores.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Não há compradores cadastrados.", "ERRO", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-
-        JDialog dialogDados = new JDialog();
-        dialogDados.setTitle("Dados cadastrados");
-        dialogDados.setSize((int) (getWidth() * 0.8), (int)(getHeight() * 0.75));
-        dialogDados.setLocationRelativeTo(null);
-        dialogDados.setLayout(new BorderLayout());
-
-        JPanel painelTexto = new JPanel();
-        JTextArea areaTexto = new JTextArea(30, 50);
-        areaTexto.setEditable(false);
-        areaTexto.setFont(new Font("Arial", Font.PLAIN, 15));
-        painelTexto.add(areaTexto);
-
-        areaTexto.setText(areaTexto.getText() + "=-=-=-=-=-=-= Compradores =-=-=-=-=-=-=\n");
-
-        if (compradores.isEmpty()) {
-            areaTexto.setText(areaTexto.getText() + "Nenhum comprador cadastrado.\n");
-        } else {
-            for (Comprador c : compradores) {
-                areaTexto.setText(areaTexto.getText() + c.geraDescricao() + "\n");
-            }
-        }
-
-        JPanel painelChao = new JPanel();
-        JButton botaoOK = criarBotao("OK");
-        botaoOK.addActionListener(e -> dialogDados.dispose());
-        painelChao.add(botaoOK);
-
-        dialogDados.add(criarPainelTitulo("DADOS CADASTRADOS", 30), BorderLayout.NORTH);
-        dialogDados.add(painelTexto, BorderLayout.CENTER);
-        dialogDados.add(painelChao, BorderLayout.SOUTH);
-
-        dialogDados.setVisible(true);
-        dialogDados.setLocationRelativeTo(null);
+        new RelatorioCompradores(compradores);
     }
 
 
