@@ -1,6 +1,7 @@
 package entidades;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class GerenciaCompradores {
@@ -17,6 +18,7 @@ public class GerenciaCompradores {
         }
 
         compradores.add(comprador);
+        Collections.sort(compradores);
 
         return true;
     }

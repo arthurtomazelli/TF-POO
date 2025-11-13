@@ -1,6 +1,7 @@
 package entidades;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class GerenciaTecnologias {
@@ -16,6 +17,7 @@ public class GerenciaTecnologias {
         }
 
         tecnologias.add(tecnologia);
+        Collections.sort(tecnologias);
 
         return true;
     }

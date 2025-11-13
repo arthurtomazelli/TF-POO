@@ -1,6 +1,6 @@
 package entidades;
 
-public class Comprador extends Participante {
+public class Comprador extends Participante implements Comparable<Comprador>{
     private String pais;
     private String email;
 
@@ -22,6 +22,11 @@ public class Comprador extends Participante {
 
     public void getPais(String pais){
         this.pais = pais;
+    }
+
+    @Override
+    public int compareTo(Comprador outro) {
+        return Long.compare(getCod(), outro.getCod());
     }
 }
 

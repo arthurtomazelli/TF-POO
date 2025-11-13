@@ -1,6 +1,6 @@
 package entidades;
 
-public class Tecnologia {
+public class Tecnologia implements Comparable<Tecnologia>{
     private long id;
     private String nome;
     private String descricao;
@@ -30,10 +30,6 @@ public class Tecnologia {
         return nome;
     }
 
-    public String getDescricao() {
-        return descricao;
-    }
-
     public double getValorBase() {
         return valorBase;
     }
@@ -51,8 +47,13 @@ public class Tecnologia {
     }
 
     @Override
+    public int compareTo(Tecnologia outra) {
+        return Long.compare(this.id, outra.id);
+    }
+
+    @Override
     public String toString() {
-        String fornecedorStr = (fornecedor == null) ? "N.E." : fornecedor.toString();
+        String fornecedorString = (fornecedor == null) ? "N.E." : fornecedor.toString();
 
         return id + ";" +
                 nome + ";" +
@@ -60,7 +61,7 @@ public class Tecnologia {
                 valorBase + ";" +
                 peso + ";" +
                 temperatura + ";" +
-                fornecedorStr;
+                fornecedorString;
     }
 
 }
