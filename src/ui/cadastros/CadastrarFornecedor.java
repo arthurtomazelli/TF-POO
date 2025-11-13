@@ -164,6 +164,7 @@ public class CadastrarFornecedor extends JFrame implements ActionListener {
         if(ano < anoMinimo){
             throw new IllegalArgumentException("O ano de fundação deve ser válido. (Entre " + anoMinimo + " e " + LocalDate.now().getYear() + ").");
         }
+
         return new Date(ano, 0, 0);
     }
 

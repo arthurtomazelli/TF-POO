@@ -30,7 +30,7 @@ public class CadastrarVenda extends JFrame implements ActionListener {
     private final Color corPrincipal = new Color(20, 86, 160);
 
     private final List<String> labelsAtributos = new ArrayList<>(List.of(
-            "Número: ", "Data (dd/MM/yyyy): "
+            "Número: ", "Data (yyyy/MM/dd): "
     ));
 
     private final List<String> labelsBotoes = new ArrayList<>(List.of(
@@ -116,6 +116,9 @@ public class CadastrarVenda extends JFrame implements ActionListener {
         JLabel labelComprador = new JLabel("Comprador: ");
         labelComprador.setFont(fonteAtributo);
 
+        JLabel labelTecnologia = new JLabel("Tecnologia: ");
+        labelTecnologia.setFont(fonteAtributo);
+
         mapCompradores = new HashMap<>();
         comboCompradores = new JComboBox<>();
         comboCompradores.setFont(new Font("Arial", Font.PLAIN, 18));
@@ -128,9 +131,6 @@ public class CadastrarVenda extends JFrame implements ActionListener {
 
         painelGrid.add(labelComprador);
         painelGrid.add(comboCompradores);
-
-        JLabel labelTecnologia = new JLabel("Tecnologia: ");
-        labelTecnologia.setFont(fonteAtributo);
 
         mapTecnologias = new HashMap<>();
         comboTecnologias = new JComboBox<>();
@@ -181,6 +181,7 @@ public class CadastrarVenda extends JFrame implements ActionListener {
 
     private void mostrarVendasCadastradas() {
         List<Venda> vendas = gerenciaVendas.getVendas();
+
         new RelatorioVendas(vendas);
     }
 
@@ -201,6 +202,8 @@ public class CadastrarVenda extends JFrame implements ActionListener {
             String dataStr = camposTexto.get(1).getText();
 
             Date data = transformaData(dataStr);
+
+            System.out.println(data);
 
             Venda venda = new Venda(numero, data, comprador, tecnologia, (double) desconto / 100);
 
@@ -230,7 +233,52 @@ public class CadastrarVenda extends JFrame implements ActionListener {
     }
 
     private Date transformaData(String dataStr) {
-        return new Date(1920, 0, 0);
+        int cont = 0;
+
+        try {
+            String ano = "", mes = "", dia = "";
+
+            for (int i = 0; i < dataStr.length(); i++) {
+                char caracter = dataStr.charAt(i);
+
+                if (caracter == '/') {
+                    cont++;
+                    continue;
+                }
+
+                if (cont == 0) {
+                    ano += caracter;
+                } else if (cont == 1) {
+                    mes += caracter;
+                } else if (cont == 2) {
+                    dia += caracter;
+                }
+            }
+
+            int anoInt = Integer.parseInt(ano);
+
+            if(anoInt < 2000 || anoInt > LocalDate.now().getYear()) {
+                throw new IllegalArgumentException("Ano deve ser entre 2000 e 2025. Altere-o e tente novamente.");
+            }
+
+            System.out.println(anoInt);
+
+            int mesInt = Integer.parseInt(mes);
+
+            if(mesInt < 1 || mesInt > 12) {
+                throw new IllegalArgumentException("Mês deve ser entre 1 e 12. Altere-o e tente novamente.");
+            }
+
+            int diaInt = Integer.parseInt(dia);
+
+            if(diaInt < 1 || diaInt > 30) {
+                throw new IllegalArgumentException("Dia deve ser entre 1 e 30. Altere-o e tente novamente.");
+            }
+
+            return new Date(anoInt, mesInt, diaInt);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("Formato de data inválido. Altere-o para 'yyyy/MM/dd' e tente novamente.");
+        }
     }
 
     private boolean verificaTecnologiaVendida(List<Venda> vendas, Venda novaVenda) {
