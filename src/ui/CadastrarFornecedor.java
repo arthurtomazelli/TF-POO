@@ -1,42 +1,39 @@
-
-
 package ui;
 
 import entidades.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.List;
 
-public class CadastrarComprador extends JFrame implements ActionListener {
+public class CadastrarFornecedor extends JFrame implements ActionListener {
     private JPanel painelPrincipal;
     private JPanel painelBorda;
     private List<JTextField> camposTexto;
     private List<JButton> botoes;
-    private GerenciaCompradores gerenciaCompradores;
+    private GerenciaFornecedores gerenciaFornecedores;
     private final Color corPrincipal = new Color(20, 86, 160);
+    private JTextArea areaMensagens;
 
     private final List<String> labelsAtributos = new ArrayList<>(Arrays.asList(
-            "Código: ", "Nome: ", "País: ", "Email: "
+            "Código: ", "Nome: ", "Ano de Fundação: ", "Área: "
     ));
 
     private final List<String> labelsBotoes = new ArrayList<>(Arrays.asList(
-            "FECHAR", "LIMPAR", "MOSTRAR COMPRADORES", "CONFIRMAR"
+            "FECHAR", "LIMPAR", "MOSTRAR FORNECEDORES CADASTRADOS", "CONFIRMAR"
     ));
 
-
-    public CadastrarComprador(GerenciaCompradores gerenciaCompradores) {
+    public CadastrarFornecedor(GerenciaFornecedores gerenciaFornecedores) {
         super();
         setBasics();
-
-        this.gerenciaCompradores = gerenciaCompradores;
-
+        this.gerenciaFornecedores = gerenciaFornecedores;
 
         painelPrincipal = new JPanel(new BorderLayout());
-
-        painelPrincipal.add(criarPainelTitulo("CADASTRAR COMPRADOR", 40), BorderLayout.NORTH);
+        painelPrincipal.add(criarPainelTitulo("CADASTRAR FORNECEDOR", 40), BorderLayout.NORTH);
 
         painelBorda = new JPanel(new BorderLayout());
         setBorda(painelBorda);
@@ -51,7 +48,7 @@ public class CadastrarComprador extends JFrame implements ActionListener {
     }
 
     private void setBasics() {
-        this.setTitle("Cadastrar Comprador");
+        this.setTitle("Cadastrar Tecnologia");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(1200, 800);
         this.setLocationRelativeTo(null);
@@ -125,16 +122,16 @@ public class CadastrarComprador extends JFrame implements ActionListener {
         return painelBotoes;
     }
 
-    private void mostrarCompradores() {
-        List<Comprador> compradores = gerenciaCompradores.getCompradores();
+    private void mostrarFornecedoresCadastrados() {
+        List<Fornecedor> fornecedores = gerenciaFornecedores.getFornecedores();
 
-        if (compradores.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Não há compradores cadastrados.", "ERRO", JOptionPane.WARNING_MESSAGE);
+        if (fornecedores.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Não há fornecedores cadastrados.", "ERRO", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
         JDialog dialogDados = new JDialog();
-        dialogDados.setTitle("Dados cadastrados");
+        dialogDados.setTitle("Fornecedores cadastrados");
         dialogDados.setSize((int) (getWidth() * 0.8), (int)(getHeight() * 0.75));
         dialogDados.setLocationRelativeTo(null);
         dialogDados.setLayout(new BorderLayout());
@@ -145,13 +142,14 @@ public class CadastrarComprador extends JFrame implements ActionListener {
         areaTexto.setFont(new Font("Arial", Font.PLAIN, 15));
         painelTexto.add(areaTexto);
 
-        areaTexto.setText(areaTexto.getText() + "=-=-=-=-=-=-= Compradores =-=-=-=-=-=-=\n");
+        areaTexto.setText(areaTexto.getText() + "\n");
+        areaTexto.setText(areaTexto.getText() + "=-=-=-=-=-=-= Fornecedores =-=-=-=-=-=-=\n");
 
-        if (compradores.isEmpty()) {
-            areaTexto.setText(areaTexto.getText() + "Nenhum comprador cadastrado.\n");
+        if (fornecedores.isEmpty()) {
+            areaTexto.setText(areaTexto.getText() + "Nenhum fornecedor cadastrado.\n");
         } else {
-            for (Comprador c : compradores) {
-                areaTexto.setText(areaTexto.getText() + c.geraDescricao() + "\n");
+            for (Fornecedor f : fornecedores) {
+                areaTexto.setText(areaTexto.getText() + f.geraDescricao() + "\n");
             }
         }
 
@@ -168,29 +166,63 @@ public class CadastrarComprador extends JFrame implements ActionListener {
         dialogDados.setLocationRelativeTo(null);
     }
 
-
-    private void cadastrarComprador() {
+    private void cadastrarFornecedor() {
         if (camposVazios()) {
             JOptionPane.showMessageDialog(this, "Todos os campos devem ser preenchidos.", "CAMPOS VAZIOS", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            try {
-                long cod = Long.parseLong(camposTexto.get(0).getText());
-                String nome = camposTexto.get(1).getText();
-                String pais = camposTexto.get(2).getText();
-                String email = camposTexto.get(3).getText();
+            return;
+        }
+        try {
+            long cod = Long.parseLong(camposTexto.get(0).getText());
+            String nome = camposTexto.get(1).getText();
+            int ano = Integer.parseInt(camposTexto.get(2).getText()) + 1;
+            String area = (camposTexto.get(3).getText());
 
+            Date data = transformaData(ano);
+            Area areaEnum = verificaArea(area);
 
-                Comprador comprador = new Comprador(cod, nome, pais, email);
+            Fornecedor fornecedor = new Fornecedor(cod, nome, data, areaEnum);
 
-                if (!gerenciaCompradores.addComprador(comprador)) {
-                    JOptionPane.showMessageDialog(this, "Código já cadastrado. Altere-o e tente novamente.", "ERRO", JOptionPane.WARNING_MESSAGE);
-                } else {
-                    JOptionPane.showMessageDialog(this, "Comprador cadastrado com sucesso.", "SUCESSO", JOptionPane.PLAIN_MESSAGE);
-                    limparCampos();
-                }
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(this, "Código deve ser números.", "ERRO", JOptionPane.WARNING_MESSAGE);
+            if (!gerenciaFornecedores.addFornecedor(fornecedor)) {
+                JOptionPane.showMessageDialog(this, "Código já cadastrado. Altere-o e tente novamente.", "ERRO", JOptionPane.WARNING_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Fornecedor cadastrado com sucesso.", "SUCESSO", JOptionPane.PLAIN_MESSAGE);
+                limparCampos();
             }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Código e ano de fundação devem ser números.", "ERRO", JOptionPane.WARNING_MESSAGE);
+        } catch (EnumConstantNotPresentException e){
+            JOptionPane.showMessageDialog(this,"Área inválida. Deve ser: 'TI', 'ANDROIDES', 'EMERGENTE' ou 'ALIMENTOS'.", "ERRO", JOptionPane.WARNING_MESSAGE);
+        } catch (IllegalArgumentException e){
+            JOptionPane.showMessageDialog(this, e.getMessage(), "ERRO", JOptionPane.WARNING_MESSAGE);
+        }
+    }
+
+    private Date transformaData(int ano){
+        int anoMinimo = 1800;
+
+        if(ano < anoMinimo){
+            throw new IllegalArgumentException("O ano de fundação deve ser válido. (Entre " + anoMinimo + " e " + LocalDate.now().getYear() + ").");
+        }
+        return new Date(ano, 0, 0);
+    }
+
+    private Area verificaArea(String area) {
+        if(area == null){
+            throw new EnumConstantNotPresentException(Area.class, area);
+        }
+
+        area = area.toUpperCase();
+
+        if(area.equals("TI")){
+            return Area.TI;
+        } else if(area.equals("ANDROIDES")){
+            return Area.ANDROIDES;
+        } else if(area.equals("EMERGENTE")){
+            return Area.EMERGENTE;
+        } else if(area.equals("ALIMENTOS")){
+            return Area.ALIMENTOS;
+        } else{
+            throw new EnumConstantNotPresentException(Area.class, area);
         }
     }
 
@@ -227,12 +259,11 @@ public class CadastrarComprador extends JFrame implements ActionListener {
         if (e.getSource() == botoes.get(1)) {
             limparCampos();
         }
-        if (e.getSource() == botoes.get(2)){
-            mostrarCompradores();
+        if (e.getSource() == botoes.get(2)) {
+            mostrarFornecedoresCadastrados();
         }
-        if (e.getSource() ==  botoes.get(3)){
-            cadastrarComprador();
+        if (e.getSource() == botoes.get(3)) {
+            cadastrarFornecedor();
         }
     }
 }
-

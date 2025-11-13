@@ -2,6 +2,7 @@ package aplicacao;
 
 import entidades.*;
 import ui.CadastrarComprador;
+import ui.CadastrarFornecedor;
 import ui.CadastrarTecnologia;
 
 import java.util.Date;
@@ -26,6 +27,7 @@ public class ACMETech {
         adicionarFornecedoresProntos();
         new CadastrarTecnologia(gerenciaFornecedores, gerenciaTecnologias);
         new CadastrarComprador(gerenciaCompradores);
+        new CadastrarFornecedor(gerenciaFornecedores);
     }
 
     private void adicionarTecnologiasProntas(){
@@ -37,10 +39,10 @@ public class ACMETech {
     }
 
     private void adicionarFornecedoresProntos(){
-        gerenciaFornecedores.addFornecedor(new Fornecedor(4L, "ACME Corp.", new Date(1993, 2, 3)));
-        gerenciaFornecedores.addFornecedor(new Fornecedor(44L, "Alianca rebelde", new Date(1993, 2, 3)));
-        gerenciaFornecedores.addFornecedor(new Fornecedor(22L, "Coyote", new Date(1993, 2, 3)));
-        gerenciaFornecedores.addFornecedor(new Fornecedor(1L, "Stark Industries", new Date(2005, 4, 5)));
-        gerenciaFornecedores.addFornecedor(new Fornecedor(5L, "Wayne Enterprises", new Date(1984, 3, 4)));
+        gerenciaFornecedores.addFornecedor(new Fornecedor(4L, "ACME Corp.", new Date(1993, 2, 3), Area.TI));
+        gerenciaFornecedores.addFornecedor(new Fornecedor(44L, "Alianca rebelde", new Date(1993, 2, 3), Area.ANDROIDES));
+        gerenciaFornecedores.addFornecedor(new Fornecedor(22L, "Coyote", new Date(1993, 2, 3), Area.EMERGENTE));
+        gerenciaFornecedores.addFornecedor(new Fornecedor(1L, "Stark Industries", new Date(2005, 4, 5), Area.TI));
+        gerenciaFornecedores.addFornecedor(new Fornecedor(5L, "Wayne Enterprises", new Date(1984, 3, 4), Area.ALIMENTOS));
     }
 }
