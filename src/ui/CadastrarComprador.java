@@ -52,7 +52,6 @@ public class CadastrarComprador extends JFrame implements ActionListener {
 
     private void setBasics() {
         this.setTitle("Cadastrar Comprador");
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(1200, 800);
         this.setLocationRelativeTo(null);
     }

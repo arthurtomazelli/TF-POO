@@ -1,23 +1,21 @@
 package ui;
 
+import entidades.GerenciaCompradores;
 import entidades.GerenciaFornecedores;
 import entidades.GerenciaTecnologias;
 
 import javax.swing.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class MenuPrincipal extends JFrame{
     private PainelPrincipal painelPrincipal;
     private PainelCadastros painelCadastros;
 
-    public MenuPrincipal(GerenciaFornecedores gerenciaFornecedores, GerenciaTecnologias gerenciaTecnologias) {
+    public MenuPrincipal(GerenciaFornecedores gerenciaFornecedores, GerenciaTecnologias gerenciaTecnologias, GerenciaCompradores gerenciaCompradores) {
         super();
         setBasics();
 
-        this.painelPrincipal = new PainelPrincipal(this, gerenciaFornecedores, gerenciaTecnologias);
-        this.painelCadastros = new PainelCadastros(this);
+        this.painelPrincipal = new PainelPrincipal(this);
+        this.painelCadastros = new PainelCadastros(this, gerenciaFornecedores, gerenciaTecnologias, gerenciaCompradores);
 
         this.setContentPane(painelPrincipal);
         this.setVisible(true);
@@ -34,9 +32,15 @@ public class MenuPrincipal extends JFrame{
         switch(painel) {
             case 1:
                 this.setContentPane(painelPrincipal);
+                this.setTitle("Menu Principal");
+                this.pack();
+                this.setSize(1200,800);
                 break;
             case 2:
                 this.setContentPane(painelCadastros);
+                this.setTitle("Menu Cadastros");
+                this.pack();
+                this.setSize(1200,800);
                 break;
         }
     }

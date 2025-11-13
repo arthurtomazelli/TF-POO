@@ -49,7 +49,6 @@ public class CadastrarFornecedor extends JFrame implements ActionListener {
 
     private void setBasics() {
         this.setTitle("Cadastrar Fornecedor");
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(1200, 800);
         this.setLocationRelativeTo(null);
     }

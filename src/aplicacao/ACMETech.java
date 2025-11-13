@@ -27,7 +27,7 @@ public class ACMETech {
     }
 
     public void executar(){
-        new MenuPrincipal(gerenciaFornecedores, gerenciaTecnologias);
+        new MenuPrincipal(gerenciaFornecedores, gerenciaTecnologias, gerenciaCompradores);
     }
 
     private void adicionarTecnologiasProntas(){

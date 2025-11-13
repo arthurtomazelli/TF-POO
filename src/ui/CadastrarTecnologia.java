@@ -51,7 +51,6 @@ public class CadastrarTecnologia extends JFrame implements ActionListener {
 
     private void setBasics() {
         this.setTitle("Cadastrar Tecnologia");
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(1200, 800);
         this.setLocationRelativeTo(null);
     }

@@ -23,7 +23,7 @@ public class PainelPrincipal extends JPanel implements ActionListener {
             "CADASTROS", "MOSTRAR RELATÓRIOS", "REMOVER / ALTERAR", "CONSULTAR MAIOR", "SALVAR / CARREGAR"
     ));
 
-    public PainelPrincipal(MenuPrincipal menuPrincipal, GerenciaFornecedores gerenciaFornecedores, GerenciaTecnologias gerenciaTecnologias) {
+    public PainelPrincipal(MenuPrincipal menuPrincipal) {
         super(new BorderLayout());
 
         this.menuPrincipal = menuPrincipal;
@@ -115,7 +115,7 @@ public class PainelPrincipal extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == botoes.get(0)) {
-
+            menuPrincipal.mudaPainel(2);
         }
     }
 }
