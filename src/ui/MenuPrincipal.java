@@ -3,6 +3,7 @@ package ui;
 import entidades.GerenciaCompradores;
 import entidades.GerenciaFornecedores;
 import entidades.GerenciaTecnologias;
+import entidades.GerenciaVendas;
 import ui.cadastros.PainelCadastros;
 import ui.cadastros.PainelRelatorios;
 
@@ -13,13 +14,13 @@ public class MenuPrincipal extends JFrame{
     private PainelCadastros painelCadastros;
     private PainelRelatorios painelRelatorios;
 
-    public MenuPrincipal(GerenciaFornecedores gerenciaFornecedores, GerenciaTecnologias gerenciaTecnologias, GerenciaCompradores gerenciaCompradores) {
+    public MenuPrincipal(GerenciaFornecedores gerenciaFornecedores, GerenciaTecnologias gerenciaTecnologias, GerenciaCompradores gerenciaCompradores, GerenciaVendas gerenciaVendas) {
         super();
         setBasics();
 
         this.painelPrincipal = new PainelPrincipal(this);
-        this.painelCadastros = new PainelCadastros(this, gerenciaFornecedores, gerenciaTecnologias, gerenciaCompradores);
-        this.painelRelatorios = new PainelRelatorios(this, gerenciaFornecedores, gerenciaTecnologias, gerenciaCompradores);
+        this.painelCadastros = new PainelCadastros(this, gerenciaFornecedores, gerenciaTecnologias, gerenciaCompradores, gerenciaVendas);
+        this.painelRelatorios = new PainelRelatorios(this, gerenciaFornecedores, gerenciaTecnologias, gerenciaCompradores, gerenciaVendas);
 
         this.setContentPane(painelPrincipal);
         this.setVisible(true);

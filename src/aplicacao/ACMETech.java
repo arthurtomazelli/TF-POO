@@ -9,11 +9,13 @@ public class ACMETech {
     private GerenciaFornecedores gerenciaFornecedores;
     private GerenciaTecnologias gerenciaTecnologias;
     private GerenciaCompradores gerenciaCompradores;
+    private GerenciaVendas gerenciaVendas;
 
     public ACMETech() {
         gerenciaFornecedores = new GerenciaFornecedores();
         gerenciaTecnologias = new GerenciaTecnologias();
         gerenciaCompradores = new GerenciaCompradores();
+        gerenciaVendas = new GerenciaVendas();
     }
 
     public void inicializar(){
@@ -24,7 +26,7 @@ public class ACMETech {
     }
 
     public void executar(){
-        new MenuPrincipal(gerenciaFornecedores, gerenciaTecnologias, gerenciaCompradores);
+        new MenuPrincipal(gerenciaFornecedores, gerenciaTecnologias, gerenciaCompradores, gerenciaVendas);
     }
 
     private void adicionarTecnologiasProntas(){

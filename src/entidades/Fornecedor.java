@@ -12,6 +12,10 @@ public class Fornecedor extends Participante implements Comparable<Fornecedor> {
         this.area = area;
     }
 
+    public Area getArea() {
+        return area;
+    }
+
     @Override
     public String geraDescricao() {
         return getCod() + ";" + getNome() + ";" + fundacao.getYear() + ";" + area.getNome();

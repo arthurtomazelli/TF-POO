@@ -3,6 +3,7 @@ package ui.cadastros;
 import entidades.GerenciaCompradores;
 import entidades.GerenciaFornecedores;
 import entidades.GerenciaTecnologias;
+import entidades.GerenciaVendas;
 import ui.MenuPrincipal;
 
 import javax.swing.*;
@@ -18,6 +19,7 @@ public class PainelCadastros extends JPanel implements ActionListener {
     private GerenciaFornecedores gerenciaFornecedores;
     private GerenciaTecnologias gerenciaTecnologias;
     private GerenciaCompradores gerenciaCompradores;
+    private GerenciaVendas gerenciaVendas;
     private JPanel painelBorda;
     private JPanel painelBotaoChao;
     private MenuPrincipal menuPrincipal;
@@ -25,15 +27,16 @@ public class PainelCadastros extends JPanel implements ActionListener {
     private final Color corPrincipal = new Color(20, 86, 160);
 
     private final List<String> labelsBotoes = new ArrayList<>(Arrays.asList(
-            "CADASTRAR FORNECEDOR", "CADASTRAR TECNOLOGIA", "CADASTRAR COMPRADOR"
+            "CADASTRAR FORNECEDOR", "CADASTRAR TECNOLOGIA", "CADASTRAR COMPRADOR", "CADASTRAR VENDA"
     ));
 
-    public PainelCadastros(MenuPrincipal menuPrincipal, GerenciaFornecedores gerenciaFornecedores, GerenciaTecnologias gerenciaTecnologias, GerenciaCompradores gerenciaCompradores) {
+    public PainelCadastros(MenuPrincipal menuPrincipal, GerenciaFornecedores gerenciaFornecedores, GerenciaTecnologias gerenciaTecnologias, GerenciaCompradores gerenciaCompradores, GerenciaVendas gerenciaVendas) {
         super(new BorderLayout());
         this.menuPrincipal = menuPrincipal;
         this.gerenciaFornecedores = gerenciaFornecedores;
         this.gerenciaTecnologias = gerenciaTecnologias;
         this.gerenciaCompradores = gerenciaCompradores;
+        this.gerenciaVendas = gerenciaVendas;
 
         painelPrincipal = new JPanel(new BorderLayout());
 
@@ -59,7 +62,7 @@ public class PainelCadastros extends JPanel implements ActionListener {
         int altura = menuPrincipal.getHeight();
 
         int vertical = (int) (altura * 0.16) + 100;
-        int horizontal = (int) (largura * 0.20);
+        int horizontal = (int) (largura * 0.20) - 120;
 
         painelBorda.setBorder(BorderFactory.createEmptyBorder(vertical, horizontal, vertical, horizontal)
         );
@@ -99,6 +102,8 @@ public class PainelCadastros extends JPanel implements ActionListener {
             new CadastrarTecnologia(gerenciaFornecedores, gerenciaTecnologias);
         } else if (e.getSource() == botoes.get(2)) {
             new CadastrarComprador(gerenciaCompradores);
+        } else if (e.getSource() == botoes.get(3)) {
+            new CadastrarVenda(gerenciaVendas, gerenciaCompradores, gerenciaTecnologias);
         }
     }
 }

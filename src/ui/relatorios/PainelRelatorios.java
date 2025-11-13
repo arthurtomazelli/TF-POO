@@ -3,10 +3,12 @@ package ui.cadastros;
 import entidades.GerenciaCompradores;
 import entidades.GerenciaFornecedores;
 import entidades.GerenciaTecnologias;
+import entidades.GerenciaVendas;
 import ui.MenuPrincipal;
 import ui.relatorios.RelatorioCompradores;
 import ui.relatorios.RelatorioFornecedores;
 import ui.relatorios.RelatorioTecnologias;
+import ui.relatorios.RelatorioVendas;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,6 +23,7 @@ public class PainelRelatorios extends JPanel implements ActionListener {
     private GerenciaFornecedores gerenciaFornecedores;
     private GerenciaTecnologias gerenciaTecnologias;
     private GerenciaCompradores gerenciaCompradores;
+    private GerenciaVendas gerenciaVendas;
     private JPanel painelBorda;
     private JPanel painelBotaoChao;
     private MenuPrincipal menuPrincipal;
@@ -31,12 +34,13 @@ public class PainelRelatorios extends JPanel implements ActionListener {
             "RELATÓRIO DE FORNECEDORES", "RELATÓRIO DE TECNOLOGIAS", "RELATÓRIO DE COMPRADORES", "RELATÓRIO DE VENDAS"
     ));
 
-    public PainelRelatorios(MenuPrincipal menuPrincipal, GerenciaFornecedores gerenciaFornecedores, GerenciaTecnologias gerenciaTecnologias, GerenciaCompradores gerenciaCompradores) {
+    public PainelRelatorios(MenuPrincipal menuPrincipal, GerenciaFornecedores gerenciaFornecedores, GerenciaTecnologias gerenciaTecnologias, GerenciaCompradores gerenciaCompradores, GerenciaVendas gerenciaVendas) {
         super(new BorderLayout());
         this.menuPrincipal = menuPrincipal;
         this.gerenciaFornecedores = gerenciaFornecedores;
         this.gerenciaTecnologias = gerenciaTecnologias;
         this.gerenciaCompradores = gerenciaCompradores;
+        this.gerenciaVendas = gerenciaVendas;
 
         painelPrincipal = new JPanel(new BorderLayout());
 
@@ -102,6 +106,9 @@ public class PainelRelatorios extends JPanel implements ActionListener {
             new RelatorioTecnologias("RELATÓRIO DE TECNOLOGIAS", gerenciaTecnologias.getTecnologias(), gerenciaFornecedores.getFornecedores());
         } else if (e.getSource() == botoes.get(2)) {
             new RelatorioCompradores(gerenciaCompradores.getCompradores());
+        } else if (e.getSource() == botoes.get(3)) {
+            System.out.println("ainda nao foi implementado");
+            //new RelatorioVendas();
         }
     }
 }

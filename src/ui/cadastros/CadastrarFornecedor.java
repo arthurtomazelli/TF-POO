@@ -18,7 +18,6 @@ public class CadastrarFornecedor extends JFrame implements ActionListener {
     private List<JButton> botoes;
     private GerenciaFornecedores gerenciaFornecedores;
     private final Color corPrincipal = new Color(20, 86, 160);
-    private JTextArea areaMensagens;
 
     private final List<String> labelsAtributos = new ArrayList<>(Arrays.asList(
             "Código: ", "Nome: ", "Ano de Fundação: ", "Área: "

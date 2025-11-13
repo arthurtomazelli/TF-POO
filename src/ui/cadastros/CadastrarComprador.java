@@ -152,7 +152,7 @@ public class CadastrarComprador extends JFrame implements ActionListener {
                     limparCampos();
                 }
             } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(this, "Código deve ser números.", "ERRO", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Código deve ser um número.", "ERRO", JOptionPane.WARNING_MESSAGE);
             }
         }
     }
