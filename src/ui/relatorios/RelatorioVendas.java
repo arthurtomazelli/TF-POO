@@ -4,16 +4,16 @@ import entidades.Comprador;
 import entidades.Fornecedor;
 import entidades.Tecnologia;
 import entidades.Venda;
+import ui.funcoes.JDialogComFuncoes;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RelatorioVendas extends JDialog {
+public class RelatorioVendas extends JDialogComFuncoes {
     private List<Comprador> compradores;
     private List<Tecnologia> tecnologias;
-    private final Color corPrincipal = new Color(20, 86, 160);
 
     public RelatorioVendas(List<Venda> vendas) {
         super();
@@ -36,7 +36,7 @@ public class RelatorioVendas extends JDialog {
         areaTexto.setText(areaTexto.getText() + "=-=-=-=-=-=-= Vendas =-=-=-=-=-=-=\n");
 
         if (vendas.isEmpty()) {
-            areaTexto.setText(areaTexto.getText() + "Nenhum fornecedor cadastrado.\n");
+            areaTexto.setText(areaTexto.getText() + "Nenhuma venda cadastrada.\n");
         } else {
             for (Venda v : vendas) {
                 areaTexto.setText(areaTexto.getText() + v + "\n");
@@ -64,7 +64,7 @@ public class RelatorioVendas extends JDialog {
         botaoOK.addActionListener(e -> this.dispose());
         painelChao.add(botaoOK);
 
-        this.add(criarPainelTitulo("RELATÓRIO DE FORNECEDORES", 30), BorderLayout.NORTH);
+        this.add(criarPainelTitulo("RELATÓRIO DE VENDAS", 30), BorderLayout.NORTH);
         this.add(painelTexto, BorderLayout.CENTER);
         this.add(painelChao, BorderLayout.SOUTH);
 
@@ -74,36 +74,9 @@ public class RelatorioVendas extends JDialog {
     }
 
     private void setBasics() {
-        this.setTitle("Relatório de Fornecedores");
+        this.setTitle("Relatório de Vendas");
         this.setLocationRelativeTo(null);
         this.setLayout(new BorderLayout());
-    }
-
-    private JPanel criarPainelTitulo(String textoTitulo, int tamanhoFonte) {
-        JPanel painelTitulo = new JPanel(new BorderLayout());
-        painelTitulo.setOpaque(true);
-        painelTitulo.setBackground(corPrincipal);
-
-        int vertical = 16;
-        int horizontal = 24;
-        painelTitulo.setBorder(BorderFactory.createEmptyBorder(vertical, horizontal, vertical, horizontal));
-
-        JLabel titulo = new JLabel(textoTitulo, JLabel.CENTER);
-        titulo.setFont(new Font("Arial", Font.BOLD, tamanhoFonte));
-        titulo.setForeground(Color.WHITE);
-
-        painelTitulo.add(titulo, BorderLayout.CENTER);
-
-        return painelTitulo;
-    }
-
-
-    private JButton criarBotao(String texto) {
-        JButton botao = new JButton(texto);
-        botao.setMargin(new Insets(10, 20, 10, 20));
-        botao.setBackground(Color.WHITE);
-        botao.setForeground(corPrincipal);
-        return botao;
     }
 }
 

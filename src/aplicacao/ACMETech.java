@@ -39,11 +39,11 @@ public class ACMETech {
     }
 
     private void adicionarFornecedoresProntos(){
-        gerenciaFornecedores.addFornecedor(new Fornecedor(4L, "ACME Corp.", new Date(1993, 2, 3), Area.TI));
-        gerenciaFornecedores.addFornecedor(new Fornecedor(44L, "Alianca rebelde", new Date(1993, 2, 3), Area.ANDROIDES));
-        gerenciaFornecedores.addFornecedor(new Fornecedor(22L, "Coyote", new Date(1993, 2, 3), Area.EMERGENTE));
-        gerenciaFornecedores.addFornecedor(new Fornecedor(1L, "Stark Industries", new Date(2005, 4, 5), Area.TI));
-        gerenciaFornecedores.addFornecedor(new Fornecedor(5L, "Wayne Enterprises", new Date(1984, 3, 4), Area.ALIMENTOS));
+        gerenciaFornecedores.addFornecedor(new Fornecedor(4L, "ACME Corp.", new Date(1993 - 1900, 2, 3), Area.TI));
+        gerenciaFornecedores.addFornecedor(new Fornecedor(44L, "Alianca rebelde", new Date(1993 - 1900, 2, 3), Area.ANDROIDES));
+        gerenciaFornecedores.addFornecedor(new Fornecedor(22L, "Coyote", new Date(1993 - 1900, 2, 3), Area.EMERGENTE));
+        gerenciaFornecedores.addFornecedor(new Fornecedor(1L, "Stark Industries", new Date(2005 - 1900, 4, 5), Area.TI));
+        gerenciaFornecedores.addFornecedor(new Fornecedor(5L, "Wayne Enterprises", new Date(1984 - 1900, 3, 4), Area.ALIMENTOS));
     }
 
     private void adicionarCompradoresProntos() {

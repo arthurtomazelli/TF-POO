@@ -5,7 +5,7 @@ import entidades.GerenciaFornecedores;
 import entidades.GerenciaTecnologias;
 import entidades.GerenciaVendas;
 import ui.cadastros.PainelCadastros;
-import ui.cadastros.PainelRelatorios;
+import ui.relatorios.PainelRelatorios;
 import ui.consultarMaior.PainelConsultarMaior;
 
 import javax.swing.*;

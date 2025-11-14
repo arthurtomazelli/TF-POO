@@ -1,14 +1,10 @@
-package ui.cadastros;
+package ui.relatorios;
 
 import entidades.GerenciaCompradores;
 import entidades.GerenciaFornecedores;
 import entidades.GerenciaTecnologias;
 import entidades.GerenciaVendas;
 import ui.MenuPrincipal;
-import ui.relatorios.RelatorioCompradores;
-import ui.relatorios.RelatorioFornecedores;
-import ui.relatorios.RelatorioTecnologias;
-import ui.relatorios.RelatorioVendas;
 
 import javax.swing.*;
 import java.awt.*;

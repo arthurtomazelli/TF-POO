@@ -2,6 +2,7 @@ package ui.relatorios;
 
 import entidades.Fornecedor;
 import entidades.Tecnologia;
+import ui.funcoes.JDialogComFuncoes;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,9 +10,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class RelatorioTecnologias extends JDialog {
-    private final Color corPrincipal = new Color(20, 86, 160);
-
+public class RelatorioTecnologias extends JDialogComFuncoes {
     public RelatorioTecnologias(String titulo, List<Tecnologia> tecnologias, List<Fornecedor> fornecedores) {
         super();
         setBasics();
@@ -74,32 +73,6 @@ public class RelatorioTecnologias extends JDialog {
         this.setTitle("Relatório de Tecnologias");
         this.setLocationRelativeTo(null);
         this.setLayout(new BorderLayout());
-    }
-
-    private JPanel criarPainelTitulo(String textoTitulo, int tamanhoFonte) {
-        JPanel painelTitulo = new JPanel(new BorderLayout());
-        painelTitulo.setOpaque(true);
-        painelTitulo.setBackground(corPrincipal);
-
-        int vertical = 16;
-        int horizontal = 24;
-        painelTitulo.setBorder(BorderFactory.createEmptyBorder(vertical, horizontal, vertical, horizontal));
-
-        JLabel titulo = new JLabel(textoTitulo, JLabel.CENTER);
-        titulo.setFont(new Font("Arial", Font.BOLD, tamanhoFonte));
-        titulo.setForeground(Color.WHITE);
-
-        painelTitulo.add(titulo, BorderLayout.CENTER);
-
-        return painelTitulo;
-    }
-
-    private JButton criarBotao(String texto) {
-        JButton botao = new JButton(texto);
-        botao.setMargin(new Insets(10, 20, 10, 20));
-        botao.setBackground(Color.WHITE);
-        botao.setForeground(corPrincipal);
-        return botao;
     }
 
     private List<Fornecedor> verificarTecnologiasComFornecedor(List<Tecnologia> tecnologias, List<Fornecedor> fornecedores) {

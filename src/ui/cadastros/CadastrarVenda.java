@@ -1,6 +1,7 @@
 package ui.cadastros;
 
 import entidades.*;
+import ui.funcoes.JFrameComFuncoes;
 import ui.relatorios.RelatorioVendas;
 
 import javax.swing.*;
@@ -13,7 +14,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-public class CadastrarVenda extends JFrame implements LimpaCampos, ActionListener {
+public class CadastrarVenda extends JFrameComFuncoes implements ActionListener {
     private JPanel painelPrincipal;
     private JPanel painelBorda;
     private List<JTextField> camposTexto;
@@ -27,8 +28,6 @@ public class CadastrarVenda extends JFrame implements LimpaCampos, ActionListene
     private HashMap<String, Tecnologia> mapTecnologias;
     private int desconto;
 
-    private final Color corPrincipal = new Color(20, 86, 160);
-
     private final List<String> labelsAtributos = new ArrayList<>(List.of(
             "Número: ", "Data (yyyy/MM/dd): "
     ));
@@ -40,9 +39,12 @@ public class CadastrarVenda extends JFrame implements LimpaCampos, ActionListene
     public CadastrarVenda(GerenciaVendas gerenciaVendas, GerenciaCompradores gerenciaCompradores, GerenciaTecnologias gerenciaTecnologias) {
         super();
         setBasics();
+
         this.gerenciaVendas = gerenciaVendas;
         this.gerenciaCompradores = gerenciaCompradores;
         this.gerenciaTecnologias = gerenciaTecnologias;
+        this.botoes = new ArrayList<>();
+        this.camposTexto = new ArrayList<>();
 
         if (gerenciaCompradores.getCompradores().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Não há compradores cadastrados.", "ERRO", JOptionPane.WARNING_MESSAGE);
@@ -60,9 +62,9 @@ public class CadastrarVenda extends JFrame implements LimpaCampos, ActionListene
         painelBorda = new JPanel(new BorderLayout());
         setBorda(painelBorda);
 
-        painelBorda.add(criarPainelCampos(), BorderLayout.CENTER);
+        painelBorda.add(criarPainelCampos(camposTexto, labelsAtributos), BorderLayout.CENTER);
 
-        painelPrincipal.add(criarPainelBotoes(), BorderLayout.SOUTH);
+        painelPrincipal.add(criarPainelBotoes(botoes, labelsBotoes, this), BorderLayout.SOUTH);
         painelPrincipal.add(painelBorda, BorderLayout.CENTER);
 
         this.add(painelPrincipal);
@@ -85,30 +87,12 @@ public class CadastrarVenda extends JFrame implements LimpaCampos, ActionListene
         painelBorda.setBorder(BorderFactory.createEmptyBorder(vertical, horizontal, vertical, horizontal));
     }
 
-    private JPanel criarPainelTitulo(String textoTitulo, int tamanhoFonte) {
-        JPanel painelTitulo = new JPanel(new BorderLayout());
-        painelTitulo.setOpaque(true);
-        painelTitulo.setBackground(corPrincipal);
-
-        int vertical = 16;
-        int horizontal = 24;
-        painelTitulo.setBorder(BorderFactory.createEmptyBorder(vertical, horizontal, vertical, horizontal));
-
-        JLabel titulo = new JLabel(textoTitulo, JLabel.CENTER);
-        titulo.setFont(new Font("Arial", Font.BOLD, tamanhoFonte));
-        titulo.setForeground(Color.WHITE);
-
-        painelTitulo.add(titulo, BorderLayout.CENTER);
-
-        return painelTitulo;
-    }
-
-    private JPanel criarPainelCampos() {
+    @Override
+    public JPanel criarPainelCampos(List<JTextField> camposTexto, List<String> labelsAtributos) {
         List<Comprador> compradores = gerenciaCompradores.getCompradores();
         List<Tecnologia> tecnologias = gerenciaTecnologias.getTecnologias();
 
         JPanel painelGrid = new JPanel(new GridLayout(4, 2, 10, 30));
-        camposTexto = new ArrayList<>();
 
         Font fonteCampo = new Font("Arial", Font.PLAIN, 20);
         Font fonteAtributo = new Font("Arial", Font.BOLD, 20);
@@ -161,26 +145,6 @@ public class CadastrarVenda extends JFrame implements LimpaCampos, ActionListene
         return painelGrid;
     }
 
-
-    private JPanel criarPainelBotoes() {
-        JPanel painelBotoes = new JPanel();
-        botoes = new ArrayList<>();
-
-        for (String s : labelsBotoes) {
-            JButton botao = new JButton(s);
-
-            botao.setMargin(new Insets(10, 20, 10, 20));
-            botao.setBackground(Color.WHITE);
-            botao.setForeground(corPrincipal);
-            botao.addActionListener(this);
-
-            botoes.add(botao);
-            painelBotoes.add(botao);
-        }
-
-        return painelBotoes;
-    }
-
     private void mostrarVendasCadastradas() {
         List<Venda> vendas = gerenciaVendas.getVendas();
 
@@ -188,7 +152,7 @@ public class CadastrarVenda extends JFrame implements LimpaCampos, ActionListene
     }
 
     private void cadastrarVenda() {
-        if (camposVazios()) {
+        if (camposVazios(camposTexto)) {
             JOptionPane.showMessageDialog(this, "Todos os campos devem ser preenchidos.", "CAMPOS VAZIOS", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
@@ -207,15 +171,13 @@ public class CadastrarVenda extends JFrame implements LimpaCampos, ActionListene
 
             Venda venda = new Venda(numero, data, comprador, tecnologia, (double) desconto / 100);
 
-            //falta fazer ele mostrar os dados de vendas ja cadastradas e mostrar o valor final na tela
-
             if (!verificaTecnologiaVendida(gerenciaVendas.getVendas(), venda)) {
                 if (!gerenciaVendas.addVenda(venda)) {
                     JOptionPane.showMessageDialog(this, "Número já cadastrado. Altere-o e tente novamente.", "ERRO", JOptionPane.WARNING_MESSAGE);
                 } else {
                     JOptionPane.showMessageDialog(this, "Venda cadastrada com sucesso.\n" +
                                                                                 "Valor final: R$ " + venda.getValorFinal(), "SUCESSO", JOptionPane.PLAIN_MESSAGE);
-                    limparCampos();
+                    limparCampos(camposTexto);
 
                     if (desconto != 10) {
                         desconto += 1;
@@ -290,40 +252,13 @@ public class CadastrarVenda extends JFrame implements LimpaCampos, ActionListene
         return false;
     }
 
-    private JButton criarBotao(String texto) {
-        JButton botao = new JButton(texto);
-        botao.setMargin(new Insets(10, 20, 10, 20));
-        botao.setBackground(Color.WHITE);
-        botao.setForeground(corPrincipal);
-
-        return botao;
-    }
-
-    @Override
-    public void limparCampos() {
-        for (JTextField campo : camposTexto) {
-            campo.setText("");
-        }
-    }
-
-    @Override
-    public boolean camposVazios() {
-        for (JTextField campo : camposTexto) {
-            if (campo.getText().isEmpty()) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == botoes.get(0)) {
             this.dispose();
         }
         if (e.getSource() == botoes.get(1)) {
-            limparCampos();
+            limparCampos(camposTexto);
         }
         if (e.getSource() == botoes.get(2)) {
             mostrarVendasCadastradas();

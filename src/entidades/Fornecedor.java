@@ -1,5 +1,6 @@
 package entidades;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Fornecedor extends Participante implements Comparable<Fornecedor> {
@@ -16,9 +17,14 @@ public class Fornecedor extends Participante implements Comparable<Fornecedor> {
         return area;
     }
 
+    public String getAnoFundacao() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
+        return sdf.format(fundacao);
+    }
+
     @Override
     public String geraDescricao() {
-        return getCod() + ";" + getNome() + ";" + fundacao.getYear() + ";" + area.getNome();
+        return getCod() + ";" + getNome() + ";" + getAnoFundacao() + ";" + area.getNome();
     }
 
     @Override
