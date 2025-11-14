@@ -18,6 +18,16 @@ public class Tecnologia implements Comparable<Tecnologia>{
         this.temperatura = temperatura;
     }
 
+    public Tecnologia(long id, String nome, String descricao, double valorBase, double peso, double temperatura, Fornecedor fornecedor) {
+        this.id = id;
+        this.nome = nome;
+        this.descricao = descricao;
+        this.valorBase = valorBase;
+        this.peso = peso;
+        this.temperatura = temperatura;
+        this.fornecedor = fornecedor;
+    }
+
     public void defineFornecedor(Fornecedor f) {
         fornecedor = f;
     }

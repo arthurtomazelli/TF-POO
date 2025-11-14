@@ -29,7 +29,7 @@ public class CadastrarVenda extends JFrameComFuncoes implements ActionListener {
     private int desconto;
 
     private final List<String> labelsAtributos = new ArrayList<>(List.of(
-            "Número: ", "Data (yyyy/MM/dd): "
+            "Número: ", "Data (dd/MM/yyyy): "
     ));
 
     private final List<String> labelsBotoes = new ArrayList<>(List.of(
@@ -199,7 +199,7 @@ public class CadastrarVenda extends JFrameComFuncoes implements ActionListener {
         int cont = 0;
 
         try {
-            String ano = "", mes = "", dia = "";
+            String dia = "", mes = "", ano = "";
 
             for (int i = 0; i < dataString.length(); i++) {
                 char caracter = dataString.charAt(i);
@@ -210,11 +210,11 @@ public class CadastrarVenda extends JFrameComFuncoes implements ActionListener {
                 }
 
                 if (cont == 0) {
-                    ano += caracter;
+                    dia += caracter;
                 } else if (cont == 1) {
                     mes += caracter;
                 } else if (cont == 2) {
-                    dia += caracter;
+                    ano += caracter;
                 }
             }
 
@@ -238,7 +238,7 @@ public class CadastrarVenda extends JFrameComFuncoes implements ActionListener {
 
             return new Date(anoInt - 1900, mesInt - 1, diaInt);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("Formato de data inválido. Altere-o para 'yyyy/MM/dd' e tente novamente.");
+            throw new IllegalArgumentException("Formato de data inválido. Altere-o para 'dd/MM/yyyy' e tente novamente.");
         }
     }
 

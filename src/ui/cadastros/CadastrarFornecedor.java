@@ -20,7 +20,7 @@ public class CadastrarFornecedor extends JFrameComFuncoes implements ActionListe
     private GerenciaFornecedores gerenciaFornecedores;
 
     private final List<String> labelsAtributos = new ArrayList<>(Arrays.asList(
-            "Código: ", "Nome: ", "Ano de Fundação: ", "Área: "
+            "Código: ", "Nome: ", "Fundação (dd/MM/yyyy): ", "Área: "
     ));
 
     private final List<String> labelsBotoes = new ArrayList<>(Arrays.asList(
@@ -60,7 +60,7 @@ public class CadastrarFornecedor extends JFrameComFuncoes implements ActionListe
         int altura = getHeight();
 
         int vertical = (int) (altura * 0.16);
-        int horizontal = (int) (largura * 0.20);
+        int horizontal = (int) (largura * 0.20) - 50;
 
         painelBorda.setBorder(BorderFactory.createEmptyBorder(vertical, horizontal, vertical, horizontal));
     }
@@ -79,10 +79,10 @@ public class CadastrarFornecedor extends JFrameComFuncoes implements ActionListe
         try {
             long cod = Long.parseLong(camposTexto.get(0).getText());
             String nome = camposTexto.get(1).getText();
-            int ano = Integer.parseInt(camposTexto.get(2).getText());
+            String dataString = camposTexto.get(2).getText();
             String area = (camposTexto.get(3).getText());
 
-            Date data = transformaData(ano);
+            Date data = transformaData(dataString);
             Area areaEnum = verificaArea(area);
 
             Fornecedor fornecedor = new Fornecedor(cod, nome, data, areaEnum);
@@ -102,14 +102,51 @@ public class CadastrarFornecedor extends JFrameComFuncoes implements ActionListe
         }
     }
 
-    private Date transformaData(int ano){
-        int anoMinimo = 1800;
+    private Date transformaData(String dataString) {
+        int cont = 0;
 
-        if(ano < anoMinimo){
-            throw new IllegalArgumentException("O ano de fundação deve ser válido. (Entre " + anoMinimo + " e " + LocalDate.now().getYear() + ").");
+        try {
+            String dia = "", mes = "", ano = "";
+
+            for (int i = 0; i < dataString.length(); i++) {
+                char caracter = dataString.charAt(i);
+
+                if (caracter == '/') {
+                    cont++;
+                    continue;
+                }
+
+                if (cont == 0) {
+                    dia += caracter;
+                } else if (cont == 1) {
+                    mes += caracter;
+                } else if (cont == 2) {
+                    ano += caracter;
+                }
+            }
+
+            int anoInt = Integer.parseInt(ano);
+
+            if(anoInt < 2000 || anoInt > LocalDate.now().getYear()) {
+                throw new IllegalArgumentException("Ano deve ser entre 2000 e 2025. Altere-o e tente novamente.");
+            }
+
+            int mesInt = Integer.parseInt(mes);
+
+            if(mesInt < 1 || mesInt > 12) {
+                throw new IllegalArgumentException("Mês deve ser entre 1 e 12. Altere-o e tente novamente.");
+            }
+
+            int diaInt = Integer.parseInt(dia);
+
+            if(diaInt < 1 || diaInt > 30) {
+                throw new IllegalArgumentException("Dia deve ser entre 1 e 30. Altere-o e tente novamente.");
+            }
+
+            return new Date(anoInt - 1900, mesInt - 1, diaInt);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("Formato de data inválido. Altere-o para 'dd/MM/yyyy' e tente novamente.");
         }
-
-        return new Date(ano - 1900, 0, 0);
     }
 
     private Area verificaArea(String area) {

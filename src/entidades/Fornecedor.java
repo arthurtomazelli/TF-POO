@@ -17,14 +17,14 @@ public class Fornecedor extends Participante implements Comparable<Fornecedor> {
         return area;
     }
 
-    public String getAnoFundacao() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
+    public String getDataFormatada() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         return sdf.format(fundacao);
     }
 
     @Override
     public String geraDescricao() {
-        return getCod() + ";" + getNome() + ";" + getAnoFundacao() + ";" + area.getNome();
+        return getCod() + ";" + getNome() + ";" + getDataFormatada() + ";" + area.getNome();
     }
 
     @Override
