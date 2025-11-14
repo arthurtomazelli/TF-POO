@@ -115,6 +115,10 @@ public class PainelPrincipal extends JPanel implements ActionListener {
             menuPrincipal.mudaPainel(2);
         } else if (e.getSource() == botoes.get(1)) {
             menuPrincipal.mudaPainel(3);
+        } else if (e.getSource() == botoes.get(2)) {
+            System.out.println("kkj nao ta pronto");
+        } else if (e.getSource() == botoes.get(3)) {
+            menuPrincipal.mudaPainel(5);
         }
     }
 }

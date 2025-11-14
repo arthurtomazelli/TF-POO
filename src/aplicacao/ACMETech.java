@@ -21,6 +21,7 @@ public class ACMETech {
     public void inicializar(){
         adicionarTecnologiasProntas();
         adicionarFornecedoresProntos();
+        adicionarCompradoresProntos();
 
         executar();
     }
@@ -44,4 +45,18 @@ public class ACMETech {
         gerenciaFornecedores.addFornecedor(new Fornecedor(1L, "Stark Industries", new Date(2005, 4, 5), Area.TI));
         gerenciaFornecedores.addFornecedor(new Fornecedor(5L, "Wayne Enterprises", new Date(1984, 3, 4), Area.ALIMENTOS));
     }
+
+    private void adicionarCompradoresProntos() {
+        gerenciaCompradores.addComprador(new Comprador(1001L, "Tony Stark", "EUA", "tony.stark@gmail.com"));
+
+        gerenciaCompradores.addComprador(new Comprador(1002L, "Bruce Wayne", "EUA", "bruce.wayne@outlook.com"));
+
+        gerenciaCompradores.addComprador(new Comprador(1003L, "Daffy Duck", "Desconhecido", "daffy.duck@yahoo.com"));
+
+        gerenciaCompradores.addComprador(new Comprador(1004L, "Pernalonga", "Desconhecido", "pernalonga@gmail.com"));
+
+        gerenciaCompradores.addComprador(new Comprador(1005L, "Rick Sanchez", "Multiverso", "rick.sanchez@outlook.com"));
+    }
+
+
 }

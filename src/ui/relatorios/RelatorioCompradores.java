@@ -25,7 +25,6 @@ public class RelatorioCompradores extends JDialog {
         areaTexto.setFont(new Font("Arial", Font.PLAIN, 15));
         painelTexto.add(areaTexto);
 
-        areaTexto.setText(areaTexto.getText() + "\n");
         areaTexto.setText(areaTexto.getText() + "=-=-=-=-=-=-= Compradores =-=-=-=-=-=-=\n");
 
         if (compradores.isEmpty()) {

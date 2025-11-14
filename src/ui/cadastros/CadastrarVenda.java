@@ -199,11 +199,9 @@ public class CadastrarVenda extends JFrame implements ActionListener {
             Tecnologia tecnologia = mapTecnologias.get(chaveTecnologia);
 
             long numero = Long.parseLong(camposTexto.get(0).getText());
-            String dataStr = camposTexto.get(1).getText();
+            String dataString = camposTexto.get(1).getText();
 
-            Date data = transformaData(dataStr);
-
-            System.out.println(data);
+            Date data = transformaData(dataString);
 
             Venda venda = new Venda(numero, data, comprador, tecnologia, (double) desconto / 100);
 
@@ -213,7 +211,8 @@ public class CadastrarVenda extends JFrame implements ActionListener {
                 if (!gerenciaVendas.addVenda(venda)) {
                     JOptionPane.showMessageDialog(this, "Número já cadastrado. Altere-o e tente novamente.", "ERRO", JOptionPane.WARNING_MESSAGE);
                 } else {
-                    JOptionPane.showMessageDialog(this, "Venda cadastrada com sucesso.", "SUCESSO", JOptionPane.PLAIN_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Venda cadastrada com sucesso.\n" +
+                                                                                "Valor final: R$ " + venda.getValorFinal(), "SUCESSO", JOptionPane.PLAIN_MESSAGE);
                     limparCampos();
 
                     if (desconto != 10) {
@@ -232,14 +231,14 @@ public class CadastrarVenda extends JFrame implements ActionListener {
         }
     }
 
-    private Date transformaData(String dataStr) {
+    private Date transformaData(String dataString) {
         int cont = 0;
 
         try {
             String ano = "", mes = "", dia = "";
 
-            for (int i = 0; i < dataStr.length(); i++) {
-                char caracter = dataStr.charAt(i);
+            for (int i = 0; i < dataString.length(); i++) {
+                char caracter = dataString.charAt(i);
 
                 if (caracter == '/') {
                     cont++;

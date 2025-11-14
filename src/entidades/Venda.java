@@ -9,15 +9,15 @@ public class Venda implements Comparable<Venda>{
     private Comprador comprador;
     private Tecnologia tecnologia;
 
-    public Venda(long num, Date data, Comprador comprador, Tecnologia tecnologia, double desconto) {
+    public Venda(long num, Date data, Comprador comprador, Tecnologia tecnologia, double descontoPercentual) {
         this.num = num;
         this.data = data;
         this.comprador = comprador;
         this.tecnologia = tecnologia;
-        this.valorFinal = calculaValorFinal(tecnologia, desconto);
+        this.valorFinal = calculaValorFinal(tecnologia, descontoPercentual);
     }
 
-    public double calculaValorFinal(Tecnologia tecnologia, double desconto) {
+    public double calculaValorFinal(Tecnologia tecnologia, double descontoPercentual) {
         Fornecedor fornecedorTec = tecnologia.getFornecedor();
         String areaFornecedor = fornecedorTec.getArea().getNome();
 
@@ -27,19 +27,19 @@ public class Venda implements Comparable<Venda>{
 
         if (areaFornecedor.equals("TI")) {
             calculoValor = (valorBase + (valorBase * 0.20));
-            calculoValor -= calculoValor * desconto;
+            calculoValor -= calculoValor * descontoPercentual;
 
         } else if (areaFornecedor.equals("ANDROIDES")) {
             calculoValor = (valorBase + (valorBase * 0.15));
-            calculoValor -= calculoValor * desconto;
+            calculoValor -= calculoValor * descontoPercentual;
 
         } else if (areaFornecedor.equals("EMERGENTE")) {
             calculoValor = (valorBase + (valorBase * 0.25));
-            calculoValor -= calculoValor * desconto;
+            calculoValor -= calculoValor * descontoPercentual;
 
         } else if (areaFornecedor.equals("ALIMENTOS")) {
             calculoValor = (valorBase + (valorBase * 0.10));
-            calculoValor -= calculoValor * desconto;
+            calculoValor -= calculoValor * descontoPercentual;
         }
 
         return calculoValor;
@@ -54,7 +54,7 @@ public class Venda implements Comparable<Venda>{
     }
 
     public double getValorFinal() {
-        return valorFinal;
+        return Double.parseDouble(String.format("%.2f", valorFinal));
     }
 
     public Comprador getComprador() {
@@ -68,5 +68,10 @@ public class Venda implements Comparable<Venda>{
     @Override
     public int compareTo(Venda outra) {
         return Long.compare(this.num, outra.num);
+    }
+
+    @Override
+    public String toString() {
+        return num + ";" + data.getYear() + ";" + valorFinal + ";" + comprador.getNome() + ";" + tecnologia.getNome();
     }
 }

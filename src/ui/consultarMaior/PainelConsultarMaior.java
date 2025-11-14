@@ -1,14 +1,10 @@
-package ui.cadastros;
+package ui.consultarMaior;
 
 import entidades.GerenciaCompradores;
 import entidades.GerenciaFornecedores;
 import entidades.GerenciaTecnologias;
 import entidades.GerenciaVendas;
 import ui.MenuPrincipal;
-import ui.relatorios.RelatorioCompradores;
-import ui.relatorios.RelatorioFornecedores;
-import ui.relatorios.RelatorioTecnologias;
-import ui.relatorios.RelatorioVendas;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class PainelRelatorios extends JPanel implements ActionListener {
+public class PainelConsultarMaior extends JPanel implements ActionListener {
     private JPanel painelPrincipal;
     private GerenciaFornecedores gerenciaFornecedores;
     private GerenciaTecnologias gerenciaTecnologias;
@@ -31,10 +27,10 @@ public class PainelRelatorios extends JPanel implements ActionListener {
     private final Color corPrincipal = new Color(20, 86, 160);
 
     private final List<String> labelsBotoes = new ArrayList<>(Arrays.asList(
-            "RELATÓRIO DE FORNECEDORES", "RELATÓRIO DE TECNOLOGIAS", "RELATÓRIO DE COMPRADORES", "RELATÓRIO DE VENDAS"
+            "TECNOLOGIA COM MAIOR VALOR", "FORNECEDOR COM MAIS TECNOLOGIAS", "COMPRADOR COM MAIS VENDAS", "VENDA COM MAIOR VALOR"
     ));
 
-    public PainelRelatorios(MenuPrincipal menuPrincipal, GerenciaFornecedores gerenciaFornecedores, GerenciaTecnologias gerenciaTecnologias, GerenciaCompradores gerenciaCompradores, GerenciaVendas gerenciaVendas) {
+    public PainelConsultarMaior(MenuPrincipal menuPrincipal, GerenciaFornecedores gerenciaFornecedores, GerenciaTecnologias gerenciaTecnologias, GerenciaCompradores gerenciaCompradores, GerenciaVendas gerenciaVendas) {
         super(new BorderLayout());
         this.menuPrincipal = menuPrincipal;
         this.gerenciaFornecedores = gerenciaFornecedores;
@@ -66,7 +62,7 @@ public class PainelRelatorios extends JPanel implements ActionListener {
         int altura = menuPrincipal.getHeight();
 
         int vertical = (int) (altura * 0.16) + 100;
-        int horizontal = (int) (largura * 0.20) - 120;
+        int horizontal = (int) (largura * 0.20) - 170;
 
         painelBorda.setBorder(BorderFactory.createEmptyBorder(vertical, horizontal, vertical, horizontal)
         );
@@ -100,14 +96,6 @@ public class PainelRelatorios extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == botoes.get(0)) {
-            new RelatorioFornecedores(gerenciaFornecedores.getFornecedores());
-        } else if (e.getSource() == botoes.get(1)) {
-            new RelatorioTecnologias("RELATÓRIO DE TECNOLOGIAS", gerenciaTecnologias.getTecnologias(), gerenciaFornecedores.getFornecedores());
-        } else if (e.getSource() == botoes.get(2)) {
-            new RelatorioCompradores(gerenciaCompradores.getCompradores());
-        } else if (e.getSource() == botoes.get(3)) {
-            new RelatorioVendas(gerenciaVendas.getVendas());
-        }
+
     }
 }
