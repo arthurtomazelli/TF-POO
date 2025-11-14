@@ -11,7 +11,7 @@ import java.awt.event.*;
 import java.util.*;
 import java.util.List;
 
-public class CadastrarComprador extends JFrame implements ActionListener {
+public class CadastrarComprador extends JFrame implements LimpaCampos, ActionListener {
     private JPanel painelPrincipal;
     private JPanel painelBorda;
     private List<JTextField> camposTexto;
@@ -169,22 +169,15 @@ public class CadastrarComprador extends JFrame implements ActionListener {
         return false;
     }
 
-    private JButton criarBotao(String texto) {
-        JButton botao = new JButton(texto);
-        botao.setMargin(new Insets(10, 20, 10, 20));
-        botao.setBackground(Color.WHITE);
-        botao.setForeground(corPrincipal);
-
-        return botao;
-    }
-
-    private void limparCampos() {
+    @Override
+    public void limparCampos() {
         for (JTextField campo : camposTexto) {
             campo.setText("");
         }
     }
 
-    private boolean camposVazios() {
+    @Override
+    public boolean camposVazios() {
         for (JTextField campo : camposTexto) {
             if (campo.getText().isEmpty()) {
                 return true;

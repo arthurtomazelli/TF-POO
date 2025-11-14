@@ -13,7 +13,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-public class CadastrarVenda extends JFrame implements ActionListener {
+public class CadastrarVenda extends JFrame implements LimpaCampos, ActionListener {
     private JPanel painelPrincipal;
     private JPanel painelBorda;
     private List<JTextField> camposTexto;
@@ -112,16 +112,22 @@ public class CadastrarVenda extends JFrame implements ActionListener {
 
         Font fonteCampo = new Font("Arial", Font.PLAIN, 20);
         Font fonteAtributo = new Font("Arial", Font.BOLD, 20);
+        Font fonteCombo = new Font("Arial", Font.PLAIN, 18);
 
         JLabel labelComprador = new JLabel("Comprador: ");
-        labelComprador.setFont(fonteAtributo);
-
         JLabel labelTecnologia = new JLabel("Tecnologia: ");
+
+        labelComprador.setFont(fonteAtributo);
         labelTecnologia.setFont(fonteAtributo);
 
         mapCompradores = new HashMap<>();
+        mapTecnologias = new HashMap<>();
+
         comboCompradores = new JComboBox<>();
-        comboCompradores.setFont(new Font("Arial", Font.PLAIN, 18));
+        comboTecnologias = new JComboBox<>();
+
+        comboCompradores.setFont(fonteCombo);
+        comboTecnologias.setFont(fonteCombo);
 
         for (Comprador c : compradores) {
             String chave = c.getCod() + " - " + c.getNome();
@@ -129,28 +135,23 @@ public class CadastrarVenda extends JFrame implements ActionListener {
             mapCompradores.put(chave, c);
         }
 
-        painelGrid.add(labelComprador);
-        painelGrid.add(comboCompradores);
-
-        mapTecnologias = new HashMap<>();
-        comboTecnologias = new JComboBox<>();
-        comboTecnologias.setFont(new Font("Arial", Font.PLAIN, 18));
-
         for (Tecnologia t : tecnologias) {
             String chave = t.getId() + " - " + t.getNome();
             comboTecnologias.addItem(chave);
             mapTecnologias.put(chave, t);
         }
 
+        painelGrid.add(labelComprador);
+        painelGrid.add(comboCompradores);
         painelGrid.add(labelTecnologia);
         painelGrid.add(comboTecnologias);
 
         for (String s : labelsAtributos) {
-            JTextField campo = new JTextField(70);
             JLabel atributo = new JLabel(s);
+            JTextField campo = new JTextField(70);
 
-            campo.setFont(fonteCampo);
             atributo.setFont(fonteAtributo);
+            campo.setFont(fonteCampo);
 
             painelGrid.add(atributo);
             painelGrid.add(campo);
@@ -159,6 +160,7 @@ public class CadastrarVenda extends JFrame implements ActionListener {
 
         return painelGrid;
     }
+
 
     private JPanel criarPainelBotoes() {
         JPanel painelBotoes = new JPanel();
@@ -297,20 +299,21 @@ public class CadastrarVenda extends JFrame implements ActionListener {
         return botao;
     }
 
-    private void limparCampos() {
+    @Override
+    public void limparCampos() {
         for (JTextField campo : camposTexto) {
             campo.setText("");
         }
-        comboCompradores.setSelectedIndex(-1);
-        comboTecnologias.setSelectedIndex(-1);
     }
 
-    private boolean camposVazios() {
+    @Override
+    public boolean camposVazios() {
         for (JTextField campo : camposTexto) {
             if (campo.getText().isEmpty()) {
                 return true;
             }
         }
+
         return false;
     }
 

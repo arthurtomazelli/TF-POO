@@ -96,6 +96,14 @@ public class PainelConsultarMaior extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == botoes.get(0)){
+            new TecnologiaMaiorValor(gerenciaTecnologias.getTecnologias());
+        } else if (e.getSource() == botoes.get(1)){
 
+        } else if (e.getSource() == botoes.get(2)){
+
+        } else if (e.getSource() == botoes.get(3)){
+
+        }
     }
 }

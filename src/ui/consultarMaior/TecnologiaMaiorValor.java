@@ -13,7 +13,7 @@ public class TecnologiaMaiorValor extends JDialog {
     private Tecnologia tecMaiorValor;
     private final Color corPrincipal = new Color(20, 86, 160);
 
-    public TecnologiaMaiorValor(String titulo, List<Tecnologia> tecnologias) {
+    public TecnologiaMaiorValor(List<Tecnologia> tecnologias) {
         super();
         setBasics();
 
@@ -32,17 +32,17 @@ public class TecnologiaMaiorValor extends JDialog {
         tecMaiorValor = encontrarTecnologiaComMaiorValor(tecnologias);
 
         if (tecMaiorValor != null) {
-            areaTexto.setText(areaTexto.getText() + "=-=-=-=-=-=-= Maior Tecnologia =-=-=-=-=-=-=\n");
+            areaTexto.setText(areaTexto.getText() + "=-=-=-=-=-=-= Tecnologia Com Maior Valor =-=-=-=-=-=-=\n");
             areaTexto.setText(areaTexto.getText() + tecMaiorValor);
-        }
-
-        areaTexto.setText(areaTexto.getText() + "=-=-=-=-=-=-= Tecnologias (houve empate de maiores valores) =-=-=-=-=-=-=\n");
-
-        if (tecnologias.isEmpty()) {
-            areaTexto.setText(areaTexto.getText() + "Nenhuma tecnologia cadastrada.\n");
         } else {
-            for (Tecnologia t : tecnologias) {
-                areaTexto.setText(areaTexto.getText() + t + "\n");
+            areaTexto.setText(areaTexto.getText() + "=-=-=-=-=-=-= Tecnologias (houve empate de maiores valores) =-=-=-=-=-=-=\n");
+
+            if (tecnologias.isEmpty()) {
+                areaTexto.setText(areaTexto.getText() + "Nenhuma tecnologia cadastrada.\n");
+            } else {
+                for (Tecnologia t : tecnologias) {
+                    areaTexto.setText(areaTexto.getText() + t + "\n");
+                }
             }
         }
 
@@ -51,7 +51,7 @@ public class TecnologiaMaiorValor extends JDialog {
         botaoOK.addActionListener(e -> this.dispose());
         painelChao.add(botaoOK);
 
-        this.add(criarPainelTitulo(titulo, 30), BorderLayout.NORTH);
+        this.add(criarPainelTitulo("TECNOLOGIA COM MAIOR VALOR", 30), BorderLayout.NORTH);
         this.add(painelTexto, BorderLayout.CENTER);
         this.add(painelChao, BorderLayout.SOUTH);
 
@@ -61,7 +61,7 @@ public class TecnologiaMaiorValor extends JDialog {
     }
 
     private void setBasics() {
-        this.setTitle("Relatório de Tecnologias");
+        this.setTitle("Tecnologia Com Maior Valor");
         this.setLocationRelativeTo(null);
         this.setLayout(new BorderLayout());
     }
@@ -95,9 +95,15 @@ public class TecnologiaMaiorValor extends JDialog {
     private Tecnologia encontrarTecnologiaComMaiorValor(List<Tecnologia> tecnologias) {
         Tecnologia maior = tecnologias.get(0);
 
+        int cont = 0;
+
         for(Tecnologia t : tecnologias) {
             if(t.getValorBase() == maior.getValorBase()) {
-                return null;
+                cont++;
+
+                if(cont > 1) {
+                    return null;
+                }
             }
         }
 

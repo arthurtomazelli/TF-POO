@@ -11,7 +11,7 @@ import java.time.LocalDate;
 import java.util.*;
 import java.util.List;
 
-public class CadastrarFornecedor extends JFrame implements ActionListener {
+public class CadastrarFornecedor extends JFrame implements LimpaCampos, ActionListener {
     private JPanel painelPrincipal;
     private JPanel painelBorda;
     private List<JTextField> camposTexto;
@@ -197,13 +197,15 @@ public class CadastrarFornecedor extends JFrame implements ActionListener {
         return botao;
     }
 
-    private void limparCampos() {
+    @Override
+    public void limparCampos() {
         for (JTextField campo : camposTexto) {
             campo.setText("");
         }
     }
 
-    private boolean camposVazios() {
+    @Override
+    public boolean camposVazios() {
         for (JTextField campo : camposTexto) {
             if (campo.getText().isEmpty()) {
                 return true;
