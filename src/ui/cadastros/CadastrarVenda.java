@@ -272,7 +272,7 @@ public class CadastrarVenda extends JFrame implements ActionListener {
                 throw new IllegalArgumentException("Dia deve ser entre 1 e 30. Altere-o e tente novamente.");
             }
 
-            return new Date(anoInt, mesInt, diaInt);
+            return new Date(anoInt - 1900, mesInt - 1, diaInt);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("Formato de data inválido. Altere-o para 'yyyy/MM/dd' e tente novamente.");
         }

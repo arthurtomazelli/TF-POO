@@ -1,5 +1,6 @@
 package entidades;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Venda implements Comparable<Venda>{
@@ -53,6 +54,11 @@ public class Venda implements Comparable<Venda>{
         return data;
     }
 
+    public String getDataFormatada() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+        return sdf.format(data);
+    }
+
     public double getValorFinal() {
         return Double.parseDouble(String.format("%.2f", valorFinal));
     }
@@ -72,6 +78,6 @@ public class Venda implements Comparable<Venda>{
 
     @Override
     public String toString() {
-        return num + ";" + data.getYear() + ";" + valorFinal + ";" + comprador.getNome() + ";" + tecnologia.getNome();
+        return num + ";" + getDataFormatada() + ";" + valorFinal + ";" + comprador.getNome() + ";" + tecnologia.getNome();
     }
 }
