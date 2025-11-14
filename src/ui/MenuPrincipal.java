@@ -7,6 +7,7 @@ import entidades.GerenciaVendas;
 import ui.cadastros.PainelCadastros;
 import ui.relatorios.PainelRelatorios;
 import ui.consultarMaior.PainelConsultarMaior;
+import ui.removerAlterar.PainelRemoverAlterar;
 
 import javax.swing.*;
 
@@ -14,6 +15,7 @@ public class MenuPrincipal extends JFrame{
     private PainelPrincipal painelPrincipal;
     private PainelCadastros painelCadastros;
     private PainelRelatorios painelRelatorios;
+    private PainelRemoverAlterar painelRemoverAlterar;
     private PainelConsultarMaior painelConsultarMaior;
 
     public MenuPrincipal(GerenciaFornecedores gerenciaFornecedores, GerenciaTecnologias gerenciaTecnologias, GerenciaCompradores gerenciaCompradores, GerenciaVendas gerenciaVendas) {
@@ -24,6 +26,7 @@ public class MenuPrincipal extends JFrame{
         this.painelCadastros = new PainelCadastros(this, gerenciaFornecedores, gerenciaTecnologias, gerenciaCompradores, gerenciaVendas);
         this.painelRelatorios = new PainelRelatorios(this, gerenciaFornecedores, gerenciaTecnologias, gerenciaCompradores, gerenciaVendas);
         this.painelConsultarMaior = new PainelConsultarMaior(this, gerenciaFornecedores, gerenciaTecnologias, gerenciaCompradores, gerenciaVendas);
+        this.painelRemoverAlterar = new PainelRemoverAlterar(this, gerenciaVendas, gerenciaCompradores);
 
         this.setContentPane(painelPrincipal);
         this.setVisible(true);
@@ -57,7 +60,10 @@ public class MenuPrincipal extends JFrame{
                 this.setSize(1200,800);
                 break;
             case 4:
-                System.out.println("nao fiz aindakkj");
+                this.setContentPane(painelRemoverAlterar);
+                this.setTitle("Menu Remover/Alterar");
+                this.pack();
+                this.setSize(1200,800);
                 break;
             case 5:
                 this.setContentPane(painelConsultarMaior);

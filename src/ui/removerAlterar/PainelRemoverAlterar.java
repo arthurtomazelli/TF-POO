@@ -1,4 +1,11 @@
-package ui;
+package ui.removerAlterar;
+
+import entidades.GerenciaCompradores;
+import entidades.GerenciaFornecedores;
+import entidades.GerenciaTecnologias;
+import entidades.GerenciaVendas;
+import ui.MenuPrincipal;
+import ui.consultarMaior.TecnologiaMaiorValor;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,8 +15,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class PainelPrincipal extends JPanel implements ActionListener {
+public class PainelRemoverAlterar extends JPanel implements ActionListener {
     private JPanel painelPrincipal;
+    private GerenciaVendas gerenciaVendas;
+    private GerenciaCompradores gerenciaCompradores;
     private JPanel painelBorda;
     private JPanel painelBotaoChao;
     private MenuPrincipal menuPrincipal;
@@ -17,39 +26,15 @@ public class PainelPrincipal extends JPanel implements ActionListener {
     private final Color corPrincipal = new Color(20, 86, 160);
 
     private final List<String> labelsBotoes = new ArrayList<>(Arrays.asList(
-            "CADASTROS", "MOSTRAR RELATÓRIOS", "REMOVER / ALTERAR", "CONSULTAR MAIOR", "SALVAR / CARREGAR"
+            "REMOVER DADOS DE UMA VENDA", "ALTERAR DADOS DE UM COMPRADOR"
     ));
 
-    public PainelPrincipal(MenuPrincipal menuPrincipal) {
+    public PainelRemoverAlterar(MenuPrincipal menuPrincipal, GerenciaVendas gerenciaVendas, GerenciaCompradores gerenciaCompradores) {
         super(new BorderLayout());
-
         this.menuPrincipal = menuPrincipal;
+        this.gerenciaVendas = gerenciaVendas;
+        this.gerenciaCompradores = gerenciaCompradores;
 
-        this.add(criarPainelEsquerda(), BorderLayout.WEST);
-        this.add(criarPainelDireita(), BorderLayout.CENTER);
-    }
-
-    private JPanel criarPainelEsquerda(){
-        JPanel painel = new JPanel(new BorderLayout());
-        painel.setOpaque(true);
-        painel.setBackground(corPrincipal);
-        painel.setPreferredSize(new Dimension(450, getHeight()));
-
-        JLabel titulo = new JLabel("ACMETech", JLabel.CENTER);
-        titulo.setFont(new Font("Arial", Font.BOLD, 60));
-        titulo.setForeground(Color.WHITE);
-
-        painel.add(titulo);
-
-        JLabel texto = new JLabel("© 2025 Yamaguti Corp. Todos os direitos reservados.", JLabel.CENTER);
-        texto.setForeground(Color.WHITE);
-
-        painel.add(texto, BorderLayout.SOUTH);
-
-        return painel;
-    }
-
-    private JPanel criarPainelDireita(){
         painelPrincipal = new JPanel(new BorderLayout());
 
         painelBorda = new JPanel(new BorderLayout());
@@ -58,41 +43,39 @@ public class PainelPrincipal extends JPanel implements ActionListener {
 
         painelBotaoChao = new JPanel();
 
-        JButton botaoSair = criarBotao("SAIR");
-        botaoSair.addActionListener(e -> System.exit(0));
+        JButton botaoVoltar = criarBotao("VOLTAR");
+        botaoVoltar.addActionListener(e -> menuPrincipal.mudaPainel(1));
 
-        painelBotaoChao.add(botaoSair);
+        painelBotaoChao.add(botaoVoltar);
 
         painelPrincipal.add(painelBotaoChao, BorderLayout.SOUTH);
-
         painelPrincipal.add(painelBorda, BorderLayout.CENTER);
 
-        return painelPrincipal;
+        this.add(painelPrincipal, BorderLayout.CENTER);
     }
 
     private void setBorda(JPanel painelBorda) {
         int largura = menuPrincipal.getWidth();
         int altura = menuPrincipal.getHeight();
 
-        int vertical = (int) (altura * 0.16);
+        int vertical = (int) (altura * 0.16) + 100;
         int horizontal = (int) (largura * 0.20);
 
-        painelBorda.setBorder(BorderFactory.createEmptyBorder(vertical, horizontal, vertical, horizontal));
+        painelBorda.setBorder(BorderFactory.createEmptyBorder(vertical, horizontal, vertical, horizontal)
+        );
     }
 
     private JPanel criarPainelBotoes() {
-        JPanel painelGrid = new JPanel(new GridLayout(5, 1, 10, 10));
+        JPanel painelGrid = new JPanel(new GridLayout(1, 3, 70, 10));
 
         botoes = new ArrayList<>();
 
         for (String s : labelsBotoes) {
             JButton botao = new JButton(s);
-
-            botao.setMargin(new Insets(10, 20, 10, 20));
+            botao.setMargin(new Insets(10, 0, 10, 0));
             botao.setBackground(Color.WHITE);
             botao.setForeground(corPrincipal);
             botao.addActionListener(this);
-
             botoes.add(botao);
             painelGrid.add(botao);
         }
@@ -105,20 +88,15 @@ public class PainelPrincipal extends JPanel implements ActionListener {
         botao.setMargin(new Insets(10, 20, 10, 20));
         botao.setBackground(Color.WHITE);
         botao.setForeground(corPrincipal);
-
         return botao;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == botoes.get(0)) {
-            menuPrincipal.mudaPainel(2);
-        } else if (e.getSource() == botoes.get(1)) {
-            menuPrincipal.mudaPainel(3);
-        } else if (e.getSource() == botoes.get(2)) {
-            menuPrincipal.mudaPainel(4);
-        } else if (e.getSource() == botoes.get(3)) {
-            menuPrincipal.mudaPainel(5);
+        if (e.getSource() == botoes.get(0)){
+            new RemoverVenda(gerenciaVendas);
+        } else if (e.getSource() == botoes.get(1)){
+
         }
     }
 }

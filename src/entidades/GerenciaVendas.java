@@ -32,7 +32,25 @@ public class GerenciaVendas {
         return false;
     }
 
+    public Venda buscaVendaPorNum(long num) {
+        for (Venda v : vendas) {
+            if (v.getNum() == num) {
+                return v;
+            }
+        }
+
+        return null;
+    }
+
     public List<Venda> getVendas() {
         return vendas;
+    }
+
+    public void removerVendaPorNum(long num) {
+        for(Venda v : vendas) {
+            if(v.getNum() == num) {
+                vendas.remove(v);
+            }
+        }
     }
 }

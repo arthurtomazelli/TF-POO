@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class JDialogComFuncoes extends JFrame {
+public abstract class JDialogComFuncoes extends JDialog {
     private final Color corPrincipal = new Color(20, 86, 160);
 
     public JPanel criarPainelTitulo(String textoTitulo, int tamanhoFonte) {
@@ -34,5 +34,9 @@ public abstract class JDialogComFuncoes extends JFrame {
         botao.setForeground(corPrincipal);
 
         return botao;
+    }
+
+    public Color getCorPrincipal() {
+        return corPrincipal;
     }
 }

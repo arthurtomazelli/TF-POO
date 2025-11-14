@@ -23,7 +23,6 @@ public class RelatorioFornecedores extends JDialogComFuncoes {
         areaTexto.setFont(new Font("Arial", Font.PLAIN, 15));
         painelTexto.add(areaTexto);
 
-        areaTexto.setText(areaTexto.getText() + "\n");
         areaTexto.setText(areaTexto.getText() + "=-=-=-=-=-=-= Fornecedores =-=-=-=-=-=-=\n");
 
         if (fornecedores.isEmpty()) {

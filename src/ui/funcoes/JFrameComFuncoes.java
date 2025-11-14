@@ -88,4 +88,8 @@ public abstract class JFrameComFuncoes extends JFrame {
 
         return false;
     }
+
+    public Color getCorPrincipal() {
+        return corPrincipal;
+    }
 }
