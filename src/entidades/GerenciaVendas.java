@@ -46,10 +46,11 @@ public class GerenciaVendas {
         return vendas;
     }
 
-    public void removerVendaPorNum(long num) {
+    public void removerVenda(Venda venda) {
         for(Venda v : vendas) {
-            if(v.getNum() == num) {
+            if(v.getNum() == venda.getNum()) {
                 vendas.remove(v);
+                return;
             }
         }
     }

@@ -103,6 +103,7 @@ public class RemoverVenda extends JFrameComFuncoes implements ActionListener {
 
     private void mostrarVendas() {
         List<Venda> vendas = gerenciaVendas.getVendas();
+
         new RelatorioVendas(vendas);
     }
 
@@ -114,10 +115,8 @@ public class RemoverVenda extends JFrameComFuncoes implements ActionListener {
                 if (vendaRemover == null) {
                     JOptionPane.showMessageDialog(this, "Insira um número de venda válido.", "ERRO", JOptionPane.WARNING_MESSAGE);
                 } else {
-                    long num = vendaRemover.getNum();
-
-                    gerenciaVendas.removerVendaPorNum(num);
-                    JOptionPane.showMessageDialog(this, "Venda '" + num + "' removida com sucesso.", "SUCESSO", JOptionPane.PLAIN_MESSAGE);
+                    gerenciaVendas.removerVenda(vendaRemover);
+                    JOptionPane.showMessageDialog(this, "Venda '" + vendaRemover.getNum() + "' removida com sucesso.", "SUCESSO", JOptionPane.PLAIN_MESSAGE);
                     campoTexto.setText("");
                     areaTextoVenda.setText("");
                     vendaRemover = null;
@@ -143,7 +142,7 @@ public class RemoverVenda extends JFrameComFuncoes implements ActionListener {
             areaTextoVenda.setText("");
             areaTextoVenda.append("\n");
             areaTextoVenda.append("=-=-=-=-=-=-= Venda encontrada =-=-=-=-=-=-=\n");
-            areaTextoVenda.append(vendaRemover.toString() + "\n");
+            areaTextoVenda.append(vendaRemover + "\n");
         }
     }
 

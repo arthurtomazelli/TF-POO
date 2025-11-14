@@ -20,7 +20,7 @@ public class RelatorioVendas extends JDialogComFuncoes {
         setBasics();
 
         if (vendas.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Não há vendas cadastrados.", "ERRO", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Não há vendas cadastradas.", "ERRO", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
