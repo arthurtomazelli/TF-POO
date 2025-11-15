@@ -85,9 +85,7 @@ public class FornecedorComMaisTecnologias extends JDialogComFuncoes {
                 int contagemF = contagemPorFornecedor.get(codF);
 
                 contagemPorFornecedor.put(codF, contagemF + 1);
-            } catch (NullPointerException e) {
-                continue;
-            }
+            } catch (NullPointerException e) {}
         }
 
         int maior = -9999;
