@@ -32,6 +32,16 @@ public class GerenciaFornecedores {
         return false;
     }
 
+    public Fornecedor buscaFornecedorPorCod(long cod) {
+        for (Fornecedor fornecedor : fornecedores) {
+            if (fornecedor.getCod() == cod) {
+                return fornecedor;
+            }
+        }
+
+        return null;
+    }
+
     public List<Fornecedor> getFornecedores() {
         return fornecedores;
     }

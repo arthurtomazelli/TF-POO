@@ -99,7 +99,7 @@ public class PainelConsultarMaior extends JPanel implements ActionListener {
         if (e.getSource() == botoes.get(0)){
             new TecnologiaMaiorValor(gerenciaTecnologias.getTecnologias());
         } else if (e.getSource() == botoes.get(1)){
-
+            new FornecedorComMaisTecnologias(gerenciaTecnologias.getTecnologias(), gerenciaFornecedores);
         } else if (e.getSource() == botoes.get(2)){
 
         } else if (e.getSource() == botoes.get(3)){

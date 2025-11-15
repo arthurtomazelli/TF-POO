@@ -24,7 +24,7 @@ public class CadastrarComprador extends JFrameComFuncoes implements ActionListen
     ));
 
     private final List<String> labelsBotoes = new ArrayList<>(Arrays.asList(
-            "FECHAR", "LIMPAR", "MOSTRAR COMPRADORES", "CONFIRMAR"
+            "FECHAR", "LIMPAR", "MOSTRAR COMPRADORES CADASTRADOS", "CONFIRMAR"
     ));
 
 
