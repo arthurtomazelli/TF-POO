@@ -96,7 +96,7 @@ public class PainelRemoverAlterar extends JPanel implements ActionListener {
         if (e.getSource() == botoes.get(0)){
             new RemoverVenda(gerenciaVendas);
         } else if (e.getSource() == botoes.get(1)){
-
+            new AlterarDadosComprador(gerenciaCompradores);
         }
     }
 }

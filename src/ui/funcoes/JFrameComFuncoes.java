@@ -9,7 +9,7 @@ public abstract class JFrameComFuncoes extends JFrame {
     private final Color corPrincipal = new Color(20, 86, 160);
 
     public JPanel criarPainelCampos(List<JTextField> camposTexto, List<String> labelsAtributos) {
-        JPanel painelGrid = new JPanel(new GridLayout(6, 2, 10, 10));
+        JPanel painelGrid = new JPanel(new GridLayout(labelsAtributos.size(), 2, 10, 10));
 
         for (String s : labelsAtributos) {
             JTextField campo = new JTextField(70);

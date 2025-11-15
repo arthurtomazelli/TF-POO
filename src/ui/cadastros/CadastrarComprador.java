@@ -88,7 +88,7 @@ public class CadastrarComprador extends JFrameComFuncoes implements ActionListen
                 Comprador comprador = new Comprador(cod, nome, pais, email);
 
                 if(!emailValido(email)){
-                    JOptionPane.showMessageDialog(this, "Email deve terminar em um endereço válido.", "ERRO",  JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Email deve terminar em um endereço válido.", "ERRO",  JOptionPane.WARNING_MESSAGE);
                 } else if (!gerenciaCompradores.addComprador(comprador)) {
                     JOptionPane.showMessageDialog(this, "Código já cadastrado. Altere-o e tente novamente.", "ERRO", JOptionPane.WARNING_MESSAGE);
                 } else {

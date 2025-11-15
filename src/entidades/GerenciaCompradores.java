@@ -33,6 +33,26 @@ public class GerenciaCompradores {
         return false;
     }
 
+    public Comprador buscaCompradorPorCod(long cod) {
+        for (Comprador c : compradores) {
+            if (c.getCod() == cod) {
+                return c;
+            }
+        }
+
+        return null;
+    }
+
+    public void alterarDadosComprador(Comprador comprador, List<Object> novosAtributos){
+        String novoNome = (String) novosAtributos.get(0);
+        String novoEmail = (String) novosAtributos.get(1);
+        String novoPais = (String) novosAtributos.get(2);
+
+        comprador.setNome(novoNome);
+        comprador.setPais(novoPais);
+        comprador.setEmail(novoEmail);
+    }
+
 
     public List<Comprador> getCompradores() {
         return compradores;

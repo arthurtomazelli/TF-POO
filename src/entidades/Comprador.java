@@ -10,6 +10,20 @@ public class Comprador extends Participante implements Comparable<Comprador>{
         this.email = email;
 
     }
+
+    @Override
+    public void setNome(String nome) {
+        super.setNome(nome);
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPais(String pais) {
+        this.pais = pais;
+    }
+
     @Override
     public String geraDescricao(){
         return getCod() + ";" + getNome() + ";" + pais + ";" + email;
