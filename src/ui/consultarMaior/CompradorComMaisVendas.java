@@ -28,7 +28,9 @@ public class CompradorComMaisVendas extends JDialogComFuncoes {
         areaTexto.setFont(new Font("Arial", Font.PLAIN, 15));
         painelTexto.add(areaTexto);
 
-        compradorMaisVendas = encontrarCompradorComMaisVendas(vendas, gerenciaCompradores);
+        contagemPorComprador = new HashMap<>();
+
+        compradorMaisVendas = gerenciaCompradores.encontrarCompradorComMaisVendas(vendas, contagemPorComprador);
 
         if (compradorMaisVendas != null) {
             areaTexto.setText(areaTexto.getText() + "=-=-=-=-=-=-= Comprador Com Mais Vendas =-=-=-=-=-=-=\n");
@@ -64,42 +66,5 @@ public class CompradorComMaisVendas extends JDialogComFuncoes {
         this.setTitle("Comprador Com Mais Vendas");
         this.setLocationRelativeTo(null);
         this.setLayout(new BorderLayout());
-    }
-
-    private Comprador encontrarCompradorComMaisVendas(List<Venda> vendas, GerenciaCompradores gerenciaCompradores) {
-        contagemPorComprador  = new HashMap<>();
-        long codMaiorC = 0;
-
-        for (Venda v : vendas) {
-            try {
-                Long codC = v.getComprador().getCod();
-
-                if (contagemPorComprador.get(codC) == null) {
-                    contagemPorComprador.put(codC, 1);
-                    continue;
-                }
-
-                int contagemC = contagemPorComprador.get(codC);
-
-                contagemPorComprador.put(codC, contagemC + 1);
-            } catch (NullPointerException _) {}
-        }
-
-        int maior = -9999;
-
-        for (Long cod : contagemPorComprador.keySet()) {
-            int contagem = contagemPorComprador.get(cod);
-
-            if (contagem > maior) {
-                maior = contagem;
-                codMaiorC = cod;
-                continue;
-            }
-
-            if (contagem == maior) {
-                return null;
-            }
-        }
-        return gerenciaCompradores.buscaCompradorPorCod(codMaiorC);
     }
 }

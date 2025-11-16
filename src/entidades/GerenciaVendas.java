@@ -91,7 +91,7 @@ public class GerenciaVendas {
         }
     }
 
-    public boolean verificaTecnologiaVendida(List<Venda> vendas, Venda novaVenda) {
+    public boolean verificaTecnologiaVendida(Venda novaVenda) {
         for (Venda v : vendas) {
             if (v.getTecnologia().getId() == novaVenda.getTecnologia().getId()) {
                 return true;
@@ -99,6 +99,26 @@ public class GerenciaVendas {
         }
 
         return false;
+    }
+
+    public Venda encontrarVendaComMaiorValor() {
+        Venda maior = vendas.getFirst();
+
+        int cont = 0;
+
+        for(Venda v : vendas) {
+            if(v.getValorFinal() > maior.getValorFinal()) {
+                maior = v;
+            } else if(v.getValorFinal() == maior.getValorFinal()) {
+                cont++;
+
+                if(cont > 1) {
+                    return null;
+                }
+            }
+        }
+
+        return maior;
     }
 
     public List<Venda> getVendas() {

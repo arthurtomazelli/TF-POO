@@ -1,9 +1,6 @@
 package entidades;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class GerenciaCompradores {
     private final List<String> emailsValidos = new ArrayList<>(Arrays.asList("@gmail.com", "@yahoo.com", "@outlook.com", "@email.com", "@toons.com"));
@@ -58,6 +55,42 @@ public class GerenciaCompradores {
         }
 
         return false;
+    }
+
+    public Comprador encontrarCompradorComMaisVendas(List<Venda> vendas, HashMap<Long, Integer> contagemPorComprador) {
+        long codMaiorC = 0;
+
+        for (Venda v : vendas) {
+            try {
+                Long codC = v.getComprador().getCod();
+
+                if (contagemPorComprador.get(codC) == null) {
+                    contagemPorComprador.put(codC, 1);
+                    continue;
+                }
+
+                int contagemC = contagemPorComprador.get(codC);
+
+                contagemPorComprador.put(codC, contagemC + 1);
+            } catch (NullPointerException _) {}
+        }
+
+        int maior = -9999;
+
+        for (Long cod : contagemPorComprador.keySet()) {
+            int contagem = contagemPorComprador.get(cod);
+
+            if (contagem > maior) {
+                maior = contagem;
+                codMaiorC = cod;
+                continue;
+            }
+
+            if (contagem == maior) {
+                return null;
+            }
+        }
+        return buscaCompradorPorCod(codMaiorC);
     }
 
 

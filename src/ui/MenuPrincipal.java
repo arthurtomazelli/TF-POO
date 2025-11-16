@@ -8,6 +8,7 @@ import ui.cadastros.PainelCadastros;
 import ui.relatorios.PainelRelatorios;
 import ui.consultarMaior.PainelConsultarMaior;
 import ui.removerAlterar.PainelRemoverAlterar;
+import ui.salvarCarregar.PainelSalvarCarregar;
 
 import javax.swing.*;
 
@@ -17,6 +18,7 @@ public class MenuPrincipal extends JFrame{
     private PainelRelatorios painelRelatorios;
     private PainelRemoverAlterar painelRemoverAlterar;
     private PainelConsultarMaior painelConsultarMaior;
+    private PainelSalvarCarregar painelSalvarCarregar;
 
     public MenuPrincipal(GerenciaFornecedores gerenciaFornecedores, GerenciaTecnologias gerenciaTecnologias, GerenciaCompradores gerenciaCompradores, GerenciaVendas gerenciaVendas) {
         super();
@@ -27,6 +29,7 @@ public class MenuPrincipal extends JFrame{
         this.painelRelatorios = new PainelRelatorios(this, gerenciaFornecedores, gerenciaTecnologias, gerenciaCompradores, gerenciaVendas);
         this.painelConsultarMaior = new PainelConsultarMaior(this, gerenciaFornecedores, gerenciaTecnologias, gerenciaCompradores, gerenciaVendas);
         this.painelRemoverAlterar = new PainelRemoverAlterar(this, gerenciaVendas, gerenciaCompradores);
+        this.painelSalvarCarregar = new PainelSalvarCarregar(this, gerenciaFornecedores, gerenciaCompradores);
 
         this.setContentPane(painelPrincipal);
         this.setVisible(true);
@@ -68,6 +71,12 @@ public class MenuPrincipal extends JFrame{
             case 5:
                 this.setContentPane(painelConsultarMaior);
                 this.setTitle("Menu Consultar Maior");
+                this.pack();
+                this.setSize(1200,800);
+                break;
+            case 6:
+                this.setContentPane(painelSalvarCarregar);
+                this.setTitle("Menu Salvar/Carregar");
                 this.pack();
                 this.setSize(1200,800);
                 break;

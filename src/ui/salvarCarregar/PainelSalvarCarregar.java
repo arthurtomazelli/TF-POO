@@ -1,10 +1,12 @@
-package ui.consultarMaior;
+package ui.salvarCarregar;
 
 import entidades.GerenciaCompradores;
 import entidades.GerenciaFornecedores;
-import entidades.GerenciaTecnologias;
 import entidades.GerenciaVendas;
+import io.CarregaArquivos;
 import ui.MenuPrincipal;
+import ui.removerAlterar.AlterarDadosComprador;
+import ui.removerAlterar.RemoverVenda;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,12 +16,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class PainelConsultarMaior extends JPanel implements ActionListener {
+public class PainelSalvarCarregar extends JPanel implements ActionListener {
     private JPanel painelPrincipal;
     private GerenciaFornecedores gerenciaFornecedores;
-    private GerenciaTecnologias gerenciaTecnologias;
     private GerenciaCompradores gerenciaCompradores;
-    private GerenciaVendas gerenciaVendas;
     private JPanel painelBorda;
     private JPanel painelBotaoChao;
     private MenuPrincipal menuPrincipal;
@@ -27,16 +27,14 @@ public class PainelConsultarMaior extends JPanel implements ActionListener {
     private final Color corPrincipal = new Color(20, 86, 160);
 
     private final List<String> labelsBotoes = new ArrayList<>(Arrays.asList(
-            "TECNOLOGIA COM MAIOR VALOR", "FORNECEDOR COM MAIS TECNOLOGIAS", "COMPRADOR COM MAIS VENDAS", "VENDA COM MAIOR VALOR"
+            "CARREGAR DADOS", "SALVAR DADOS"
     ));
 
-    public PainelConsultarMaior(MenuPrincipal menuPrincipal, GerenciaFornecedores gerenciaFornecedores, GerenciaTecnologias gerenciaTecnologias, GerenciaCompradores gerenciaCompradores, GerenciaVendas gerenciaVendas) {
+    public PainelSalvarCarregar(MenuPrincipal menuPrincipal, GerenciaFornecedores gerenciaFornecedores, GerenciaCompradores gerenciaCompradores) {
         super(new BorderLayout());
         this.menuPrincipal = menuPrincipal;
         this.gerenciaFornecedores = gerenciaFornecedores;
-        this.gerenciaTecnologias = gerenciaTecnologias;
         this.gerenciaCompradores = gerenciaCompradores;
-        this.gerenciaVendas = gerenciaVendas;
 
         painelPrincipal = new JPanel(new BorderLayout());
 
@@ -62,14 +60,14 @@ public class PainelConsultarMaior extends JPanel implements ActionListener {
         int altura = menuPrincipal.getHeight();
 
         int vertical = (int) (altura * 0.16) + 100;
-        int horizontal = (int) (largura * 0.20) - 170;
+        int horizontal = (int) (largura * 0.20);
 
         painelBorda.setBorder(BorderFactory.createEmptyBorder(vertical, horizontal, vertical, horizontal)
         );
     }
 
     private JPanel criarPainelBotoes() {
-        JPanel painelGrid = new JPanel(new GridLayout(1, 3, 10, 10));
+        JPanel painelGrid = new JPanel(new GridLayout(1, 3, 70, 10));
 
         botoes = new ArrayList<>();
 
@@ -97,13 +95,9 @@ public class PainelConsultarMaior extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == botoes.get(0)){
-            new TecnologiaMaiorValor(gerenciaTecnologias);
+            //new CarregaArquivos(gerenciaFornecedores, gerenciaCompradores);
         } else if (e.getSource() == botoes.get(1)){
-            new FornecedorComMaisTecnologias(gerenciaTecnologias.getTecnologias(), gerenciaFornecedores);
-        } else if (e.getSource() == botoes.get(2)){
-            new CompradorComMaisVendas(gerenciaVendas.getVendas(), gerenciaCompradores);
-        } else if (e.getSource() == botoes.get(3)){
-            new VendaMaiorValor(gerenciaVendas);
+            System.out.println("n fiz aindakkj");
         }
     }
 }

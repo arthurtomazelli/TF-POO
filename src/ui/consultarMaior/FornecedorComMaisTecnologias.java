@@ -30,7 +30,9 @@ public class FornecedorComMaisTecnologias extends JDialogComFuncoes {
         areaTexto.setFont(new Font("Arial", Font.PLAIN, 15));
         painelTexto.add(areaTexto);
 
-        fornecedorMaisTec = encontrarFornecedorComMaisTec(tecnologias, gerenciaFornecedores);
+        contagemPorFornecedor = new HashMap<>();
+
+        fornecedorMaisTec = gerenciaFornecedores.encontrarFornecedorComMaisTec(tecnologias, contagemPorFornecedor);
 
         if (fornecedorMaisTec != null) {
             areaTexto.setText(areaTexto.getText() + "=-=-=-=-=-=-= Fornecedor Com Mais Tecnologias =-=-=-=-=-=-=\n");
@@ -66,43 +68,5 @@ public class FornecedorComMaisTecnologias extends JDialogComFuncoes {
         this.setTitle("Fornecedor Com Mais Tecnologias");
         this.setLocationRelativeTo(null);
         this.setLayout(new BorderLayout());
-    }
-
-    private Fornecedor encontrarFornecedorComMaisTec(List<Tecnologia> tecnologias, GerenciaFornecedores gerenciaFornecedores) {
-        contagemPorFornecedor  = new HashMap<>();
-        long codMaiorF = 0;
-
-
-        for (Tecnologia t : tecnologias) {
-            try {
-                Long codF = t.getFornecedor().getCod();
-
-                if (contagemPorFornecedor.get(codF) == null) {
-                    contagemPorFornecedor.put(codF, 1);
-                    continue;
-                }
-
-                int contagemF = contagemPorFornecedor.get(codF);
-
-                contagemPorFornecedor.put(codF, contagemF + 1);
-            } catch (NullPointerException e) {}
-        }
-
-        int maior = -9999;
-
-        for (Long cod : contagemPorFornecedor.keySet()) {
-            int contagem = contagemPorFornecedor.get(cod);
-
-            if (contagem > maior) {
-                maior = contagem;
-                codMaiorF = cod;
-                continue;
-            }
-
-            if (contagem == maior) {
-                return null;
-            }
-        }
-        return gerenciaFornecedores.buscaFornecedorPorCod(codMaiorF);
     }
 }

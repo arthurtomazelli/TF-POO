@@ -171,7 +171,7 @@ public class CadastrarVenda extends JFrameComFuncoes implements ActionListener {
 
             Venda venda = new Venda(numero, data, comprador, tecnologia, (double) desconto / 100);
 
-            if (!gerenciaVendas.verificaTecnologiaVendida(gerenciaVendas.getVendas(), venda)) {
+            if (!gerenciaVendas.verificaTecnologiaVendida(venda)) {
                 if (!gerenciaVendas.addVenda(venda)) {
                     JOptionPane.showMessageDialog(this, "Número já cadastrado. Altere-o e tente novamente.", "ERRO", JOptionPane.WARNING_MESSAGE);
                 } else {

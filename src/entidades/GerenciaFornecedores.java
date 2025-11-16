@@ -1,10 +1,7 @@
 package entidades;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class GerenciaFornecedores {
     private List<Fornecedor> fornecedores;
@@ -109,6 +106,42 @@ public class GerenciaFornecedores {
         } else{
             throw new EnumConstantNotPresentException(Area.class, area);
         }
+    }
+
+    public Fornecedor encontrarFornecedorComMaisTec(List<Tecnologia> tecnologias, HashMap<Long, Integer> contagemPorFornecedor) {
+        long codMaiorF = 0;
+
+        for (Tecnologia t : tecnologias) {
+            try {
+                Long codF = t.getFornecedor().getCod();
+
+                if (contagemPorFornecedor.get(codF) == null) {
+                    contagemPorFornecedor.put(codF, 1);
+                    continue;
+                }
+
+                int contagemF = contagemPorFornecedor.get(codF);
+
+                contagemPorFornecedor.put(codF, contagemF + 1);
+            } catch (NullPointerException e) {}
+        }
+
+        int maior = -9999;
+
+        for (Long cod : contagemPorFornecedor.keySet()) {
+            int contagem = contagemPorFornecedor.get(cod);
+
+            if (contagem > maior) {
+                maior = contagem;
+                codMaiorF = cod;
+                continue;
+            }
+
+            if (contagem == maior) {
+                return null;
+            }
+        }
+        return buscaFornecedorPorCod(codMaiorF);
     }
 
     public List<Fornecedor> getFornecedores() {

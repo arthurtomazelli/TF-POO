@@ -32,6 +32,36 @@ public class GerenciaTecnologias {
         return false;
     }
 
+    public Tecnologia buscaTecnologiaPorId(long id) {
+        for (Tecnologia t : tecnologias) {
+            if (t.getId() == id) {
+                return t;
+            }
+        }
+
+        return null;
+    }
+
+    public Tecnologia encontrarTecnologiaComMaiorValor() {
+        Tecnologia maior = tecnologias.getFirst();
+
+        int cont = 0;
+
+        for(Tecnologia t : tecnologias) {
+            if(t.getValorBase() > maior.getValorBase()) {
+                maior = t;
+            } else if(t.getValorBase() == maior.getValorBase()) {
+                cont++;
+
+                if(cont > 1) {
+                    return null;
+                }
+            }
+        }
+
+        return maior;
+    }
+
     public List<Tecnologia> getTecnologias() {
         return tecnologias;
     }

@@ -1,25 +1,27 @@
 package ui.consultarMaior;
 
 import entidades.GerenciaTecnologias;
+import entidades.GerenciaVendas;
 import entidades.Tecnologia;
+import entidades.Venda;
 import ui.funcoes.JDialogComFuncoes;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
-public class TecnologiaMaiorValor extends JDialogComFuncoes {
-    private List<Tecnologia> tecnologias;
-    private Tecnologia tecMaiorValor;
+public class VendaMaiorValor extends JDialogComFuncoes {
+    private List<Venda> vendas;
+    private Venda vendaMaiorValor;
 
-    public TecnologiaMaiorValor(GerenciaTecnologias gerenciaTecnologias) {
+    public VendaMaiorValor(GerenciaVendas gerenciaVendas) {
         super();
         setBasics();
 
-        tecnologias = gerenciaTecnologias.getTecnologias();
+        vendas = gerenciaVendas.getVendas();
 
-        if (tecnologias.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Não há tecnologias cadastradas.", "ERRO", JOptionPane.WARNING_MESSAGE);
+        if (vendas.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Não há vendas cadastradas.", "ERRO", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
@@ -30,19 +32,19 @@ public class TecnologiaMaiorValor extends JDialogComFuncoes {
         areaTexto.setFont(new Font("Arial", Font.PLAIN, 15));
         painelTexto.add(areaTexto);
 
-        tecMaiorValor = gerenciaTecnologias.encontrarTecnologiaComMaiorValor();
+        vendaMaiorValor = gerenciaVendas.encontrarVendaComMaiorValor();
 
-        if (tecMaiorValor != null) {
-            areaTexto.setText(areaTexto.getText() + "=-=-=-=-=-=-= Tecnologia Com Maior Valor =-=-=-=-=-=-=\n");
-            areaTexto.setText(areaTexto.getText() + tecMaiorValor);
+        if (vendaMaiorValor != null) {
+            areaTexto.setText(areaTexto.getText() + "=-=-=-=-=-=-= Venda Com Maior Valor =-=-=-=-=-=-=\n");
+            areaTexto.setText(areaTexto.getText() + vendaMaiorValor);
         } else {
-            areaTexto.setText(areaTexto.getText() + "=-=-=-=-=-=-= Tecnologias (houve empate de maiores valores) =-=-=-=-=-=-=\n");
+            areaTexto.setText(areaTexto.getText() + "=-=-=-=-=-=-= Venda (houve empate de maiores valores) =-=-=-=-=-=-=\n");
 
-            if (tecnologias.isEmpty()) {
-                areaTexto.setText(areaTexto.getText() + "Nenhuma tecnologia cadastrada.\n");
+            if (vendas.isEmpty()) {
+                areaTexto.setText(areaTexto.getText() + "Nenhuma venda cadastrada.\n");
             } else {
-                for (Tecnologia t : tecnologias) {
-                    areaTexto.setText(areaTexto.getText() + t + "\n");
+                for (Venda v : vendas) {
+                    areaTexto.setText(areaTexto.getText() + v + "\n");
                 }
             }
         }
