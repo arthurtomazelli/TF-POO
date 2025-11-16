@@ -22,9 +22,9 @@ public class ACMETech {
     public void inicializar(){
         CarregaArquivos carregaArquivos = new CarregaArquivos(gerenciaCompradores, gerenciaFornecedores, gerenciaTecnologias, gerenciaVendas);
 
-        carregaArquivos.lerArquivoParticipantes("PARTICIPANTESENTRADA.csv", true);
-        carregaArquivos.lerArquivoTecnologias("TECNOLOGIASENTRADA.csv", true);
-        carregaArquivos.lerArquivoVendas("VENDASENTRADA.csv", true);
+        carregaArquivos.lerArquivoParticipantesEntrada("PARTICIPANTESENTRADA.csv", true);
+        carregaArquivos.lerArquivoTecnologiasEntrada("TECNOLOGIASENTRADA.csv", true);
+        carregaArquivos.lerArquivoVendasEntrada("VENDASENTRADA.csv", true);
 
         executar();
     }

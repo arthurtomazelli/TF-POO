@@ -3,7 +3,6 @@ package io;
 import entidades.*;
 
 import javax.swing.*;
-import javax.xml.crypto.Data;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -31,11 +30,11 @@ public class CarregaArquivos extends JOptionPane {
         this.gerenciaVendas = gerenciaVendas;
     }
 
-    public void lerArquivoParticipantes(String nomeArquivo, boolean suprimirOptionPane) {
+    public void lerArquivoParticipantesEntrada(String nomeArquivo, boolean suprimirOptionPane) {
         try {
             Path arquivoParticipantes = Paths.get(pastaRecursos, nomeArquivo);
 
-            lerArquivoParticipantes(arquivoParticipantes);
+            lerArquivoParticipantesEntrada(arquivoParticipantes);
 
             if(!suprimirOptionPane) {
                 showMessageDialog(this,
@@ -56,7 +55,7 @@ public class CarregaArquivos extends JOptionPane {
         }
     }
 
-    public void lerArquivoParticipantes(Path path) throws IOException {
+    public void lerArquivoParticipantesEntrada(Path path) throws IOException {
         try (BufferedReader br = Files.newBufferedReader(path, Charset.defaultCharset())) {
             String linha;
 
@@ -114,20 +113,20 @@ public class CarregaArquivos extends JOptionPane {
         }
     }
 
-    public void lerArquivoTecnologias(String nomeArquivo, boolean suprimirOptionPane) {
+    public void lerArquivoTecnologiasEntrada(String nomeArquivo, boolean suprimirOptionPane) {
         try {
             Path arquivoTecnologias = Paths.get(pastaRecursos, nomeArquivo);
 
-            lerArquivoTecnologias(arquivoTecnologias);
+            lerArquivoTecnologiasEntrada(arquivoTecnologias);
 
             if(!suprimirOptionPane) {
                 showMessageDialog(this,
-                    "Leitura de tecnologias finalizada.\n" +
-                            "Tecnologias cadastradas: " + contCadastroSucesso + "\n" +
-                            "Objetos repetidos: " + contErrosObjRepetido + "\n" +
-                            "Erros de dados inválidos: " + contErrosDadoInvalido + "\n" +
-                            "Erros de formato (CSV): " + contErrosFormato,
-                    "RESULTADO", JOptionPane.PLAIN_MESSAGE);
+                        "Leitura de tecnologias finalizada.\n" +
+                                "Tecnologias cadastradas: " + contCadastroSucesso + "\n" +
+                                "Objetos repetidos: " + contErrosObjRepetido + "\n" +
+                                "Erros de dados inválidos: " + contErrosDadoInvalido + "\n" +
+                                "Erros de formato (CSV): " + contErrosFormato,
+                        "RESULTADO", JOptionPane.PLAIN_MESSAGE);
             }
         } catch (IOException e) {
             showMessageDialog(this, e.getMessage(), "ERRO DE E/S", JOptionPane.ERROR_MESSAGE);
@@ -139,7 +138,7 @@ public class CarregaArquivos extends JOptionPane {
         }
     }
 
-    public void lerArquivoTecnologias(Path path) throws IOException {
+    public void lerArquivoTecnologiasEntrada(Path path) throws IOException {
         try (BufferedReader br = Files.newBufferedReader(path, Charset.defaultCharset())) {
             String linha;
 
@@ -184,11 +183,11 @@ public class CarregaArquivos extends JOptionPane {
         }
     }
 
-    public void lerArquivoVendas(String nomeArquivo, boolean suprimirOptionPane) {
+    public void lerArquivoVendasEntrada(String nomeArquivo, boolean suprimirOptionPane) {
         try {
             Path arquivoVendas = Paths.get(pastaRecursos, nomeArquivo);
 
-            lerArquivoVendas(arquivoVendas);
+            lerArquivoVendasEntrada(arquivoVendas);
 
             if(!suprimirOptionPane) {
                 showMessageDialog(this,
@@ -210,7 +209,7 @@ public class CarregaArquivos extends JOptionPane {
         }
     }
 
-    public void lerArquivoVendas(Path path) throws IOException {
+    public void lerArquivoVendasEntrada(Path path) throws IOException {
         try (BufferedReader br = Files.newBufferedReader(path, Charset.defaultCharset())) {
             String linha;
 
