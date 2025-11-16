@@ -2,7 +2,7 @@ package ui.removerAlterar;
 
 import entidades.Comprador;
 import entidades.GerenciaCompradores;
-import ui.personalizados.JFrameComFuncoes;
+import ui.funcoes.JFrameComFuncoes;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,4 +1,4 @@
-package ui.personalizados;
+package ui.funcoes;
 
 import javax.swing.*;
 import java.awt.*;

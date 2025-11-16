@@ -4,6 +4,7 @@ import entidades.GerenciaCompradores;
 import entidades.GerenciaFornecedores;
 import entidades.GerenciaTecnologias;
 import entidades.GerenciaVendas;
+import io.GerenciaJSON;
 import ui.MenuPrincipal;
 
 import javax.swing.*;
@@ -26,6 +27,8 @@ public class PainelSalvarCarregar extends JPanel implements ActionListener {
     private List<JButton> botoes;
     private final Color corPrincipal = new Color(20, 86, 160);
 
+    private final GerenciaJSON gerenciaJSON;
+
     private final List<String> labelsBotoes = new ArrayList<>(Arrays.asList(
             "CARREGAR DADOS", "SALVAR DADOS"
     ));
@@ -37,7 +40,7 @@ public class PainelSalvarCarregar extends JPanel implements ActionListener {
         this.gerenciaCompradores = gerenciaCompradores;
         this.gerenciaTecnologias = gerenciaTecnologias;
         this.gerenciaVendas = gerenciaVendas;
-
+        this.gerenciaJSON = new GerenciaJSON(gerenciaCompradores.getCompradores(), gerenciaFornecedores.getFornecedores(), gerenciaTecnologias.getTecnologias(), gerenciaVendas.getVendas());
 
         painelPrincipal = new JPanel(new BorderLayout());
 
@@ -98,10 +101,9 @@ public class PainelSalvarCarregar extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == botoes.get(0)){
-            //new CarregaArquivos(gerenciaFornecedores, gerenciaCompradores);
+            new CarregarDados(gerenciaJSON);
         } else if (e.getSource() == botoes.get(1)){
-            //criar uma classe de ui pra inserir um nome pro arquivo e salvar
-            //new SalvaArquivos(gerenciaCompradores.getCompradores(), gerenciaFornecedores.getFornecedores(), gerenciaTecnologias.getTecnologias(), gerenciaVendas.getVendas()).salvarArquivo("");
+            new SalvarDados(gerenciaJSON);
         }
     }
 }

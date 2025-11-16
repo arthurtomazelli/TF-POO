@@ -3,7 +3,7 @@
 package ui.cadastros;
 
 import entidades.*;
-import ui.personalizados.JFrameComFuncoes;
+import ui.funcoes.JFrameComFuncoes;
 import ui.relatorios.RelatorioCompradores;
 
 import javax.swing.*;

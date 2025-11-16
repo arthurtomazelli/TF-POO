@@ -25,11 +25,6 @@ public class ACMETech {
         gerenciaCSV.lerArquivoTecnologiasEntrada("TECNOLOGIASENTRADA.csv", true);
         gerenciaCSV.lerArquivoVendasEntrada("VENDASENTRADA.csv", true);
 
-        GerenciaJSON gerenciaJSON = new GerenciaJSON(gerenciaCompradores.getCompradores(), gerenciaFornecedores.getFornecedores(), gerenciaTecnologias.getTecnologias(), gerenciaVendas.getVendas());
-        gerenciaJSON.salvarTodos("FINAL");
-
-        gerenciaJSON.carregarTodos("FINAL");
-
         executar();
     }
 

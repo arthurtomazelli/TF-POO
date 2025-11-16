@@ -1,7 +1,7 @@
 package ui.relatorios;
 
 import entidades.Comprador;
-import ui.personalizados.JDialogComFuncoes;
+import ui.funcoes.JDialogComFuncoes;
 
 import javax.swing.*;
 import java.awt.*;

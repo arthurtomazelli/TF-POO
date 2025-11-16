@@ -3,7 +3,7 @@ package ui.consultarMaior;
 import entidades.Fornecedor;
 import entidades.GerenciaFornecedores;
 import entidades.Tecnologia;
-import ui.personalizados.JDialogComFuncoes;
+import ui.funcoes.JDialogComFuncoes;
 
 import javax.swing.*;
 import java.awt.*;
