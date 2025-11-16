@@ -2,7 +2,7 @@ package ui.consultarMaior;
 
 import entidades.GerenciaTecnologias;
 import entidades.Tecnologia;
-import ui.funcoes.JDialogComFuncoes;
+import ui.personalizados.JDialogComFuncoes;
 
 import javax.swing.*;
 import java.awt.*;

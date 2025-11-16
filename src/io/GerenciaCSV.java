@@ -2,6 +2,7 @@ package io;
 
 import entidades.*;
 
+
 import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,7 +12,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
-public class CarregaArquivos extends JOptionPane {
+public class GerenciaCSV extends JOptionPane {
     private GerenciaCompradores gerenciaCompradores;
     private GerenciaFornecedores gerenciaFornecedores;
     private GerenciaTecnologias gerenciaTecnologias;
@@ -23,7 +24,7 @@ public class CarregaArquivos extends JOptionPane {
 
     private final String pastaRecursos = "recursos";
 
-    public CarregaArquivos(GerenciaCompradores gerenciaCompradores, GerenciaFornecedores gerenciaFornecedores, GerenciaTecnologias gerenciaTecnologias, GerenciaVendas gerenciaVendas) {
+    public GerenciaCSV(GerenciaCompradores gerenciaCompradores, GerenciaFornecedores gerenciaFornecedores, GerenciaTecnologias gerenciaTecnologias, GerenciaVendas gerenciaVendas) {
         this.gerenciaCompradores = gerenciaCompradores;
         this.gerenciaFornecedores = gerenciaFornecedores;
         this.gerenciaTecnologias = gerenciaTecnologias;
@@ -55,7 +56,7 @@ public class CarregaArquivos extends JOptionPane {
         }
     }
 
-    public void lerArquivoParticipantesEntrada(Path path) throws IOException {
+    private void lerArquivoParticipantesEntrada(Path path) throws IOException {
         try (BufferedReader br = Files.newBufferedReader(path, Charset.defaultCharset())) {
             String linha;
 
@@ -119,6 +120,8 @@ public class CarregaArquivos extends JOptionPane {
 
             lerArquivoTecnologiasEntrada(arquivoTecnologias);
 
+            //
+
             if(!suprimirOptionPane) {
                 showMessageDialog(this,
                         "Leitura de tecnologias finalizada.\n" +
@@ -138,7 +141,7 @@ public class CarregaArquivos extends JOptionPane {
         }
     }
 
-    public void lerArquivoTecnologiasEntrada(Path path) throws IOException {
+    private void lerArquivoTecnologiasEntrada(Path path) throws IOException {
         try (BufferedReader br = Files.newBufferedReader(path, Charset.defaultCharset())) {
             String linha;
 
@@ -209,7 +212,7 @@ public class CarregaArquivos extends JOptionPane {
         }
     }
 
-    public void lerArquivoVendasEntrada(Path path) throws IOException {
+    private void lerArquivoVendasEntrada(Path path) throws IOException {
         try (BufferedReader br = Files.newBufferedReader(path, Charset.defaultCharset())) {
             String linha;
 

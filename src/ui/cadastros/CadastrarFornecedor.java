@@ -1,14 +1,13 @@
 package ui.cadastros;
 
 import entidades.*;
-import ui.funcoes.JFrameComFuncoes;
+import ui.personalizados.JFrameComFuncoes;
 import ui.relatorios.RelatorioFornecedores;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.time.LocalDate;
 import java.util.*;
 import java.util.List;
 

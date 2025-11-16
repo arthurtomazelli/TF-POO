@@ -29,7 +29,7 @@ public class MenuPrincipal extends JFrame{
         this.painelRelatorios = new PainelRelatorios(this, gerenciaFornecedores, gerenciaTecnologias, gerenciaCompradores, gerenciaVendas);
         this.painelConsultarMaior = new PainelConsultarMaior(this, gerenciaFornecedores, gerenciaTecnologias, gerenciaCompradores, gerenciaVendas);
         this.painelRemoverAlterar = new PainelRemoverAlterar(this, gerenciaVendas, gerenciaCompradores);
-        this.painelSalvarCarregar = new PainelSalvarCarregar(this, gerenciaFornecedores, gerenciaCompradores);
+        this.painelSalvarCarregar = new PainelSalvarCarregar(this, gerenciaFornecedores, gerenciaCompradores, gerenciaTecnologias, gerenciaVendas);
 
         this.setContentPane(painelPrincipal);
         this.setVisible(true);

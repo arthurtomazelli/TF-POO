@@ -1,10 +1,9 @@
 package aplicacao;
 
 import entidades.*;
-import io.CarregaArquivos;
+import io.GerenciaCSV;
+import io.GerenciaJSON;
 import ui.MenuPrincipal;
-
-import java.util.Date;
 
 public class ACMETech {
     private GerenciaFornecedores gerenciaFornecedores;
@@ -20,11 +19,16 @@ public class ACMETech {
     }
 
     public void inicializar(){
-        CarregaArquivos carregaArquivos = new CarregaArquivos(gerenciaCompradores, gerenciaFornecedores, gerenciaTecnologias, gerenciaVendas);
+        GerenciaCSV gerenciaCSV = new GerenciaCSV(gerenciaCompradores, gerenciaFornecedores, gerenciaTecnologias, gerenciaVendas);
 
-        carregaArquivos.lerArquivoParticipantesEntrada("PARTICIPANTESENTRADA.csv", true);
-        carregaArquivos.lerArquivoTecnologiasEntrada("TECNOLOGIASENTRADA.csv", true);
-        carregaArquivos.lerArquivoVendasEntrada("VENDASENTRADA.csv", true);
+        gerenciaCSV.lerArquivoParticipantesEntrada("PARTICIPANTESENTRADA.csv", true);
+        gerenciaCSV.lerArquivoTecnologiasEntrada("TECNOLOGIASENTRADA.csv", true);
+        gerenciaCSV.lerArquivoVendasEntrada("VENDASENTRADA.csv", true);
+
+        GerenciaJSON gerenciaJSON = new GerenciaJSON(gerenciaCompradores.getCompradores(), gerenciaFornecedores.getFornecedores(), gerenciaTecnologias.getTecnologias(), gerenciaVendas.getVendas());
+        gerenciaJSON.salvarTodos("FINAL");
+
+        gerenciaJSON.carregarTodos("FINAL");
 
         executar();
     }

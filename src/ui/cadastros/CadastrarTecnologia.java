@@ -1,7 +1,7 @@
 package ui.cadastros;
 
 import entidades.*;
-import ui.funcoes.JFrameComFuncoes;
+import ui.personalizados.JFrameComFuncoes;
 import ui.relatorios.RelatorioTecnologias;
 
 import javax.swing.*;

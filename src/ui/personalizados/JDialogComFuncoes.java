@@ -1,10 +1,7 @@
-package ui.funcoes;
+package ui.personalizados;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
 
 public abstract class JDialogComFuncoes extends JDialog {
     private final Color corPrincipal = new Color(20, 86, 160);

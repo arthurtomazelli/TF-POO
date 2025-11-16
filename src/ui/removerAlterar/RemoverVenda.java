@@ -2,7 +2,7 @@ package ui.removerAlterar;
 
 import entidades.GerenciaVendas;
 import entidades.Venda;
-import ui.funcoes.JFrameComFuncoes;
+import ui.personalizados.JFrameComFuncoes;
 import ui.relatorios.RelatorioVendas;
 
 import javax.swing.*;

@@ -1,10 +1,8 @@
 package ui.consultarMaior;
 
-import entidades.GerenciaTecnologias;
 import entidades.GerenciaVendas;
-import entidades.Tecnologia;
 import entidades.Venda;
-import ui.funcoes.JDialogComFuncoes;
+import ui.personalizados.JDialogComFuncoes;
 
 import javax.swing.*;
 import java.awt.*;

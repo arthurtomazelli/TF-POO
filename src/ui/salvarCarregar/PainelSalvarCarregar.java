@@ -2,11 +2,9 @@ package ui.salvarCarregar;
 
 import entidades.GerenciaCompradores;
 import entidades.GerenciaFornecedores;
+import entidades.GerenciaTecnologias;
 import entidades.GerenciaVendas;
-import io.CarregaArquivos;
 import ui.MenuPrincipal;
-import ui.removerAlterar.AlterarDadosComprador;
-import ui.removerAlterar.RemoverVenda;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,6 +18,8 @@ public class PainelSalvarCarregar extends JPanel implements ActionListener {
     private JPanel painelPrincipal;
     private GerenciaFornecedores gerenciaFornecedores;
     private GerenciaCompradores gerenciaCompradores;
+    private GerenciaTecnologias gerenciaTecnologias;
+    private GerenciaVendas gerenciaVendas;
     private JPanel painelBorda;
     private JPanel painelBotaoChao;
     private MenuPrincipal menuPrincipal;
@@ -30,11 +30,14 @@ public class PainelSalvarCarregar extends JPanel implements ActionListener {
             "CARREGAR DADOS", "SALVAR DADOS"
     ));
 
-    public PainelSalvarCarregar(MenuPrincipal menuPrincipal, GerenciaFornecedores gerenciaFornecedores, GerenciaCompradores gerenciaCompradores) {
+    public PainelSalvarCarregar(MenuPrincipal menuPrincipal, GerenciaFornecedores gerenciaFornecedores, GerenciaCompradores gerenciaCompradores, GerenciaTecnologias gerenciaTecnologias, GerenciaVendas gerenciaVendas) {
         super(new BorderLayout());
         this.menuPrincipal = menuPrincipal;
         this.gerenciaFornecedores = gerenciaFornecedores;
         this.gerenciaCompradores = gerenciaCompradores;
+        this.gerenciaTecnologias = gerenciaTecnologias;
+        this.gerenciaVendas = gerenciaVendas;
+
 
         painelPrincipal = new JPanel(new BorderLayout());
 
@@ -97,7 +100,8 @@ public class PainelSalvarCarregar extends JPanel implements ActionListener {
         if (e.getSource() == botoes.get(0)){
             //new CarregaArquivos(gerenciaFornecedores, gerenciaCompradores);
         } else if (e.getSource() == botoes.get(1)){
-            System.out.println("n fiz aindakkj");
+            //criar uma classe de ui pra inserir um nome pro arquivo e salvar
+            //new SalvaArquivos(gerenciaCompradores.getCompradores(), gerenciaFornecedores.getFornecedores(), gerenciaTecnologias.getTecnologias(), gerenciaVendas.getVendas()).salvarArquivo("");
         }
     }
 }

@@ -1,7 +1,7 @@
 package ui.consultarMaior;
 
 import entidades.*;
-import ui.funcoes.JDialogComFuncoes;
+import ui.personalizados.JDialogComFuncoes;
 
 import javax.swing.*;
 import java.awt.*;
