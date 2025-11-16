@@ -1,11 +1,12 @@
 package entidades;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 public class GerenciaCompradores {
-
+    private final List<String> emailsValidos = new ArrayList<>(Arrays.asList("@gmail.com", "@yahoo.com", "@outlook.com", "@email.com", "@toons.com"));
     private List<Comprador> compradores;
 
     public GerenciaCompradores() {
@@ -42,6 +43,23 @@ public class GerenciaCompradores {
 
         return null;
     }
+
+    public boolean emailValido(String email) {
+        if (email == null) {
+            return false;
+        }
+
+        email = email.trim();
+
+        for (String dominio : emailsValidos) {
+            if (email.endsWith(dominio)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 
     public void alterarDadosComprador(Comprador comprador, List<Object> novosAtributos){
         String novoNome = (String) novosAtributos.get(0);

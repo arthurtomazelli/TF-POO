@@ -87,7 +87,7 @@ public class CadastrarComprador extends JFrameComFuncoes implements ActionListen
 
                 Comprador comprador = new Comprador(cod, nome, pais, email);
 
-                if(!emailValido(email)){
+                if(!gerenciaCompradores.emailValido(email)){
                     JOptionPane.showMessageDialog(this, "Email deve terminar em um endereço válido.", "ERRO",  JOptionPane.WARNING_MESSAGE);
                 } else if (!gerenciaCompradores.addComprador(comprador)) {
                     JOptionPane.showMessageDialog(this, "Código já cadastrado. Altere-o e tente novamente.", "ERRO", JOptionPane.WARNING_MESSAGE);
@@ -99,16 +99,6 @@ public class CadastrarComprador extends JFrameComFuncoes implements ActionListen
                 JOptionPane.showMessageDialog(this, "Código deve ser um número.", "ERRO", JOptionPane.WARNING_MESSAGE);
             }
         }
-    }
-
-    private boolean emailValido(String email){
-        if(email.endsWith("@gmail.com")||
-                email.endsWith("@yahoo.com")||
-                email.endsWith("@outlook.com")){
-            return true;
-        }
-
-        return false;
     }
 
     @Override

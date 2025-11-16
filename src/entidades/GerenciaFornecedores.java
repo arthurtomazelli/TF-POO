@@ -1,7 +1,9 @@
 package entidades;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 public class GerenciaFornecedores {
@@ -40,6 +42,73 @@ public class GerenciaFornecedores {
         }
 
         return null;
+    }
+
+    public Date transformaData(String dataString) {
+        int cont = 0;
+
+        try {
+            String dia = "", mes = "", ano = "";
+
+            for (int i = 0; i < dataString.length(); i++) {
+                char caracter = dataString.charAt(i);
+
+                if (caracter == '/') {
+                    cont++;
+                    continue;
+                }
+
+                if (cont == 0) {
+                    dia += caracter;
+                } else if (cont == 1) {
+                    mes += caracter;
+                } else if (cont == 2) {
+                    ano += caracter;
+                }
+            }
+
+            int anoInt = Integer.parseInt(ano);
+
+            if(anoInt < 1900 || anoInt > LocalDate.now().getYear()) {
+                throw new IllegalArgumentException("Ano deve ser entre 2000 e 2025. Altere-o e tente novamente.");
+            }
+
+            int mesInt = Integer.parseInt(mes);
+
+            if(mesInt < 1 || mesInt > 12) {
+                throw new IllegalArgumentException("Mês deve ser entre 1 e 12. Altere-o e tente novamente.");
+            }
+
+            int diaInt = Integer.parseInt(dia);
+
+            if(diaInt < 1 || diaInt > 30) {
+                throw new IllegalArgumentException("Dia deve ser entre 1 e 30. Altere-o e tente novamente.");
+            }
+
+            return new Date(anoInt - 1900, mesInt - 1, diaInt);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("Formato de data inválido. Altere-o para 'dd/MM/yyyy' e tente novamente.");
+        }
+    }
+
+    public Area verificaArea(String area) {
+        if(area == null){
+            throw new EnumConstantNotPresentException(Area.class, area);
+        }
+
+        area = area.toUpperCase();
+
+        if(area.equals("TI")){
+            return Area.TI;
+        } else if(area.equals("ANDROIDES")){
+            return Area.ANDROIDES;
+        } else if(area.equals("EMERGENTE")){
+            return Area.EMERGENTE;
+        } else if(area.equals("ALIMENTOS")){
+            return Area.ALIMENTOS;
+        } else{
+            throw new EnumConstantNotPresentException(Area.class, area);
+        }
     }
 
     public List<Fornecedor> getFornecedores() {

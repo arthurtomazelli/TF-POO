@@ -2,25 +2,25 @@ package entidades;
 
 public class Tecnologia implements Comparable<Tecnologia>{
     private long id;
-    private String nome;
+    private String modelo;
     private String descricao;
     private double valorBase;
     private double peso;
     private double temperatura;
     private Fornecedor fornecedor;
 
-    public Tecnologia(long id, String nome, String descricao, double valorBase, double peso, double temperatura) {
+    public Tecnologia(long id, String modelo, String descricao, double valorBase, double peso, double temperatura) {
         this.id = id;
-        this.nome = nome;
+        this.modelo = modelo;
         this.descricao = descricao;
         this.valorBase = valorBase;
         this.peso = peso;
         this.temperatura = temperatura;
     }
 
-    public Tecnologia(long id, String nome, String descricao, double valorBase, double peso, double temperatura, Fornecedor fornecedor) {
+    public Tecnologia(long id, String modelo, String descricao, double valorBase, double peso, double temperatura, Fornecedor fornecedor) {
         this.id = id;
-        this.nome = nome;
+        this.modelo = modelo;
         this.descricao = descricao;
         this.valorBase = valorBase;
         this.peso = peso;
@@ -37,7 +37,7 @@ public class Tecnologia implements Comparable<Tecnologia>{
     }
 
     public String getNome() {
-        return nome;
+        return modelo;
     }
 
     public double getValorBase() {
@@ -66,7 +66,7 @@ public class Tecnologia implements Comparable<Tecnologia>{
         String fornecedorString = (fornecedor == null) ? "N.E." : fornecedor.toString();
 
         return id + ";" +
-                nome + ";" +
+                modelo + ";" +
                 descricao + ";" +
                 valorBase + ";" +
                 peso + ";" +

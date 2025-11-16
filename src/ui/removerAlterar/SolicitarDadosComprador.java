@@ -79,7 +79,7 @@ public class SolicitarDadosComprador extends JFrameComFuncoes implements ActionL
             String pais = camposTexto.get(1).getText();
             String email = camposTexto.get(2).getText();
 
-            if (!emailValido(email)) {
+            if (!gerenciaCompradores.emailValido(email)) {
                 JOptionPane.showMessageDialog(this, "Email deve terminar em um endereço válido.", "ERRO", JOptionPane.WARNING_MESSAGE);
             } else {
                 List<Object> novosAtributos = new ArrayList<>();
@@ -100,16 +100,6 @@ public class SolicitarDadosComprador extends JFrameComFuncoes implements ActionL
                 this.dispose();
             }
         }
-    }
-
-    private boolean emailValido(String email) {
-        if (email.endsWith("@gmail.com") ||
-                email.endsWith("@yahoo.com") ||
-                email.endsWith("@outlook.com")) {
-            return true;
-        }
-
-        return false;
     }
 
     @Override

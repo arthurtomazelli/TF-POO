@@ -82,8 +82,8 @@ public class CadastrarFornecedor extends JFrameComFuncoes implements ActionListe
             String dataString = camposTexto.get(2).getText();
             String area = (camposTexto.get(3).getText());
 
-            Date data = transformaData(dataString);
-            Area areaEnum = verificaArea(area);
+            Date data = gerenciaFornecedores.transformaData(dataString);
+            Area areaEnum = gerenciaFornecedores.verificaArea(area);
 
             Fornecedor fornecedor = new Fornecedor(cod, nome, data, areaEnum);
 
@@ -99,73 +99,6 @@ public class CadastrarFornecedor extends JFrameComFuncoes implements ActionListe
             JOptionPane.showMessageDialog(this,"Área inválida. Deve ser: 'TI', 'ANDROIDES', 'EMERGENTE' ou 'ALIMENTOS'.", "ERRO", JOptionPane.WARNING_MESSAGE);
         } catch (IllegalArgumentException e){
             JOptionPane.showMessageDialog(this, e.getMessage(), "ERRO", JOptionPane.WARNING_MESSAGE);
-        }
-    }
-
-    private Date transformaData(String dataString) {
-        int cont = 0;
-
-        try {
-            String dia = "", mes = "", ano = "";
-
-            for (int i = 0; i < dataString.length(); i++) {
-                char caracter = dataString.charAt(i);
-
-                if (caracter == '/') {
-                    cont++;
-                    continue;
-                }
-
-                if (cont == 0) {
-                    dia += caracter;
-                } else if (cont == 1) {
-                    mes += caracter;
-                } else if (cont == 2) {
-                    ano += caracter;
-                }
-            }
-
-            int anoInt = Integer.parseInt(ano);
-
-            if(anoInt < 2000 || anoInt > LocalDate.now().getYear()) {
-                throw new IllegalArgumentException("Ano deve ser entre 2000 e 2025. Altere-o e tente novamente.");
-            }
-
-            int mesInt = Integer.parseInt(mes);
-
-            if(mesInt < 1 || mesInt > 12) {
-                throw new IllegalArgumentException("Mês deve ser entre 1 e 12. Altere-o e tente novamente.");
-            }
-
-            int diaInt = Integer.parseInt(dia);
-
-            if(diaInt < 1 || diaInt > 30) {
-                throw new IllegalArgumentException("Dia deve ser entre 1 e 30. Altere-o e tente novamente.");
-            }
-
-            return new Date(anoInt - 1900, mesInt - 1, diaInt);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("Formato de data inválido. Altere-o para 'dd/MM/yyyy' e tente novamente.");
-        }
-    }
-
-    private Area verificaArea(String area) {
-        if(area == null){
-            throw new EnumConstantNotPresentException(Area.class, area);
-        }
-
-        area = area.toUpperCase();
-
-        if(area.equals("TI")){
-            return Area.TI;
-        } else if(area.equals("ANDROIDES")){
-            return Area.ANDROIDES;
-        } else if(area.equals("EMERGENTE")){
-            return Area.EMERGENTE;
-        } else if(area.equals("ALIMENTOS")){
-            return Area.ALIMENTOS;
-        } else{
-            throw new EnumConstantNotPresentException(Area.class, area);
         }
     }
 

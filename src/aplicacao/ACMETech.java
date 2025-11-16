@@ -1,8 +1,10 @@
 package aplicacao;
 
 import entidades.*;
+import io.CarregarArquivos;
 import ui.MenuPrincipal;
 
+import java.nio.file.Path;
 import java.util.Date;
 
 public class ACMETech {
@@ -19,9 +21,13 @@ public class ACMETech {
     }
 
     public void inicializar(){
-        adicionarTecnologiasProntas();
+        /*adicionarTecnologiasProntas();
         adicionarFornecedoresProntos();
-        adicionarCompradoresProntos();
+        adicionarCompradoresProntos();*/
+
+        CarregarArquivos carregarArquivos = new CarregarArquivos(gerenciaCompradores, gerenciaFornecedores, gerenciaTecnologias, gerenciaVendas);
+        carregarArquivos.lerArquivoParticipantes();
+        carregarArquivos.lerArquivoTecnologias();
 
         executar();
     }
