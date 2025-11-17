@@ -2,8 +2,6 @@ package io;
 
 import entidades.*;
 
-
-import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -12,7 +10,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
-public class GerenciaCSV extends JOptionPane {
+public class GerenciaCSV {
     private GerenciaCompradores gerenciaCompradores;
     private GerenciaFornecedores gerenciaFornecedores;
     private GerenciaTecnologias gerenciaTecnologias;
@@ -24,36 +22,39 @@ public class GerenciaCSV extends JOptionPane {
 
     private final String pastaRecursos = "recursos";
 
-    public GerenciaCSV(GerenciaCompradores gerenciaCompradores, GerenciaFornecedores gerenciaFornecedores, GerenciaTecnologias gerenciaTecnologias, GerenciaVendas gerenciaVendas) {
+    public GerenciaCSV(GerenciaCompradores gerenciaCompradores,
+                       GerenciaFornecedores gerenciaFornecedores,
+                       GerenciaTecnologias gerenciaTecnologias,
+                       GerenciaVendas gerenciaVendas) {
         this.gerenciaCompradores = gerenciaCompradores;
         this.gerenciaFornecedores = gerenciaFornecedores;
         this.gerenciaTecnologias = gerenciaTecnologias;
         this.gerenciaVendas = gerenciaVendas;
     }
 
-    public void lerArquivoParticipantesEntrada(String nomeArquivo, boolean suprimirOptionPane) {
+    public String lerArquivoParticipantesEntrada(String nomeArquivo) {
+        String mensagem;
         try {
             Path arquivoParticipantes = Paths.get(pastaRecursos, nomeArquivo);
 
             lerArquivoParticipantesEntrada(arquivoParticipantes);
 
-            if(!suprimirOptionPane) {
-                showMessageDialog(this,
-                        "Leitura de participantes finalizada.\n" +
-                                "Participantes cadastrados: " + contCadastroSucesso + "\n" +
-                                "Objetos repetidos: " + contErrosObjRepetido + "\n" +
-                                "Erros de dados inválidos: " + contErrosDadoInvalido + "\n" +
-                                "Erros de formato (CSV): " + contErrosFormato,
-                        "RESULTADO", JOptionPane.PLAIN_MESSAGE);
-            }
+            mensagem =
+                    "Leitura de participantes finalizada.\n" +
+                            "Participantes cadastrados: " + contCadastroSucesso + "\n" +
+                            "Códigos repetidos: " + contErrosObjRepetido + "\n" +
+                            "Erros de dados inválidos: " + contErrosDadoInvalido + "\n" +
+                            "Erros de formato (CSV): " + contErrosFormato;
+
         } catch (IOException e) {
-            showMessageDialog(this, e.getMessage(), "ERRO DE E/S", JOptionPane.ERROR_MESSAGE);
+            mensagem = e.getMessage();
         } finally {
             contCadastroSucesso = 0;
             contErrosFormato = 0;
             contErrosDadoInvalido = 0;
             contErrosObjRepetido = 0;
         }
+        return mensagem;
     }
 
     private void lerArquivoParticipantesEntrada(Path path) throws IOException {
@@ -114,31 +115,29 @@ public class GerenciaCSV extends JOptionPane {
         }
     }
 
-    public void lerArquivoTecnologiasEntrada(String nomeArquivo, boolean suprimirOptionPane) {
+    public String lerArquivoTecnologiasEntrada(String nomeArquivo) {
+        String mensagem;
         try {
             Path arquivoTecnologias = Paths.get(pastaRecursos, nomeArquivo);
 
             lerArquivoTecnologiasEntrada(arquivoTecnologias);
 
-            //
+            mensagem =
+                    "Leitura de tecnologias finalizada.\n" +
+                            "Tecnologias cadastradas: " + contCadastroSucesso + "\n" +
+                            "IDs repetidos: " + contErrosObjRepetido + "\n" +
+                            "Erros de dados inválidos: " + contErrosDadoInvalido + "\n" +
+                            "Erros de formato (CSV): " + contErrosFormato;
 
-            if(!suprimirOptionPane) {
-                showMessageDialog(this,
-                        "Leitura de tecnologias finalizada.\n" +
-                                "Tecnologias cadastradas: " + contCadastroSucesso + "\n" +
-                                "Objetos repetidos: " + contErrosObjRepetido + "\n" +
-                                "Erros de dados inválidos: " + contErrosDadoInvalido + "\n" +
-                                "Erros de formato (CSV): " + contErrosFormato,
-                        "RESULTADO", JOptionPane.PLAIN_MESSAGE);
-            }
         } catch (IOException e) {
-            showMessageDialog(this, e.getMessage(), "ERRO DE E/S", JOptionPane.ERROR_MESSAGE);
+            mensagem = e.getMessage();
         } finally {
             contCadastroSucesso = 0;
             contErrosFormato = 0;
             contErrosDadoInvalido = 0;
             contErrosObjRepetido = 0;
         }
+        return mensagem;
     }
 
     private void lerArquivoTecnologiasEntrada(Path path) throws IOException {
@@ -168,7 +167,7 @@ public class GerenciaCSV extends JOptionPane {
 
                     Tecnologia tecnologia = new Tecnologia(id, modelo, descricao, valorBase, peso, temperatura, fornecedor);
 
-                    if(fornecedor == null) {
+                    if (fornecedor == null) {
                         contErrosDadoInvalido++;
                     } else if (!gerenciaTecnologias.addTecnologia(tecnologia)) {
                         contErrosObjRepetido++;
@@ -186,30 +185,29 @@ public class GerenciaCSV extends JOptionPane {
         }
     }
 
-    public void lerArquivoVendasEntrada(String nomeArquivo, boolean suprimirOptionPane) {
+    public String lerArquivoVendasEntrada(String nomeArquivo) {
+        String mensagem;
         try {
             Path arquivoVendas = Paths.get(pastaRecursos, nomeArquivo);
 
             lerArquivoVendasEntrada(arquivoVendas);
 
-            if(!suprimirOptionPane) {
-                showMessageDialog(this,
-                        "Leitura de vendas finalizada.\n" +
-                                "Vendas cadastradas: " + contCadastroSucesso + "\n" +
-                                "Objetos repetidos: " + contErrosObjRepetido + "\n" +
-                                "Erros de dados inválidos: " + contErrosDadoInvalido + "\n" +
-                                "Erros de formato (CSV): " + contErrosFormato,
-                        "RESULTADO", JOptionPane.PLAIN_MESSAGE);
-            }
+            mensagem =
+                    "Leitura de vendas finalizada.\n" +
+                            "Vendas cadastradas: " + contCadastroSucesso + "\n" +
+                            "Números repetidos: " + contErrosObjRepetido + "\n" +
+                            "Erros de dados inválidos: " + contErrosDadoInvalido + "\n" +
+                            "Erros de formato (CSV): " + contErrosFormato;
 
         } catch (IOException e) {
-            showMessageDialog(this, e.getMessage(), "ERRO DE E/S", JOptionPane.ERROR_MESSAGE);
+            mensagem = e.getMessage();
         } finally {
             contCadastroSucesso = 0;
             contErrosFormato = 0;
             contErrosDadoInvalido = 0;
             contErrosObjRepetido = 0;
         }
+        return mensagem;
     }
 
     private void lerArquivoVendasEntrada(Path path) throws IOException {
@@ -242,7 +240,7 @@ public class GerenciaCSV extends JOptionPane {
 
                     boolean tecJaVendida = gerenciaVendas.verificaTecnologiaVendida(venda);
 
-                    if(comprador == null || tecnologia == null || tecJaVendida) {
+                    if (comprador == null || tecnologia == null || tecJaVendida) {
                         contErrosDadoInvalido++;
                     } else if (!gerenciaVendas.addVenda(venda)) {
                         contErrosObjRepetido++;

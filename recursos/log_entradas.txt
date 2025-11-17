@@ -1,0 +1,18 @@
+====================================
+Leitura de participantes finalizada.
+Participantes cadastrados: 5
+Códigos repetidos: 0
+Erros de dados inválidos: 0
+Erros de formato (CSV): 0
+====================================
+Leitura de tecnologias finalizada.
+Tecnologias cadastradas: 5
+IDs repetidos: 0
+Erros de dados inválidos: 0
+Erros de formato (CSV): 0
+====================================
+Leitura de vendas finalizada.
+Vendas cadastradas: 5
+Números repetidos: 0
+Erros de dados inválidos: 0
+Erros de formato (CSV): 0
