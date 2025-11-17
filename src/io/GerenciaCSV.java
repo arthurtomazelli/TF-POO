@@ -1,3 +1,5 @@
+
+
 package io;
 
 import entidades.*;
@@ -40,11 +42,12 @@ public class GerenciaCSV {
             lerArquivoParticipantesEntrada(arquivoParticipantes);
 
             mensagem =
-                    "Leitura de participantes finalizada.\n" +
+                    "====================================\n" +
+                            "Leitura de participantes finalizada.\n" +
                             "Participantes cadastrados: " + contCadastroSucesso + "\n" +
                             "Códigos repetidos: " + contErrosObjRepetido + "\n" +
                             "Erros de dados inválidos: " + contErrosDadoInvalido + "\n" +
-                            "Erros de formato (CSV): " + contErrosFormato;
+                            "Erros de formato (CSV): " + contErrosFormato + "\n";
 
         } catch (IOException e) {
             mensagem = e.getMessage();
@@ -123,11 +126,12 @@ public class GerenciaCSV {
             lerArquivoTecnologiasEntrada(arquivoTecnologias);
 
             mensagem =
-                    "Leitura de tecnologias finalizada.\n" +
+                    "====================================\n" +
+                            "Leitura de tecnologias finalizada.\n" +
                             "Tecnologias cadastradas: " + contCadastroSucesso + "\n" +
                             "IDs repetidos: " + contErrosObjRepetido + "\n" +
                             "Erros de dados inválidos: " + contErrosDadoInvalido + "\n" +
-                            "Erros de formato (CSV): " + contErrosFormato;
+                            "Erros de formato (CSV): " + contErrosFormato + "\n";
 
         } catch (IOException e) {
             mensagem = e.getMessage();
@@ -193,11 +197,12 @@ public class GerenciaCSV {
             lerArquivoVendasEntrada(arquivoVendas);
 
             mensagem =
-                    "Leitura de vendas finalizada.\n" +
+                    "====================================\n" +
+                            "Leitura de vendas finalizada.\n" +
                             "Vendas cadastradas: " + contCadastroSucesso + "\n" +
                             "Números repetidos: " + contErrosObjRepetido + "\n" +
                             "Erros de dados inválidos: " + contErrosDadoInvalido + "\n" +
-                            "Erros de formato (CSV): " + contErrosFormato;
+                            "Erros de formato (CSV): " + contErrosFormato + "\n";
 
         } catch (IOException e) {
             mensagem = e.getMessage();

@@ -31,10 +31,10 @@ public class ACMETech {
     public void inicializar(){
         GerenciaCSV gerenciaCSV = new GerenciaCSV(gerenciaCompradores, gerenciaFornecedores, gerenciaTecnologias, gerenciaVendas);
 
-        String logEntradas = "====================================\n";
+        String logEntradas = "";
 
-        logEntradas += gerenciaCSV.lerArquivoParticipantesEntrada("PARTICIPANTESENTRADA.csv") + "\n====================================\n";
-        logEntradas += gerenciaCSV.lerArquivoTecnologiasEntrada("TECNOLOGIASENTRADA.csv") + "\n====================================\n";
+        logEntradas += gerenciaCSV.lerArquivoParticipantesEntrada("PARTICIPANTESENTRADA.csv");
+        logEntradas += gerenciaCSV.lerArquivoTecnologiasEntrada("TECNOLOGIASENTRADA.csv");
         logEntradas += gerenciaCSV.lerArquivoVendasEntrada("VENDASENTRADA.csv");
 
         System.out.println(logEntradas);

@@ -1,3 +1,4 @@
+
 package entidades;
 
 import java.util.*;
@@ -96,8 +97,8 @@ public class GerenciaCompradores {
 
     public void alterarDadosComprador(Comprador comprador, List<Object> novosAtributos){
         String novoNome = (String) novosAtributos.get(0);
-        String novoEmail = (String) novosAtributos.get(1);
-        String novoPais = (String) novosAtributos.get(2);
+        String novoPais = (String) novosAtributos.get(1);
+        String novoEmail = (String) novosAtributos.get(2);
 
         comprador.setNome(novoNome);
         comprador.setPais(novoPais);
@@ -109,3 +110,5 @@ public class GerenciaCompradores {
         return compradores;
     }
 }
+
+
