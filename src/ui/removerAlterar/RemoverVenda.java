@@ -111,38 +111,40 @@ public class RemoverVenda extends JFrameComFuncoes implements ActionListener {
         if (campoTexto.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "O campo 'Número' deve ser preenchido.", "CAMPOS VAZIOS", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            try {
-                if (vendaRemover == null) {
-                    JOptionPane.showMessageDialog(this, "Insira um número de venda válido.", "ERRO", JOptionPane.WARNING_MESSAGE);
-                } else {
-                    gerenciaVendas.removerVenda(vendaRemover);
-                    JOptionPane.showMessageDialog(this, "Venda '" + vendaRemover.getNum() + "' removida com sucesso.", "SUCESSO", JOptionPane.PLAIN_MESSAGE);
-                    campoTexto.setText("");
-                    areaTextoVenda.setText("");
-                    vendaRemover = null;
-                }
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(this, "Número deve ser um valor numérico.", "ERRO", JOptionPane.WARNING_MESSAGE);
+
+            if (vendaRemover == null) {
+                JOptionPane.showMessageDialog(this, "Insira um número de venda válido.", "ERRO", JOptionPane.WARNING_MESSAGE);
+            } else {
+                gerenciaVendas.removerVenda(vendaRemover);
+                JOptionPane.showMessageDialog(this, "Venda '" + vendaRemover.getNum() + "' removida com sucesso.", "SUCESSO", JOptionPane.PLAIN_MESSAGE);
+                campoTexto.setText("");
+                areaTextoVenda.setText("");
+                vendaRemover = null;
             }
+
         }
     }
 
     public void buscarVenda() {
-        if (campoTexto.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "O campo 'Número' deve ser preenchido.", "CAMPOS VAZIOS", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            vendaRemover = gerenciaVendas.buscaVendaPorNum(Integer.parseInt(campoTexto.getText()));
+        try {
+            if (campoTexto.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "O campo 'Número' deve ser preenchido.", "CAMPOS VAZIOS", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                vendaRemover = gerenciaVendas.buscaVendaPorNum(Integer.parseInt(campoTexto.getText()));
 
-            if (vendaRemover == null) {
+                if (vendaRemover == null) {
+                    areaTextoVenda.setText("");
+                    JOptionPane.showMessageDialog(this, "Não há uma venda com este número.", "ERRO", JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+
                 areaTextoVenda.setText("");
-                JOptionPane.showMessageDialog(this, "Não há uma venda com este número.", "ERRO", JOptionPane.WARNING_MESSAGE);
-                return;
+                areaTextoVenda.append("\n");
+                areaTextoVenda.append("=-=-=-=-=-=-= Venda encontrada =-=-=-=-=-=-=\n");
+                areaTextoVenda.append(vendaRemover + "\n");
             }
-
-            areaTextoVenda.setText("");
-            areaTextoVenda.append("\n");
-            areaTextoVenda.append("=-=-=-=-=-=-= Venda encontrada =-=-=-=-=-=-=\n");
-            areaTextoVenda.append(vendaRemover + "\n");
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Número deve ser um valor numérico.", "ERRO", JOptionPane.WARNING_MESSAGE);
         }
     }
 

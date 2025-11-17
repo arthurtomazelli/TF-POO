@@ -16,3 +16,4 @@ Vendas cadastradas: 5
 Números repetidos: 0
 Erros de dados inválidos: 0
 Erros de formato (CSV): 0
+

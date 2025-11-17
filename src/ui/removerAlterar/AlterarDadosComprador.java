@@ -111,34 +111,35 @@ public class AlterarDadosComprador extends JFrameComFuncoes implements ActionLis
         if (campoTexto.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "O campo 'Código' deve ser preenchido.", "CAMPOS VAZIOS", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            try {
-                if (compradorAlterar == null) {
-                    JOptionPane.showMessageDialog(this, "Insira um código de comprador válido.", "ERRO", JOptionPane.WARNING_MESSAGE);
-                } else {
-                    new SolicitarDadosComprador(gerenciaCompradores, compradorAlterar, this);
-                }
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(this, "Código deve ser um número.", "ERRO", JOptionPane.WARNING_MESSAGE);
+            if (compradorAlterar == null) {
+                JOptionPane.showMessageDialog(this, "Insira um código de comprador válido.", "ERRO", JOptionPane.WARNING_MESSAGE);
+            } else {
+                new SolicitarDadosComprador(gerenciaCompradores, compradorAlterar, this);
             }
         }
     }
 
+
     public void buscarComprador() {
-        if (campoTexto.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "O campo 'Código' deve ser preenchido.", "CAMPOS VAZIOS", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            compradorAlterar = gerenciaCompradores.buscaCompradorPorCod(Integer.parseInt(campoTexto.getText()));
+        try {
+            if (campoTexto.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "O campo 'Código' deve ser preenchido.", "CAMPOS VAZIOS", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                compradorAlterar = gerenciaCompradores.buscaCompradorPorCod(Integer.parseInt(campoTexto.getText()));
 
-            if (compradorAlterar == null) {
+                if (compradorAlterar == null) {
+                    areaTextoComprador.setText("");
+                    JOptionPane.showMessageDialog(this, "Não há um comprador com este código.", "ERRO", JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+
                 areaTextoComprador.setText("");
-                JOptionPane.showMessageDialog(this, "Não há um comprador com este código.", "ERRO", JOptionPane.WARNING_MESSAGE);
-                return;
+                areaTextoComprador.append("\n");
+                areaTextoComprador.append("=-=-=-=-=-=-= Comprador encontrado =-=-=-=-=-=-=\n");
+                areaTextoComprador.append(compradorAlterar.geraDescricao() + "\n");
             }
-
-            areaTextoComprador.setText("");
-            areaTextoComprador.append("\n");
-            areaTextoComprador.append("=-=-=-=-=-=-= Comprador encontrado =-=-=-=-=-=-=\n");
-            areaTextoComprador.append(compradorAlterar.geraDescricao() + "\n");
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Código deve ser um número.", "ERRO", JOptionPane.WARNING_MESSAGE);
         }
     }
 
