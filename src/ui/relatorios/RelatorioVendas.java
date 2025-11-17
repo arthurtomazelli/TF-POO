@@ -8,6 +8,7 @@ import ui.funcoes.JDialogComFuncoes;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class RelatorioVendas extends JDialogComFuncoes {
@@ -39,9 +40,16 @@ public class RelatorioVendas extends JDialogComFuncoes {
         } else {
             for (Venda v : vendas) {
                 areaTexto.setText(areaTexto.getText() + v + "\n");
-                compradores.add(v.getComprador());
-                tecnologias.add(v.getTecnologia());
+                if(!compradores.contains(v.getComprador())) {
+                    compradores.add(v.getComprador());
+                }
+                if(!tecnologias.contains(v.getTecnologia())) {
+                    tecnologias.add(v.getTecnologia());
+                }
             }
+
+            Collections.sort(compradores);
+            Collections.sort(tecnologias);
 
             areaTexto.setText(areaTexto.getText() + "\n");
             areaTexto.setText(areaTexto.getText() + "=-=-=-=-=-=-= Compradores =-=-=-=-=-=-=\n");

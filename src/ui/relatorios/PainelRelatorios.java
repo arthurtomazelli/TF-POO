@@ -99,7 +99,7 @@ public class PainelRelatorios extends JPanel implements ActionListener {
         if (e.getSource() == botoes.get(0)) {
             new RelatorioFornecedores(gerenciaFornecedores.getFornecedores());
         } else if (e.getSource() == botoes.get(1)) {
-            new RelatorioTecnologias("RELATÓRIO DE TECNOLOGIAS", gerenciaTecnologias.getTecnologias(), gerenciaFornecedores.getFornecedores());
+            new RelatorioTecnologias("RELATÓRIO DE TECNOLOGIAS",gerenciaTecnologias, gerenciaTecnologias.getTecnologias(), gerenciaFornecedores.getFornecedores());
         } else if (e.getSource() == botoes.get(2)) {
             new RelatorioCompradores(gerenciaCompradores.getCompradores());
         } else if (e.getSource() == botoes.get(3)) {

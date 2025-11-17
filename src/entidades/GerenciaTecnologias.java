@@ -42,6 +42,25 @@ public class GerenciaTecnologias {
         return null;
     }
 
+    public List<Fornecedor> verificarTecnologiasComFornecedor(List<Tecnologia> tecnologias, List<Fornecedor> fornecedores) {
+        List<Fornecedor> fornecedoresAux = new ArrayList<>();
+
+        try {
+            for (Tecnologia t : tecnologias) {
+                for (Fornecedor f : fornecedores) {
+                    if (t.getFornecedor().getCod() == f.getCod()) {
+                        if(!fornecedoresAux.contains(f)) {
+                            fornecedoresAux.add(f);
+                        }
+                    }
+                }
+            }
+        } catch (NullPointerException _) {}
+
+        Collections.sort(fornecedoresAux);
+        return fornecedoresAux;
+    }
+
     public Tecnologia encontrarTecnologiaComMaiorValor() {
         Tecnologia maior = tecnologias.getFirst();
 

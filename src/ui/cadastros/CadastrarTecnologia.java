@@ -72,7 +72,7 @@ public class CadastrarTecnologia extends JFrameComFuncoes implements ActionListe
         List<Tecnologia> tecnologias = gerenciaTecnologias.getTecnologias();
         List<Fornecedor> fornecedores = gerenciaFornecedores.getFornecedores();
 
-        new RelatorioTecnologias("DADOS CADASTRADOS", tecnologias, fornecedores);
+        new RelatorioTecnologias("DADOS CADASTRADOS",gerenciaTecnologias, tecnologias, fornecedores);
     }
 
 

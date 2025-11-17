@@ -1,17 +1,16 @@
 package ui.relatorios;
 
 import entidades.Fornecedor;
+import entidades.GerenciaTecnologias;
 import entidades.Tecnologia;
 import ui.funcoes.JDialogComFuncoes;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class RelatorioTecnologias extends JDialogComFuncoes {
-    public RelatorioTecnologias(String titulo, List<Tecnologia> tecnologias, List<Fornecedor> fornecedores) {
+    public RelatorioTecnologias(String titulo, GerenciaTecnologias gerenciaTecnologias, List<Tecnologia> tecnologias, List<Fornecedor> fornecedores) {
         super();
         setBasics();
 
@@ -23,7 +22,7 @@ public class RelatorioTecnologias extends JDialogComFuncoes {
         String mensagemFornecedoresVazios = "Nenhum fornecedor cadastrado.";
 
         if (titulo.equals("RELATÓRIO DE TECNOLOGIAS")) {
-            fornecedores = verificarTecnologiasComFornecedor(tecnologias, fornecedores);
+            fornecedores = gerenciaTecnologias.verificarTecnologiasComFornecedor(tecnologias, fornecedores);
             mensagemFornecedoresVazios = "Nenhum fornecedor cadastrado para tecnologias.";
         }
 
@@ -73,22 +72,5 @@ public class RelatorioTecnologias extends JDialogComFuncoes {
         this.setTitle("Relatório de Tecnologias");
         this.setLocationRelativeTo(null);
         this.setLayout(new BorderLayout());
-    }
-
-    private List<Fornecedor> verificarTecnologiasComFornecedor(List<Tecnologia> tecnologias, List<Fornecedor> fornecedores) {
-        List<Fornecedor> fornecedoresAux = new ArrayList<>();
-
-        try {
-            for (Tecnologia t : tecnologias) {
-                for (Fornecedor f : fornecedores) {
-                    if (t.getFornecedor().getCod() == f.getCod()) {
-                        fornecedoresAux.add(f);
-                    }
-                }
-            }
-        } catch (NullPointerException _) {}
-
-        Collections.sort(fornecedoresAux);
-        return fornecedoresAux;
     }
 }
