@@ -33,8 +33,8 @@ public class Comprador extends Participante implements Comparable<Comprador>{
         return getNome();
     }
 
-    public void getPais(String pais){
-        this.pais = pais;
+    public String getPais(String pais){
+        return pais;
     }
 
     @Override
