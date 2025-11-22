@@ -5,6 +5,7 @@ import entidades.GerenciaFornecedores;
 import entidades.GerenciaTecnologias;
 import entidades.GerenciaVendas;
 import ui.MenuPrincipal;
+import ui.funcoes.JPanelComFuncoes;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class PainelConsultarMaior extends JPanel implements ActionListener {
+public class PainelConsultarMaior extends JPanelComFuncoes implements ActionListener {
     private JPanel painelPrincipal;
     private GerenciaFornecedores gerenciaFornecedores;
     private GerenciaTecnologias gerenciaTecnologias;
@@ -24,25 +25,26 @@ public class PainelConsultarMaior extends JPanel implements ActionListener {
     private JPanel painelBotaoChao;
     private MenuPrincipal menuPrincipal;
     private List<JButton> botoes;
-    private final Color corPrincipal = new Color(20, 86, 160);
 
     private final List<String> labelsBotoes = new ArrayList<>(Arrays.asList(
             "TECNOLOGIA COM MAIOR VALOR", "FORNECEDOR COM MAIS TECNOLOGIAS", "COMPRADOR COM MAIS VENDAS", "VENDA COM MAIOR VALOR"
     ));
 
     public PainelConsultarMaior(MenuPrincipal menuPrincipal, GerenciaFornecedores gerenciaFornecedores, GerenciaTecnologias gerenciaTecnologias, GerenciaCompradores gerenciaCompradores, GerenciaVendas gerenciaVendas) {
-        super(new BorderLayout());
+        super();
         this.menuPrincipal = menuPrincipal;
         this.gerenciaFornecedores = gerenciaFornecedores;
         this.gerenciaTecnologias = gerenciaTecnologias;
         this.gerenciaCompradores = gerenciaCompradores;
         this.gerenciaVendas = gerenciaVendas;
+        botoes = new ArrayList<>();
+
 
         painelPrincipal = new JPanel(new BorderLayout());
 
         painelBorda = new JPanel(new BorderLayout());
         setBorda(painelBorda);
-        painelBorda.add(criarPainelBotoes(), BorderLayout.CENTER);
+        painelBorda.add(criarPainelBotoes(botoes, labelsBotoes, this, 1, 3, 10, 10), BorderLayout.CENTER);
 
         painelBotaoChao = new JPanel();
 
@@ -66,32 +68,6 @@ public class PainelConsultarMaior extends JPanel implements ActionListener {
 
         painelBorda.setBorder(BorderFactory.createEmptyBorder(vertical, horizontal, vertical, horizontal)
         );
-    }
-
-    private JPanel criarPainelBotoes() {
-        JPanel painelGrid = new JPanel(new GridLayout(1, 3, 10, 10));
-
-        botoes = new ArrayList<>();
-
-        for (String s : labelsBotoes) {
-            JButton botao = new JButton(s);
-            botao.setMargin(new Insets(10, 0, 10, 0));
-            botao.setBackground(Color.WHITE);
-            botao.setForeground(corPrincipal);
-            botao.addActionListener(this);
-            botoes.add(botao);
-            painelGrid.add(botao);
-        }
-
-        return painelGrid;
-    }
-
-    private JButton criarBotao(String texto) {
-        JButton botao = new JButton(texto);
-        botao.setMargin(new Insets(10, 20, 10, 20));
-        botao.setBackground(Color.WHITE);
-        botao.setForeground(corPrincipal);
-        return botao;
     }
 
     @Override

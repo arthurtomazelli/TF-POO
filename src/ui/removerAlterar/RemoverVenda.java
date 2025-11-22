@@ -27,7 +27,7 @@ public class RemoverVenda extends JFrameComFuncoes implements ActionListener {
     private final String labelAtributo = "Número: ";
 
     private final List<String> labelsBotoes = new ArrayList<>(Arrays.asList(
-            "FECHAR", "LIMPAR", "MOSTRAR VENDAS", "CONFIRMAR"
+            "FECHAR", "LIMPAR", "MOSTRAR VENDAS", "REMOVER VENDA"
     ));
 
     public RemoverVenda(GerenciaVendas gerenciaVendas) {
