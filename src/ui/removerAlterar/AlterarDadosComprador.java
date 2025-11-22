@@ -142,7 +142,7 @@ public class AlterarDadosComprador extends JFrameComFuncoes implements ActionLis
         }
     }
 
-    public void limparCamposAposAlteracao() {
+    public void limparCampos() {
         campoTexto.setText("");
         areaTextoComprador.setText("");
         compradorAlterar = null;
@@ -163,9 +163,7 @@ public class AlterarDadosComprador extends JFrameComFuncoes implements ActionLis
             this.dispose();
         }
         if (e.getSource() == botoes.get(1)) {
-            campoTexto.setText("");
-            areaTextoComprador.setText("");
-            compradorAlterar = null;
+            limparCampos();
         }
         if (e.getSource() == botoes.get(2)) {
             mostrarCompradores();

@@ -94,7 +94,7 @@ public class SolicitarDadosComprador extends JFrameComFuncoes implements ActionL
                         "SUCESSO", JOptionPane.PLAIN_MESSAGE);
 
                 if (janelaAlterarComprador != null) {
-                    janelaAlterarComprador.limparCamposAposAlteracao();
+                    janelaAlterarComprador.limparCampos();
                 }
 
                 this.dispose();
