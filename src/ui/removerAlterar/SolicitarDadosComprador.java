@@ -20,7 +20,7 @@ public class SolicitarDadosComprador extends JFrameComFuncoes implements ActionL
 
     private GerenciaCompradores gerenciaCompradores;
     private Comprador compradorAlterar;
-    private AlterarDadosComprador telaOrigem;
+    private AlterarDadosComprador janelaAlterarComprador;
 
     private final List<String> labelsAtributos = new ArrayList<>(Arrays.asList("Nome: ", "País: ", "Email: "));
 
@@ -28,13 +28,13 @@ public class SolicitarDadosComprador extends JFrameComFuncoes implements ActionL
             "FECHAR", "LIMPAR", "CONFIRMAR"
     ));
 
-    public SolicitarDadosComprador(GerenciaCompradores gerenciaCompradores, Comprador compradorAlterar, AlterarDadosComprador telaOrigem) {
+    public SolicitarDadosComprador(GerenciaCompradores gerenciaCompradores, Comprador compradorAlterar, AlterarDadosComprador janelaAlterarComprador) {
         super();
         setBasics();
 
         this.gerenciaCompradores = gerenciaCompradores;
         this.compradorAlterar = compradorAlterar;
-        this.telaOrigem = telaOrigem;
+        this.janelaAlterarComprador = janelaAlterarComprador;
 
         this.camposTexto = new ArrayList<>();
         this.botoes = new ArrayList<>();
@@ -93,8 +93,8 @@ public class SolicitarDadosComprador extends JFrameComFuncoes implements ActionL
                         "Dados do comprador '" + compradorAlterar.getCod() + "' alterados com sucesso.",
                         "SUCESSO", JOptionPane.PLAIN_MESSAGE);
 
-                if (telaOrigem != null) {
-                    telaOrigem.limparCamposAposAlteracao();
+                if (janelaAlterarComprador != null) {
+                    janelaAlterarComprador.limparCamposAposAlteracao();
                 }
 
                 this.dispose();

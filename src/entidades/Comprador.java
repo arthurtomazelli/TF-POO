@@ -8,7 +8,6 @@ public class Comprador extends Participante implements Comparable<Comprador>{
         super(cod, nome);
         this.pais = pais;
         this.email = email;
-
     }
 
     @Override

@@ -35,8 +35,7 @@ public class PainelRemoverAlterar extends JPanelComFuncoes implements ActionList
         this.gerenciaVendas = gerenciaVendas;
         this.gerenciaCompradores = gerenciaCompradores;
         botoes = new ArrayList<>();
-
-
+        
         painelPrincipal = new JPanel(new BorderLayout());
 
         painelBorda = new JPanel(new BorderLayout());

@@ -25,12 +25,8 @@ public class RelatorioFornecedores extends JDialogComFuncoes {
 
         areaTexto.setText(areaTexto.getText() + "=-=-=-=-=-=-= Fornecedores =-=-=-=-=-=-=\n");
 
-        if (fornecedores.isEmpty()) {
-            areaTexto.setText(areaTexto.getText() + "Nenhum fornecedor cadastrado.\n");
-        } else {
-            for (Fornecedor f : fornecedores) {
-                areaTexto.setText(areaTexto.getText() + f.geraDescricao() + "\n");
-            }
+        for (Fornecedor f : fornecedores) {
+            areaTexto.setText(areaTexto.getText() + f.geraDescricao() + "\n");
         }
 
         JPanel painelChao = new JPanel();
@@ -47,7 +43,7 @@ public class RelatorioFornecedores extends JDialogComFuncoes {
         this.setLocationRelativeTo(null);
     }
 
-    private void setBasics(){
+    private void setBasics() {
         this.setTitle("Relatório de Fornecedores");
         this.setLocationRelativeTo(null);
         this.setLayout(new BorderLayout());

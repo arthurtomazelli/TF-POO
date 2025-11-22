@@ -119,7 +119,6 @@ public class AlterarDadosComprador extends JFrameComFuncoes implements ActionLis
         }
     }
 
-
     public void buscarComprador() {
         try {
             if (campoTexto.getText().isEmpty()) {

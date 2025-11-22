@@ -38,12 +38,8 @@ public class VendaMaiorValor extends JDialogComFuncoes {
         } else {
             areaTexto.setText(areaTexto.getText() + "=-=-=-=-=-=-= Venda (houve empate de maiores valores) =-=-=-=-=-=-=\n");
 
-            if (vendas.isEmpty()) {
-                areaTexto.setText(areaTexto.getText() + "Nenhuma venda cadastrada.\n");
-            } else {
-                for (Venda v : vendas) {
-                    areaTexto.setText(areaTexto.getText() + v + "\n");
-                }
+            for (Venda v : vendas) {
+                areaTexto.setText(areaTexto.getText() + v + "\n");
             }
         }
 

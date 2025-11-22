@@ -35,12 +35,8 @@ public class RelatorioTecnologias extends JDialogComFuncoes {
 
         areaTexto.setText(areaTexto.getText() + "=-=-=-=-=-=-= Tecnologias =-=-=-=-=-=-=\n");
 
-        if (tecnologias.isEmpty()) {
-            areaTexto.setText(areaTexto.getText() + "Nenhuma tecnologia cadastrada.\n");
-        } else {
-            for (Tecnologia t : tecnologias) {
-                areaTexto.setText(areaTexto.getText() + t + "\n");
-            }
+        for (Tecnologia t : tecnologias) {
+            areaTexto.setText(areaTexto.getText() + t + "\n");
         }
 
         areaTexto.setText(areaTexto.getText() + "\n");

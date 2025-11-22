@@ -34,37 +34,34 @@ public class RelatorioVendas extends JDialogComFuncoes {
         painelTexto.add(areaTexto);
 
         areaTexto.setText(areaTexto.getText() + "=-=-=-=-=-=-= Vendas =-=-=-=-=-=-=\n");
-
-        if (vendas.isEmpty()) {
-            areaTexto.setText(areaTexto.getText() + "Nenhuma venda cadastrada.\n");
-        } else {
-            for (Venda v : vendas) {
-                areaTexto.setText(areaTexto.getText() + v + "\n");
-                if(!compradores.contains(v.getComprador())) {
-                    compradores.add(v.getComprador());
-                }
-                if(!tecnologias.contains(v.getTecnologia())) {
-                    tecnologias.add(v.getTecnologia());
-                }
+        
+        for (Venda v : vendas) {
+            areaTexto.setText(areaTexto.getText() + v + "\n");
+            if (!compradores.contains(v.getComprador())) {
+                compradores.add(v.getComprador());
             }
-
-            Collections.sort(compradores);
-            Collections.sort(tecnologias);
-
-            areaTexto.setText(areaTexto.getText() + "\n");
-            areaTexto.setText(areaTexto.getText() + "=-=-=-=-=-=-= Compradores =-=-=-=-=-=-=\n");
-
-            for (Comprador c : compradores) {
-                areaTexto.setText(areaTexto.getText() + c.geraDescricao() + "\n");
-            }
-
-            areaTexto.setText(areaTexto.getText() + "\n");
-            areaTexto.setText(areaTexto.getText() + "=-=-=-=-=-=-= Tecnologias =-=-=-=-=-=-=\n");
-
-            for (Tecnologia t : tecnologias) {
-                areaTexto.setText(areaTexto.getText() + t + "\n");
+            if (!tecnologias.contains(v.getTecnologia())) {
+                tecnologias.add(v.getTecnologia());
             }
         }
+
+        Collections.sort(compradores);
+        Collections.sort(tecnologias);
+
+        areaTexto.setText(areaTexto.getText() + "\n");
+        areaTexto.setText(areaTexto.getText() + "=-=-=-=-=-=-= Compradores =-=-=-=-=-=-=\n");
+
+        for (Comprador c : compradores) {
+            areaTexto.setText(areaTexto.getText() + c.geraDescricao() + "\n");
+        }
+
+        areaTexto.setText(areaTexto.getText() + "\n");
+        areaTexto.setText(areaTexto.getText() + "=-=-=-=-=-=-= Tecnologias =-=-=-=-=-=-=\n");
+
+        for (Tecnologia t : tecnologias) {
+            areaTexto.setText(areaTexto.getText() + t + "\n");
+        }
+
 
         JPanel painelChao = new JPanel();
         JButton botaoOK = criarBotao("OK");

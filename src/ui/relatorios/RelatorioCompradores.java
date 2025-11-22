@@ -26,14 +26,10 @@ public class RelatorioCompradores extends JDialogComFuncoes {
 
         areaTexto.setText(areaTexto.getText() + "=-=-=-=-=-=-= Compradores =-=-=-=-=-=-=\n");
 
-        if (compradores.isEmpty()) {
-            areaTexto.setText(areaTexto.getText() + "Nenhum comprador cadastrado.\n");
-        } else {
-            for (Comprador c : compradores) {
-                areaTexto.setText(areaTexto.getText() + c.geraDescricao() + "\n");
-            }
+        for (Comprador c : compradores) {
+            areaTexto.setText(areaTexto.getText() + c.geraDescricao() + "\n");
         }
-
+        
         JPanel painelChao = new JPanel();
         JButton botaoOK = criarBotao("OK");
         botaoOK.addActionListener(e -> this.dispose());
@@ -48,7 +44,7 @@ public class RelatorioCompradores extends JDialogComFuncoes {
         this.setLocationRelativeTo(null);
     }
 
-    private void setBasics(){
+    private void setBasics() {
         this.setTitle("Relatório de Compradores");
         this.setLocationRelativeTo(null);
         this.setLayout(new BorderLayout());

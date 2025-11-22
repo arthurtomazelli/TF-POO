@@ -1,5 +1,7 @@
 package ui;
 
+import ui.funcoes.JPanelComFuncoes;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -8,20 +10,20 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class PainelPrincipal extends JPanel implements ActionListener {
+public class PainelPrincipal extends JPanelComFuncoes implements ActionListener {
     private JPanel painelPrincipal;
     private JPanel painelBorda;
     private JPanel painelBotaoChao;
     private MenuPrincipal menuPrincipal;
     private List<JButton> botoes;
-    private final Color corPrincipal = new Color(20, 86, 160);
 
     private final List<String> labelsBotoes = new ArrayList<>(Arrays.asList(
             "CADASTROS", "MOSTRAR RELATÓRIOS", "REMOVER / ALTERAR", "CONSULTAR MAIOR", "SALVAR / CARREGAR"
     ));
 
     public PainelPrincipal(MenuPrincipal menuPrincipal) {
-        super(new BorderLayout());
+        super();
+        botoes = new ArrayList<>();
 
         this.menuPrincipal = menuPrincipal;
 
@@ -32,7 +34,7 @@ public class PainelPrincipal extends JPanel implements ActionListener {
     private JPanel criarPainelEsquerda(){
         JPanel painel = new JPanel(new BorderLayout());
         painel.setOpaque(true);
-        painel.setBackground(corPrincipal);
+        painel.setBackground(getCorPrincipal());
         painel.setPreferredSize(new Dimension(450, getHeight()));
 
         JLabel titulo = new JLabel("ACMETech", JLabel.CENTER);
@@ -54,7 +56,7 @@ public class PainelPrincipal extends JPanel implements ActionListener {
 
         painelBorda = new JPanel(new BorderLayout());
         setBorda(painelBorda);
-        painelBorda.add(criarPainelBotoes(), BorderLayout.CENTER);
+        painelBorda.add(criarPainelBotoes(botoes, labelsBotoes, this, 5, 1, 10, 10), BorderLayout.CENTER);
 
         painelBotaoChao = new JPanel();
 
@@ -78,35 +80,6 @@ public class PainelPrincipal extends JPanel implements ActionListener {
         int horizontal = (int) (largura * 0.20);
 
         painelBorda.setBorder(BorderFactory.createEmptyBorder(vertical, horizontal, vertical, horizontal));
-    }
-
-    private JPanel criarPainelBotoes() {
-        JPanel painelGrid = new JPanel(new GridLayout(5, 1, 10, 10));
-
-        botoes = new ArrayList<>();
-
-        for (String s : labelsBotoes) {
-            JButton botao = new JButton(s);
-
-            botao.setMargin(new Insets(10, 20, 10, 20));
-            botao.setBackground(Color.WHITE);
-            botao.setForeground(corPrincipal);
-            botao.addActionListener(this);
-
-            botoes.add(botao);
-            painelGrid.add(botao);
-        }
-
-        return painelGrid;
-    }
-
-    private JButton criarBotao(String texto) {
-        JButton botao = new JButton(texto);
-        botao.setMargin(new Insets(10, 20, 10, 20));
-        botao.setBackground(Color.WHITE);
-        botao.setForeground(corPrincipal);
-
-        return botao;
     }
 
     @Override
