@@ -9,12 +9,14 @@ import java.awt.*;
 import java.util.List;
 
 public class TecnologiaMaiorValor extends JDialogComFuncoes {
+    private GerenciaTecnologias gerenciaTecnologias;
     private List<Tecnologia> tecnologias;
     private Tecnologia tecMaiorValor;
 
     public TecnologiaMaiorValor(GerenciaTecnologias gerenciaTecnologias) {
         super();
         setBasics();
+        this.gerenciaTecnologias = gerenciaTecnologias;
 
         tecnologias = gerenciaTecnologias.getTecnologias();
 
@@ -23,30 +25,10 @@ public class TecnologiaMaiorValor extends JDialogComFuncoes {
             return;
         }
 
-        JPanel painelTexto = new JPanel();
+        JPanel painelTexto = criarPainelTexto();
+        preencherCampos();
 
-        JTextArea areaTexto = new JTextArea(10, 30);
-        areaTexto.setEditable(false);
-        areaTexto.setFont(new Font("Arial", Font.PLAIN, 15));
-        painelTexto.add(areaTexto);
-
-        tecMaiorValor = gerenciaTecnologias.encontrarTecnologiaComMaiorValor();
-
-        if (tecMaiorValor != null) {
-            areaTexto.setText(areaTexto.getText() + "=-=-=-=-=-=-= Tecnologia Com Maior Valor =-=-=-=-=-=-=\n");
-            areaTexto.setText(areaTexto.getText() + tecMaiorValor);
-        } else {
-            areaTexto.setText(areaTexto.getText() + "=-=-=-=-=-=-= Tecnologias (houve empate de maiores valores) =-=-=-=-=-=-=\n");
-
-            for (Tecnologia t : tecnologias) {
-                areaTexto.setText(areaTexto.getText() + t + "\n");
-            }
-        }
-
-        JPanel painelChao = new JPanel();
-        JButton botaoOK = criarBotao("OK");
-        botaoOK.addActionListener(e -> this.dispose());
-        painelChao.add(botaoOK);
+        JPanel painelChao = criarPainelChao(this);
 
         this.add(criarPainelTitulo("TECNOLOGIA COM MAIOR VALOR", 30), BorderLayout.NORTH);
         this.add(painelTexto, BorderLayout.CENTER);
@@ -63,4 +45,21 @@ public class TecnologiaMaiorValor extends JDialogComFuncoes {
         this.setLayout(new BorderLayout());
     }
 
+    @Override
+    public void preencherCampos() {
+        tecMaiorValor = gerenciaTecnologias.encontrarTecnologiaComMaiorValor();
+
+        JTextArea areaTexto = getAreaTexto();
+
+        if (tecMaiorValor != null) {
+            areaTexto.setText(areaTexto.getText() + "=-=-=-=-=-=-= Tecnologia Com Maior Valor =-=-=-=-=-=-=\n");
+            areaTexto.setText(areaTexto.getText() + tecMaiorValor);
+        } else {
+            areaTexto.setText(areaTexto.getText() + "=-=-=-=-=-=-= Tecnologias (houve empate de maiores valores) =-=-=-=-=-=-=\n");
+
+            for (Tecnologia t : tecnologias) {
+                areaTexto.setText(areaTexto.getText() + t + "\n");
+            }
+        }
+    }
 }

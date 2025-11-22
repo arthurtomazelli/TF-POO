@@ -1,9 +1,14 @@
 package ui.funcoes;
 
+import entidades.Comprador;
+
 import javax.swing.*;
+import javax.swing.table.TableStringConverter;
 import java.awt.*;
+import java.util.List;
 
 public abstract class JDialogComFuncoes extends JDialog {
+    private JTextArea areaTexto;
     private final Color corPrincipal = new Color(20, 86, 160);
 
     public JPanel criarPainelTitulo(String textoTitulo, int tamanhoFonte) {
@@ -31,6 +36,33 @@ public abstract class JDialogComFuncoes extends JDialog {
         botao.setForeground(corPrincipal);
 
         return botao;
+    }
+
+    public JPanel criarPainelTexto(){
+        JPanel painelTexto = new JPanel();
+
+        areaTexto = new JTextArea(10, 30);
+        areaTexto.setEditable(false);
+        areaTexto.setFont(new Font("Arial", Font.PLAIN, 15));
+        painelTexto.add(areaTexto);
+
+        return painelTexto;
+    }
+
+    public <T extends JDialog> JPanel criarPainelChao(T classe){
+        JPanel painelChao = new JPanel();
+
+        JButton botaoOK = criarBotao("OK");
+        botaoOK.addActionListener(e -> classe.dispose());
+        painelChao.add(botaoOK);
+
+        return painelChao;
+    }
+
+    public abstract void preencherCampos();
+
+    public JTextArea getAreaTexto() {
+        return areaTexto;
     }
 
     public Color getCorPrincipal() {

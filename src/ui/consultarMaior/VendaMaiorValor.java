@@ -9,12 +9,14 @@ import java.awt.*;
 import java.util.List;
 
 public class VendaMaiorValor extends JDialogComFuncoes {
+    private GerenciaVendas gerenciaVendas;
     private List<Venda> vendas;
     private Venda vendaMaiorValor;
 
     public VendaMaiorValor(GerenciaVendas gerenciaVendas) {
         super();
         setBasics();
+        this.gerenciaVendas = gerenciaVendas;
 
         vendas = gerenciaVendas.getVendas();
 
@@ -23,30 +25,11 @@ public class VendaMaiorValor extends JDialogComFuncoes {
             return;
         }
 
-        JPanel painelTexto = new JPanel();
+        JPanel painelTexto = criarPainelTexto();
+        preencherCampos();
 
-        JTextArea areaTexto = new JTextArea(10, 30);
-        areaTexto.setEditable(false);
-        areaTexto.setFont(new Font("Arial", Font.PLAIN, 15));
-        painelTexto.add(areaTexto);
+        JPanel painelChao = criarPainelChao(this);
 
-        vendaMaiorValor = gerenciaVendas.encontrarVendaComMaiorValor();
-
-        if (vendaMaiorValor != null) {
-            areaTexto.setText(areaTexto.getText() + "=-=-=-=-=-=-= Venda Com Maior Valor =-=-=-=-=-=-=\n");
-            areaTexto.setText(areaTexto.getText() + vendaMaiorValor);
-        } else {
-            areaTexto.setText(areaTexto.getText() + "=-=-=-=-=-=-= Venda (houve empate de maiores valores) =-=-=-=-=-=-=\n");
-
-            for (Venda v : vendas) {
-                areaTexto.setText(areaTexto.getText() + v + "\n");
-            }
-        }
-
-        JPanel painelChao = new JPanel();
-        JButton botaoOK = criarBotao("OK");
-        botaoOK.addActionListener(e -> this.dispose());
-        painelChao.add(botaoOK);
 
         this.add(criarPainelTitulo("TECNOLOGIA COM MAIOR VALOR", 30), BorderLayout.NORTH);
         this.add(painelTexto, BorderLayout.CENTER);
@@ -63,4 +46,21 @@ public class VendaMaiorValor extends JDialogComFuncoes {
         this.setLayout(new BorderLayout());
     }
 
+    @Override
+    public void preencherCampos() {
+        vendaMaiorValor = gerenciaVendas.encontrarVendaComMaiorValor();
+
+        JTextArea areaTexto = getAreaTexto();
+
+        if (vendaMaiorValor != null) {
+            areaTexto.setText(areaTexto.getText() + "=-=-=-=-=-=-= Venda Com Maior Valor =-=-=-=-=-=-=\n");
+            areaTexto.setText(areaTexto.getText() + vendaMaiorValor);
+        } else {
+            areaTexto.setText(areaTexto.getText() + "=-=-=-=-=-=-= Venda (houve empate de maiores valores) =-=-=-=-=-=-=\n");
+
+            for (Venda v : vendas) {
+                areaTexto.setText(areaTexto.getText() + v + "\n");
+            }
+        }
+    }
 }

@@ -12,12 +12,14 @@ import java.util.Collections;
 import java.util.List;
 
 public class RelatorioVendas extends JDialogComFuncoes {
+    private List<Venda> vendas;
     private List<Comprador> compradores;
     private List<Tecnologia> tecnologias;
 
     public RelatorioVendas(List<Venda> vendas) {
         super();
         setBasics();
+        this.vendas = vendas;
 
         if (vendas.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Não há vendas cadastradas.", "ERRO", JOptionPane.WARNING_MESSAGE);
@@ -27,14 +29,32 @@ public class RelatorioVendas extends JDialogComFuncoes {
         compradores = new ArrayList<>();
         tecnologias = new ArrayList<>();
 
-        JPanel painelTexto = new JPanel();
-        JTextArea areaTexto = new JTextArea(10, 30);
-        areaTexto.setEditable(false);
-        areaTexto.setFont(new Font("Arial", Font.PLAIN, 15));
-        painelTexto.add(areaTexto);
+        JPanel painelTexto = criarPainelTexto();
+        preencherCampos();
+
+        JPanel painelChao = criarPainelChao(this);
+
+        this.add(criarPainelTitulo("RELATÓRIO DE VENDAS", 30), BorderLayout.NORTH);
+        this.add(painelTexto, BorderLayout.CENTER);
+        this.add(painelChao, BorderLayout.SOUTH);
+
+        this.pack();
+        this.setVisible(true);
+        this.setLocationRelativeTo(null);
+    }
+
+    private void setBasics() {
+        this.setTitle("Relatório de Vendas");
+        this.setLocationRelativeTo(null);
+        this.setLayout(new BorderLayout());
+    }
+
+    @Override
+    public void preencherCampos() {
+        JTextArea areaTexto = getAreaTexto();
 
         areaTexto.setText(areaTexto.getText() + "=-=-=-=-=-=-= Vendas =-=-=-=-=-=-=\n");
-        
+
         for (Venda v : vendas) {
             areaTexto.setText(areaTexto.getText() + v + "\n");
             if (!compradores.contains(v.getComprador())) {
@@ -61,26 +81,6 @@ public class RelatorioVendas extends JDialogComFuncoes {
         for (Tecnologia t : tecnologias) {
             areaTexto.setText(areaTexto.getText() + t + "\n");
         }
-
-
-        JPanel painelChao = new JPanel();
-        JButton botaoOK = criarBotao("OK");
-        botaoOK.addActionListener(e -> this.dispose());
-        painelChao.add(botaoOK);
-
-        this.add(criarPainelTitulo("RELATÓRIO DE VENDAS", 30), BorderLayout.NORTH);
-        this.add(painelTexto, BorderLayout.CENTER);
-        this.add(painelChao, BorderLayout.SOUTH);
-
-        this.pack();
-        this.setVisible(true);
-        this.setLocationRelativeTo(null);
-    }
-
-    private void setBasics() {
-        this.setTitle("Relatório de Vendas");
-        this.setLocationRelativeTo(null);
-        this.setLayout(new BorderLayout());
     }
 }
 
