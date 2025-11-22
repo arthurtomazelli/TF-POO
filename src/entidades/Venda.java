@@ -3,7 +3,7 @@ package entidades;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Venda implements Comparable<Venda>{
+public class Venda implements Comparable<Venda> {
     private long num;
     private Date data;
     private double valorFinal;
@@ -69,7 +69,7 @@ public class Venda implements Comparable<Venda>{
 
     @Override
     public int compareTo(Venda outra) {
-        return Long.compare(this.num, outra.num);
+        return Long.compare(outra.num, this.num);
     }
 
     @Override

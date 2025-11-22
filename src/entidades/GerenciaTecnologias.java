@@ -12,7 +12,7 @@ public class GerenciaTecnologias {
     }
 
     public boolean addTecnologia(Tecnologia tecnologia) {
-        if(idRepetido(tecnologia)) {
+        if (idRepetido(tecnologia)) {
             return false;
         }
 
@@ -49,13 +49,14 @@ public class GerenciaTecnologias {
             for (Tecnologia t : tecnologias) {
                 for (Fornecedor f : fornecedores) {
                     if (t.getFornecedor().getCod() == f.getCod()) {
-                        if(!fornecedoresAux.contains(f)) {
+                        if (!fornecedoresAux.contains(f)) {
                             fornecedoresAux.add(f);
                         }
                     }
                 }
             }
-        } catch (NullPointerException _) {}
+        } catch (NullPointerException _) {
+        }
 
         Collections.sort(fornecedoresAux);
         return fornecedoresAux;
@@ -66,13 +67,13 @@ public class GerenciaTecnologias {
 
         int cont = 0;
 
-        for(Tecnologia t : tecnologias) {
-            if(t.getValorBase() > maior.getValorBase()) {
+        for (Tecnologia t : tecnologias) {
+            if (t.getValorBase() > maior.getValorBase()) {
                 maior = t;
-            } else if(t.getValorBase() == maior.getValorBase()) {
+            } else if (t.getValorBase() == maior.getValorBase()) {
                 cont++;
 
-                if(cont > 1) {
+                if (cont > 1) {
                     return null;
                 }
             }

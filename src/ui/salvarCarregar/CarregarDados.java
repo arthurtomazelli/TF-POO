@@ -133,7 +133,7 @@ public class CarregarDados extends JFrameComFuncoes implements ActionListener {
         String lista = "\n";
 
         for (int i = 0; i < carregados.size(); i++) {
-            lista += (i+1) + " - " + carregados.get(i) + "\n";
+            lista += (i + 1) + " - " + carregados.get(i) + "\n";
         }
 
         return lista;

@@ -11,7 +11,7 @@ public class GerenciaFornecedores {
     }
 
     public boolean addFornecedor(Fornecedor fornecedor) {
-        if(codExiste(fornecedor)){
+        if (codExiste(fornecedor)) {
             return false;
         }
 
@@ -21,9 +21,9 @@ public class GerenciaFornecedores {
         return true;
     }
 
-    private boolean codExiste(Fornecedor fornecedor){
-        for(Fornecedor f : fornecedores){
-            if(f.getCod() == fornecedor.getCod()){
+    private boolean codExiste(Fornecedor fornecedor) {
+        for (Fornecedor f : fornecedores) {
+            if (f.getCod() == fornecedor.getCod()) {
                 return true;
             }
         }
@@ -66,19 +66,19 @@ public class GerenciaFornecedores {
 
             int anoInt = Integer.parseInt(ano);
 
-            if(anoInt < 1900 || anoInt > LocalDate.now().getYear()) {
+            if (anoInt < 1900 || anoInt > LocalDate.now().getYear()) {
                 throw new IllegalArgumentException("Ano deve ser entre 2000 e 2025. Altere-o e tente novamente.");
             }
 
             int mesInt = Integer.parseInt(mes);
 
-            if(mesInt < 1 || mesInt > 12) {
+            if (mesInt < 1 || mesInt > 12) {
                 throw new IllegalArgumentException("Mês deve ser entre 1 e 12. Altere-o e tente novamente.");
             }
 
             int diaInt = Integer.parseInt(dia);
 
-            if(diaInt < 1 || diaInt > 30) {
+            if (diaInt < 1 || diaInt > 30) {
                 throw new IllegalArgumentException("Dia deve ser entre 1 e 30. Altere-o e tente novamente.");
             }
 
@@ -89,21 +89,21 @@ public class GerenciaFornecedores {
     }
 
     public Area verificaArea(String area) {
-        if(area == null){
+        if (area == null) {
             throw new EnumConstantNotPresentException(Area.class, area);
         }
 
         area = area.toUpperCase();
 
-        if(area.equals("TI")){
+        if (area.equals("TI")) {
             return Area.TI;
-        } else if(area.equals("ANDROIDES")){
+        } else if (area.equals("ANDROIDES")) {
             return Area.ANDROIDES;
-        } else if(area.equals("EMERGENTE")){
+        } else if (area.equals("EMERGENTE")) {
             return Area.EMERGENTE;
-        } else if(area.equals("ALIMENTOS")){
+        } else if (area.equals("ALIMENTOS")) {
             return Area.ALIMENTOS;
-        } else{
+        } else {
             throw new EnumConstantNotPresentException(Area.class, area);
         }
     }
@@ -123,7 +123,8 @@ public class GerenciaFornecedores {
                 int contagemF = contagemPorFornecedor.get(codF);
 
                 contagemPorFornecedor.put(codF, contagemF + 1);
-            } catch (NullPointerException e) {}
+            } catch (NullPointerException e) {
+            }
         }
 
         int maior = -9999;

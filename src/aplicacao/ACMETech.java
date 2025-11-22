@@ -27,7 +27,7 @@ public class ACMETech {
         redirecionaSaida();
     }
 
-    public void inicializar(){
+    public void inicializar() {
         GerenciaCSV gerenciaCSV = new GerenciaCSV(gerenciaCompradores, gerenciaFornecedores, gerenciaTecnologias, gerenciaVendas);
 
         String logEntradas = "";
@@ -41,7 +41,7 @@ public class ACMETech {
         executar();
     }
 
-    public void executar(){
+    public void executar() {
         new MenuPrincipal(gerenciaFornecedores, gerenciaTecnologias, gerenciaCompradores, gerenciaVendas);
     }
 

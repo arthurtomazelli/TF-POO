@@ -72,13 +72,13 @@ public class PainelConsultarMaior extends JPanelComFuncoes implements ActionList
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == botoes.get(0)){
+        if (e.getSource() == botoes.get(0)) {
             new TecnologiaMaiorValor(gerenciaTecnologias);
-        } else if (e.getSource() == botoes.get(1)){
+        } else if (e.getSource() == botoes.get(1)) {
             new FornecedorComMaisTecnologias(gerenciaTecnologias.getTecnologias(), gerenciaFornecedores);
-        } else if (e.getSource() == botoes.get(2)){
+        } else if (e.getSource() == botoes.get(2)) {
             new CompradorComMaisVendas(gerenciaVendas.getVendas(), gerenciaCompradores);
-        } else if (e.getSource() == botoes.get(3)){
+        } else if (e.getSource() == botoes.get(3)) {
             new VendaMaiorValor(gerenciaVendas);
         }
     }

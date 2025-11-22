@@ -175,7 +175,7 @@ public class CadastrarVenda extends JFrameComFuncoes implements ActionListener {
                     JOptionPane.showMessageDialog(this, "Número já cadastrado. Altere-o e tente novamente.", "ERRO", JOptionPane.WARNING_MESSAGE);
                 } else {
                     JOptionPane.showMessageDialog(this, "Venda cadastrada com sucesso.\n" +
-                                                                                "Valor final: R$ " + venda.getValorFinal(), "SUCESSO", JOptionPane.PLAIN_MESSAGE);
+                            "Valor final: R$ " + venda.getValorFinal(), "SUCESSO", JOptionPane.PLAIN_MESSAGE);
                     limparCampos(camposTexto);
 
                     if (desconto != 10) {

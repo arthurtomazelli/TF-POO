@@ -35,7 +35,7 @@ public class PainelRemoverAlterar extends JPanelComFuncoes implements ActionList
         this.gerenciaVendas = gerenciaVendas;
         this.gerenciaCompradores = gerenciaCompradores;
         botoes = new ArrayList<>();
-        
+
         painelPrincipal = new JPanel(new BorderLayout());
 
         painelBorda = new JPanel(new BorderLayout());
@@ -68,9 +68,9 @@ public class PainelRemoverAlterar extends JPanelComFuncoes implements ActionList
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == botoes.get(0)){
+        if (e.getSource() == botoes.get(0)) {
             new RemoverVenda(gerenciaVendas);
-        } else if (e.getSource() == botoes.get(1)){
+        } else if (e.getSource() == botoes.get(1)) {
             new AlterarDadosComprador(gerenciaCompradores);
         }
     }

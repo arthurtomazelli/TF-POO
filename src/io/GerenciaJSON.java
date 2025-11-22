@@ -76,7 +76,7 @@ public class GerenciaJSON {
         }
     }
 
-    private void removeArquivosJsonExistentes(){
+    private void removeArquivosJsonExistentes() {
         Path pasta = Paths.get(pastaRecursos);
 
         try (var stream = Files.list(pasta)) {
@@ -94,25 +94,25 @@ public class GerenciaJSON {
 
     }
 
-
     public List<String> carregarTodos(String prefixoNome) {
-        if(prefixoNome.equals("")) {
+        if (prefixoNome.equals("")) {
             throw new IllegalArgumentException("O prefixo do arquivo não pode ser vazio.");
         }
 
         List<String> arquivosCarregados = new ArrayList<>();
 
-        if (carregarCompradores(prefixoNome))
+        if (carregarCompradores(prefixoNome)) {
             arquivosCarregados.add(prefixoNome + "COMPRADORES.json");
-
-        if (carregarFornecedores(prefixoNome))
+        }
+        if (carregarFornecedores(prefixoNome)) {
             arquivosCarregados.add(prefixoNome + "FORNECEDORES.json");
-
-        if (carregarTecnologias(prefixoNome))
-            arquivosCarregados.add(prefixoNome + "TECNLOGIAS.json");
-
-        if (carregarVendas(prefixoNome))
+        }
+        if (carregarTecnologias(prefixoNome)) {
+            arquivosCarregados.add(prefixoNome + "TECNOLOGIAS.json");
+        }
+        if (carregarVendas(prefixoNome)) {
             arquivosCarregados.add(prefixoNome + "VENDAS.json");
+        }
 
         return arquivosCarregados;
     }

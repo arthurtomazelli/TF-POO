@@ -1,5 +1,3 @@
-
-
 package io;
 
 import entidades.*;
@@ -52,10 +50,7 @@ public class GerenciaCSV {
         } catch (IOException e) {
             mensagem = e.getMessage();
         } finally {
-            contCadastroSucesso = 0;
-            contErrosFormato = 0;
-            contErrosDadoInvalido = 0;
-            contErrosObjRepetido = 0;
+            zeraContadores();
         }
         return mensagem;
     }
@@ -136,10 +131,7 @@ public class GerenciaCSV {
         } catch (IOException e) {
             mensagem = e.getMessage();
         } finally {
-            contCadastroSucesso = 0;
-            contErrosFormato = 0;
-            contErrosDadoInvalido = 0;
-            contErrosObjRepetido = 0;
+            zeraContadores();
         }
         return mensagem;
     }
@@ -207,10 +199,7 @@ public class GerenciaCSV {
         } catch (IOException e) {
             mensagem = e.getMessage();
         } finally {
-            contCadastroSucesso = 0;
-            contErrosFormato = 0;
-            contErrosDadoInvalido = 0;
-            contErrosObjRepetido = 0;
+            zeraContadores();
         }
         return mensagem;
     }
@@ -263,5 +252,12 @@ public class GerenciaCSV {
         } catch (IOException e) {
             throw new IOException("Impossivel realizar leitura. Arquivo de vendas não encontrado.");
         }
+    }
+
+    private void zeraContadores() {
+        contCadastroSucesso = 0;
+        contErrosFormato = 0;
+        contErrosDadoInvalido = 0;
+        contErrosObjRepetido = 0;
     }
 }

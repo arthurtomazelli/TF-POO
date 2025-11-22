@@ -1,6 +1,6 @@
 package entidades;
 
-public class Tecnologia implements Comparable<Tecnologia>{
+public class Tecnologia implements Comparable<Tecnologia> {
     private long id;
     private String modelo;
     private String descricao;

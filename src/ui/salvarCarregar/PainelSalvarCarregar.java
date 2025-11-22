@@ -75,9 +75,9 @@ public class PainelSalvarCarregar extends JPanelComFuncoes implements ActionList
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == botoes.get(0)){
+        if (e.getSource() == botoes.get(0)) {
             new CarregarDados(gerenciaJSON);
-        } else if (e.getSource() == botoes.get(1)){
+        } else if (e.getSource() == botoes.get(1)) {
             new SalvarDados(gerenciaJSON);
         }
     }

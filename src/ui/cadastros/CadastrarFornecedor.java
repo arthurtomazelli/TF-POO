@@ -94,9 +94,9 @@ public class CadastrarFornecedor extends JFrameComFuncoes implements ActionListe
             }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Código e ano de fundação devem ser números.", "ERRO", JOptionPane.WARNING_MESSAGE);
-        } catch (EnumConstantNotPresentException e){
-            JOptionPane.showMessageDialog(this,"Área inválida. Deve ser: 'TI', 'ANDROIDES', 'EMERGENTE' ou 'ALIMENTOS'.", "ERRO", JOptionPane.WARNING_MESSAGE);
-        } catch (IllegalArgumentException e){
+        } catch (EnumConstantNotPresentException e) {
+            JOptionPane.showMessageDialog(this, "Área inválida. Deve ser: 'TI', 'ANDROIDES', 'EMERGENTE' ou 'ALIMENTOS'.", "ERRO", JOptionPane.WARNING_MESSAGE);
+        } catch (IllegalArgumentException e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "ERRO", JOptionPane.WARNING_MESSAGE);
         }
     }

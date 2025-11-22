@@ -12,7 +12,7 @@ public class GerenciaCompradores {
     }
 
     public boolean addComprador(Comprador comprador) {
-        if(codRepetido(comprador)) {
+        if (codRepetido(comprador)) {
             return false;
         }
 
@@ -73,7 +73,8 @@ public class GerenciaCompradores {
                 int contagemC = contagemPorComprador.get(codC);
 
                 contagemPorComprador.put(codC, contagemC + 1);
-            } catch (NullPointerException _) {}
+            } catch (NullPointerException _) {
+            }
         }
 
         int maior = -9999;
@@ -95,7 +96,7 @@ public class GerenciaCompradores {
     }
 
 
-    public void alterarDadosComprador(Comprador comprador, List<Object> novosAtributos){
+    public void alterarDadosComprador(Comprador comprador, List<Object> novosAtributos) {
         String novoNome = (String) novosAtributos.get(0);
         String novoPais = (String) novosAtributos.get(1);
         String novoEmail = (String) novosAtributos.get(2);

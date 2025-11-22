@@ -138,7 +138,7 @@ public class SalvarDados extends JFrameComFuncoes implements ActionListener {
         String lista = "\n";
 
         for (int i = 0; i < salvos.size(); i++) {
-            lista += (i+1) + " - " + salvos.get(i) + "\n";
+            lista += (i + 1) + " - " + salvos.get(i) + "\n";
         }
 
         return lista;

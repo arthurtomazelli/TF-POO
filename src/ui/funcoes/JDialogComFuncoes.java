@@ -1,11 +1,7 @@
 package ui.funcoes;
 
-import entidades.Comprador;
-
 import javax.swing.*;
-import javax.swing.table.TableStringConverter;
 import java.awt.*;
-import java.util.List;
 
 public abstract class JDialogComFuncoes extends JDialog {
     private JTextArea areaTexto;
@@ -29,7 +25,7 @@ public abstract class JDialogComFuncoes extends JDialog {
         return painelTitulo;
     }
 
-    public JPanel criarPainelTexto(){
+    public JPanel criarPainelTexto() {
         JPanel painelTexto = new JPanel();
 
         areaTexto = new JTextArea(10, 30);
@@ -40,7 +36,7 @@ public abstract class JDialogComFuncoes extends JDialog {
         return painelTexto;
     }
 
-    public <T extends JDialog> JPanel criarPainelChao(T classe){
+    public <T extends JDialog> JPanel criarPainelChao(T classe) {
         JPanel painelChao = new JPanel();
 
         JButton botaoOK = criarBotao("OK");

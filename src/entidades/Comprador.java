@@ -1,10 +1,10 @@
 package entidades;
 
-public class Comprador extends Participante implements Comparable<Comprador>{
+public class Comprador extends Participante implements Comparable<Comprador> {
     private String pais;
     private String email;
 
-    public Comprador(long cod, String nome,String pais, String email){
+    public Comprador(long cod, String nome, String pais, String email) {
         super(cod, nome);
         this.pais = pais;
         this.email = email;
@@ -24,7 +24,7 @@ public class Comprador extends Participante implements Comparable<Comprador>{
     }
 
     @Override
-    public String geraDescricao(){
+    public String geraDescricao() {
         return getCod() + ";" + getNome() + ";" + pais + ";" + email;
     }
 

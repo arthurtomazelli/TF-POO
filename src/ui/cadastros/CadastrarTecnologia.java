@@ -72,7 +72,7 @@ public class CadastrarTecnologia extends JFrameComFuncoes implements ActionListe
         List<Tecnologia> tecnologias = gerenciaTecnologias.getTecnologias();
         List<Fornecedor> fornecedores = gerenciaFornecedores.getFornecedores();
 
-        new RelatorioTecnologias("DADOS CADASTRADOS",gerenciaTecnologias, tecnologias, fornecedores);
+        new RelatorioTecnologias("DADOS CADASTRADOS", gerenciaTecnologias, tecnologias, fornecedores);
     }
 
 
@@ -80,7 +80,7 @@ public class CadastrarTecnologia extends JFrameComFuncoes implements ActionListe
         List<Tecnologia> tecnologias = gerenciaTecnologias.getTecnologias();
         List<Fornecedor> fornecedores = gerenciaFornecedores.getFornecedores();
 
-        if(listasVazias(tecnologias, fornecedores)) {
+        if (listasVazias(tecnologias, fornecedores)) {
             return;
         }
 
@@ -89,7 +89,7 @@ public class CadastrarTecnologia extends JFrameComFuncoes implements ActionListe
 
         JDialog dialogFornecedor = new JDialog();
         dialogFornecedor.setTitle("Definir Fornecedor");
-        dialogFornecedor.setSize((int) (getWidth() * 0.8), (int)(getHeight() * 0.65));
+        dialogFornecedor.setSize((int) (getWidth() * 0.8), (int) (getHeight() * 0.65));
         dialogFornecedor.setLocationRelativeTo(null);
         dialogFornecedor.setLayout(new BorderLayout());
 

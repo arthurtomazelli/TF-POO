@@ -31,7 +31,7 @@ public class PainelPrincipal extends JPanelComFuncoes implements ActionListener 
         this.add(criarPainelDireita(), BorderLayout.CENTER);
     }
 
-    private JPanel criarPainelEsquerda(){
+    private JPanel criarPainelEsquerda() {
         JPanel painel = new JPanel(new BorderLayout());
         painel.setOpaque(true);
         painel.setBackground(getCorPrincipal());
@@ -51,7 +51,7 @@ public class PainelPrincipal extends JPanelComFuncoes implements ActionListener 
         return painel;
     }
 
-    private JPanel criarPainelDireita(){
+    private JPanel criarPainelDireita() {
         painelPrincipal = new JPanel(new BorderLayout());
 
         painelBorda = new JPanel(new BorderLayout());

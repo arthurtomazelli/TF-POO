@@ -14,7 +14,7 @@ public class GerenciaVendas {
     }
 
     public boolean addVenda(Venda venda) {
-        if(numRepetido(venda)) {
+        if (numRepetido(venda)) {
             return false;
         }
 
@@ -69,19 +69,19 @@ public class GerenciaVendas {
 
             int anoInt = Integer.parseInt(ano);
 
-            if(anoInt < 2000 || anoInt > LocalDate.now().getYear()) {
+            if (anoInt < 2000 || anoInt > LocalDate.now().getYear()) {
                 throw new IllegalArgumentException("Ano deve ser entre 2000 e 2025. Altere-o e tente novamente.");
             }
 
             int mesInt = Integer.parseInt(mes);
 
-            if(mesInt < 1 || mesInt > 12) {
+            if (mesInt < 1 || mesInt > 12) {
                 throw new IllegalArgumentException("Mês deve ser entre 1 e 12. Altere-o e tente novamente.");
             }
 
             int diaInt = Integer.parseInt(dia);
 
-            if(diaInt < 1 || diaInt > 30) {
+            if (diaInt < 1 || diaInt > 30) {
                 throw new IllegalArgumentException("Dia deve ser entre 1 e 30. Altere-o e tente novamente.");
             }
 
@@ -106,13 +106,13 @@ public class GerenciaVendas {
 
         int cont = 0;
 
-        for(Venda v : vendas) {
-            if(v.getValorFinal() > maior.getValorFinal()) {
+        for (Venda v : vendas) {
+            if (v.getValorFinal() > maior.getValorFinal()) {
                 maior = v;
-            } else if(v.getValorFinal() == maior.getValorFinal()) {
+            } else if (v.getValorFinal() == maior.getValorFinal()) {
                 cont++;
 
-                if(cont > 1) {
+                if (cont > 1) {
                     return null;
                 }
             }
@@ -126,8 +126,8 @@ public class GerenciaVendas {
     }
 
     public void removerVenda(Venda venda) {
-        for(Venda v : vendas) {
-            if(v.getNum() == venda.getNum()) {
+        for (Venda v : vendas) {
+            if (v.getNum() == venda.getNum()) {
                 vendas.remove(v);
                 return;
             }
