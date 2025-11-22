@@ -50,10 +50,6 @@ public class Venda implements Comparable<Venda>{
         return num;
     }
 
-    public Date getData() {
-        return data;
-    }
-
     public String getDataFormatada() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         return sdf.format(data);

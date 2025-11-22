@@ -33,7 +33,11 @@ public class Comprador extends Participante implements Comparable<Comprador>{
         return getNome();
     }
 
-    public String getPais(String pais){
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPais() {
         return pais;
     }
 

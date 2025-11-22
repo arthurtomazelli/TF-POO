@@ -2,7 +2,6 @@ package aplicacao;
 
 import entidades.*;
 import io.GerenciaCSV;
-import io.GerenciaJSON;
 import ui.MenuPrincipal;
 
 import java.io.PrintStream;
