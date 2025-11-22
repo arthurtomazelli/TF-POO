@@ -29,15 +29,6 @@ public abstract class JDialogComFuncoes extends JDialog {
         return painelTitulo;
     }
 
-    public JButton criarBotao(String texto) {
-        JButton botao = new JButton(texto);
-        botao.setMargin(new Insets(10, 20, 10, 20));
-        botao.setBackground(Color.WHITE);
-        botao.setForeground(corPrincipal);
-
-        return botao;
-    }
-
     public JPanel criarPainelTexto(){
         JPanel painelTexto = new JPanel();
 
@@ -57,6 +48,15 @@ public abstract class JDialogComFuncoes extends JDialog {
         painelChao.add(botaoOK);
 
         return painelChao;
+    }
+
+    public JButton criarBotao(String texto) {
+        JButton botao = new JButton(texto);
+        botao.setMargin(new Insets(10, 20, 10, 20));
+        botao.setBackground(Color.WHITE);
+        botao.setForeground(corPrincipal);
+
+        return botao;
     }
 
     public abstract void preencherCampos();
