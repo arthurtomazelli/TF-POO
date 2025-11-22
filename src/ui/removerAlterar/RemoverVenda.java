@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Queue;
 
 public class RemoverVenda extends JFrameComFuncoes implements ActionListener {
     private JPanel painelPrincipal;
@@ -102,7 +103,7 @@ public class RemoverVenda extends JFrameComFuncoes implements ActionListener {
     }
 
     private void mostrarVendas() {
-        List<Venda> vendas = gerenciaVendas.getVendas();
+        Queue<Venda> vendas = gerenciaVendas.getVendas();
 
         new RelatorioVendas(vendas);
     }

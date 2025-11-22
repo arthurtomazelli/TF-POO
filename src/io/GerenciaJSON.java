@@ -14,6 +14,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
 
 public class GerenciaJSON {
     private List<Comprador> compradores;
@@ -27,12 +28,13 @@ public class GerenciaJSON {
     public GerenciaJSON(List<Comprador> compradores,
                         List<Fornecedor> fornecedores,
                         List<Tecnologia> tecnologias,
-                        List<Venda> vendas) {
+                        Queue<Venda> vendas) {
 
         this.compradores = compradores;
         this.fornecedores = fornecedores;
         this.tecnologias = tecnologias;
-        this.vendas = vendas;
+        this.vendas = new ArrayList<>();
+        this.vendas.addAll(vendas);
     }
 
     public List<String> salvarTodos(String prefixoNome) {

@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Queue;
 
 public class CadastrarVenda extends JFrameComFuncoes implements ActionListener {
     private JPanel painelPrincipal;
@@ -145,7 +146,7 @@ public class CadastrarVenda extends JFrameComFuncoes implements ActionListener {
     }
 
     private void mostrarVendasCadastradas() {
-        List<Venda> vendas = gerenciaVendas.getVendas();
+        Queue<Venda> vendas = gerenciaVendas.getVendas();
 
         new RelatorioVendas(vendas);
     }

@@ -7,10 +7,11 @@ import ui.funcoes.JDialogComFuncoes;
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
+import java.util.Queue;
 
 public class VendaMaiorValor extends JDialogComFuncoes {
     private GerenciaVendas gerenciaVendas;
-    private List<Venda> vendas;
+    private Queue<Venda> vendas;
     private Venda vendaMaiorValor;
 
     public VendaMaiorValor(GerenciaVendas gerenciaVendas) {

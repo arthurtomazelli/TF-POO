@@ -1,16 +1,13 @@
 package entidades;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class GerenciaVendas {
-    private List<Venda> vendas;
+    private Queue<Venda> vendas;
 
     public GerenciaVendas() {
-        vendas = new ArrayList<>();
+        vendas = new LinkedList<>();
     }
 
     public boolean addVenda(Venda venda) {
@@ -19,9 +16,17 @@ public class GerenciaVendas {
         }
 
         vendas.add(venda);
-        Collections.sort(vendas);
+        ordenaQueueDecrescente();
 
         return true;
+    }
+
+    private void ordenaQueueDecrescente() {
+        List<Venda> vendasTemp = new ArrayList<>(vendas);
+        Collections.sort(vendasTemp);
+
+        vendas.clear();
+        vendas.addAll(vendasTemp);
     }
 
     public boolean numRepetido(Venda novaVenda) {
@@ -102,7 +107,7 @@ public class GerenciaVendas {
     }
 
     public Venda encontrarVendaComMaiorValor() {
-        Venda maior = vendas.getFirst();
+        Venda maior = vendas.peek();
 
         int cont = 0;
 
@@ -121,7 +126,7 @@ public class GerenciaVendas {
         return maior;
     }
 
-    public List<Venda> getVendas() {
+    public Queue<Venda> getVendas() {
         return vendas;
     }
 

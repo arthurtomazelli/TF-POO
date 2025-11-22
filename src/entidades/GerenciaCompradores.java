@@ -58,7 +58,7 @@ public class GerenciaCompradores {
         return false;
     }
 
-    public Comprador encontrarCompradorComMaisVendas(List<Venda> vendas, HashMap<Long, Integer> contagemPorComprador) {
+    public Comprador encontrarCompradorComMaisVendas(Queue<Venda> vendas, HashMap<Long, Integer> contagemPorComprador) {
         long codMaiorC = 0;
 
         for (Venda v : vendas) {

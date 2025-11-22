@@ -10,13 +10,14 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Queue;
 
 public class RelatorioVendas extends JDialogComFuncoes {
-    private List<Venda> vendas;
+    private Queue<Venda> vendas;
     private List<Comprador> compradores;
     private List<Tecnologia> tecnologias;
 
-    public RelatorioVendas(List<Venda> vendas) {
+    public RelatorioVendas(Queue<Venda> vendas) {
         super();
         setBasics();
         this.vendas = vendas;

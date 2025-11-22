@@ -7,14 +7,15 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Queue;
 
 public class CompradorComMaisVendas extends JDialogComFuncoes {
-    private List<Venda> vendas;
+    private Queue<Venda> vendas;
     private GerenciaCompradores gerenciaCompradores;
     private Comprador compradorMaisVendas;
     private HashMap<Long, Integer> contagemPorComprador;
 
-    public CompradorComMaisVendas(List<Venda> vendas, GerenciaCompradores gerenciaCompradores) {
+    public CompradorComMaisVendas(Queue<Venda> vendas, GerenciaCompradores gerenciaCompradores) {
         super();
         setBasics();
         this.vendas = vendas;
