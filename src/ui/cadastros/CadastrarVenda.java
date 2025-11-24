@@ -26,7 +26,6 @@ public class CadastrarVenda extends JFrameComFuncoes implements ActionListener {
     private JComboBox<String> comboTecnologias;
     private HashMap<String, Comprador> mapCompradores;
     private HashMap<String, Tecnologia> mapTecnologias;
-    private int desconto;
 
     private final List<String> labelsAtributos = new ArrayList<>(List.of(
             "Número: ", "Data (dd/MM/yyyy): "
@@ -169,7 +168,7 @@ public class CadastrarVenda extends JFrameComFuncoes implements ActionListener {
 
             Date data = gerenciaVendas.transformaData(dataString);
 
-            Venda venda = new Venda(numero, data, comprador, tecnologia, (double) desconto / 100);
+            Venda venda = new Venda(numero, data, comprador, tecnologia);
 
             if (!gerenciaVendas.verificaTecnologiaVendida(venda)) {
                 if (!gerenciaVendas.addVenda(venda)) {
@@ -178,10 +177,6 @@ public class CadastrarVenda extends JFrameComFuncoes implements ActionListener {
                     JOptionPane.showMessageDialog(this, "Venda cadastrada com sucesso.\n" +
                             "Valor final: R$ " + venda.getValorFinal(), "SUCESSO", JOptionPane.PLAIN_MESSAGE);
                     limparCampos(camposTexto);
-
-                    if (desconto != 10) {
-                        desconto += 1;
-                    }
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "Tecnologia já vendida. Selecione uma diferente e tente novamente.", "ERRO", JOptionPane.WARNING_MESSAGE);

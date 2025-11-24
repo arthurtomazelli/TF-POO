@@ -3,6 +3,7 @@ package entidades;
 public class Comprador extends Participante implements Comparable<Comprador> {
     private String pais;
     private String email;
+    private int desconto;
 
     public Comprador(long cod, String nome, String pais, String email) {
         super(cod, nome);
@@ -39,6 +40,18 @@ public class Comprador extends Participante implements Comparable<Comprador> {
 
     public String getPais() {
         return pais;
+    }
+
+    public double getPercentualDesconto() {
+        return (double) desconto/100;
+    }
+
+    public int getDesconto() {
+        return desconto;
+    }
+
+    public void atualizarDesconto(int aumento) {
+        this.desconto += aumento;
     }
 
     @Override

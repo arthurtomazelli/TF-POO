@@ -230,7 +230,7 @@ public class GerenciaCSV {
 
                     Tecnologia tecnologia = gerenciaTecnologias.buscaTecnologiaPorId(idTecnologia);
 
-                    Venda venda = new Venda(num, data, comprador, tecnologia, 0);
+                    Venda venda = new Venda(num, data, comprador, tecnologia);
 
                     boolean tecJaVendida = gerenciaVendas.verificaTecnologiaVendida(venda);
 

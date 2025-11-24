@@ -10,37 +10,42 @@ public class Venda implements Comparable<Venda> {
     private Comprador comprador;
     private Tecnologia tecnologia;
 
-    public Venda(long num, Date data, Comprador comprador, Tecnologia tecnologia, double descontoPercentual) {
+    public Venda(long num, Date data, Comprador comprador, Tecnologia tecnologia) {
         this.num = num;
         this.data = data;
         this.comprador = comprador;
         this.tecnologia = tecnologia;
-        this.valorFinal = calculaValorFinal(tecnologia, descontoPercentual);
+        this.valorFinal = calculaValorFinal(tecnologia);
     }
 
-    public double calculaValorFinal(Tecnologia tecnologia, double descontoPercentual) {
+    public double calculaValorFinal(Tecnologia tecnologia) {
         Fornecedor fornecedorTec = tecnologia.getFornecedor();
         String areaFornecedor = fornecedorTec.getArea().getNome();
 
         double valorBase = tecnologia.getValorBase();
 
         double calculoValor = 0;
+        double percentualDesconto = comprador.getPercentualDesconto();
 
         if (areaFornecedor.equals("TI")) {
             calculoValor = (valorBase + (valorBase * 0.20));
-            calculoValor -= calculoValor * descontoPercentual;
+            calculoValor -= calculoValor * percentualDesconto;
 
         } else if (areaFornecedor.equals("ANDROIDES")) {
             calculoValor = (valorBase + (valorBase * 0.15));
-            calculoValor -= calculoValor * descontoPercentual;
+            calculoValor -= calculoValor * percentualDesconto;
 
         } else if (areaFornecedor.equals("EMERGENTE")) {
             calculoValor = (valorBase + (valorBase * 0.25));
-            calculoValor -= calculoValor * descontoPercentual;
+            calculoValor -= calculoValor * percentualDesconto;
 
         } else if (areaFornecedor.equals("ALIMENTOS")) {
             calculoValor = (valorBase + (valorBase * 0.10));
-            calculoValor -= calculoValor * descontoPercentual;
+            calculoValor -= calculoValor * percentualDesconto;
+        }
+
+        if(comprador.getDesconto() < 10){
+            comprador.atualizarDesconto(1);
         }
 
         return calculoValor;
