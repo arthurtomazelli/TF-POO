@@ -12,7 +12,6 @@ import java.util.Queue;
 public class CompradorComMaisVendas extends JDialogComFuncoes {
     private Queue<Venda> vendas;
     private GerenciaCompradores gerenciaCompradores;
-    private Comprador compradorMaisVendas;
     private HashMap<Long, Integer> contagemPorComprador;
 
     public CompradorComMaisVendas(Queue<Venda> vendas, GerenciaCompradores gerenciaCompradores) {
@@ -50,20 +49,22 @@ public class CompradorComMaisVendas extends JDialogComFuncoes {
     public void preencherCampos() {
         contagemPorComprador = new HashMap<>();
 
-        compradorMaisVendas = gerenciaCompradores.encontrarCompradorComMaisVendas(vendas, contagemPorComprador);
+        List<Comprador> compradorMaisVendas = gerenciaCompradores.encontrarCompradorComMaisVendas(vendas, contagemPorComprador);
 
         JTextArea areaTexto = getAreaTexto();
 
-        if (compradorMaisVendas != null) {
+        if (compradorMaisVendas.size() == 1) {
             areaTexto.setText(areaTexto.getText() + "=-=-=-=-=-=-= Comprador Com Mais Vendas =-=-=-=-=-=-=\n");
-            areaTexto.setText(areaTexto.getText() + compradorMaisVendas.geraDescricao() + "\n");
-            areaTexto.setText(areaTexto.getText() + "N° de vendas: " + contagemPorComprador.get(compradorMaisVendas.getCod()));
+            areaTexto.setText(areaTexto.getText() + compradorMaisVendas.getFirst().geraDescricao() + "\n");
+            areaTexto.setText(areaTexto.getText() + "\nN° de vendas: " + contagemPorComprador.get(compradorMaisVendas.getFirst().getCod()));
         } else {
-            areaTexto.setText(areaTexto.getText() + "=-=-=-=-=-=-= Compradores (houve empate de maiores valores) =-=-=-=-=-=-=\n");
+            areaTexto.setText(areaTexto.getText() + "=-=-=-=-=-=-= Compradores (houve empate de quantidade) =-=-=-=-=-=-=\n");
 
-            for (Venda v : vendas) {
-                areaTexto.setText(areaTexto.getText() + v + "\n");
+            for (Comprador c : compradorMaisVendas) {
+                areaTexto.setText(areaTexto.getText() + c.geraDescricao() + "\n");
             }
+
+            areaTexto.setText(areaTexto.getText() + "\nN° de vendas: " + contagemPorComprador.get(compradorMaisVendas.getFirst().getCod()));
         }
     }
 }

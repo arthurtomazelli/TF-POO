@@ -58,9 +58,7 @@ public class GerenciaCompradores {
         return false;
     }
 
-    public Comprador encontrarCompradorComMaisVendas(Queue<Venda> vendas, HashMap<Long, Integer> contagemPorComprador) {
-        long codMaiorC = 0;
-
+    public List<Comprador> encontrarCompradorComMaisVendas(Queue<Venda> vendas, HashMap<Long, Integer> contagemPorComprador) {
         for (Venda v : vendas) {
             try {
                 Long codC = v.getComprador().getCod();
@@ -78,21 +76,24 @@ public class GerenciaCompradores {
         }
 
         int maior = -9999;
+        List<Comprador> compradorComMaisVendas = new ArrayList<>();
 
         for (Long cod : contagemPorComprador.keySet()) {
             int contagem = contagemPorComprador.get(cod);
 
             if (contagem > maior) {
                 maior = contagem;
-                codMaiorC = cod;
+
+                compradorComMaisVendas.clear();
+                compradorComMaisVendas.add(buscaCompradorPorCod(cod));
                 continue;
             }
 
             if (contagem == maior) {
-                return null;
+                compradorComMaisVendas.add(buscaCompradorPorCod(cod));
             }
         }
-        return buscaCompradorPorCod(codMaiorC);
+        return compradorComMaisVendas;
     }
 
 

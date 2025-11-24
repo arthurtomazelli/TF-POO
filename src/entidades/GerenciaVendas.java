@@ -106,25 +106,28 @@ public class GerenciaVendas {
         return false;
     }
 
-    public Venda encontrarVendaComMaiorValor() {
-        Venda maior = vendas.peek();
+    public List<Venda> encontrarVendaComMaiorValor() {
+        List<Venda> resultado = new ArrayList<>();
 
-        int cont = 0;
+        double maior = -9999;
 
         for (Venda v : vendas) {
-            if (v.getValorFinal() > maior.getValorFinal()) {
-                maior = v;
-            } else if (v.getValorFinal() == maior.getValorFinal()) {
-                cont++;
+            double valor = v.getValorFinal();
 
-                if (cont > 1) {
-                    return null;
-                }
+            if (valor > maior) {
+                maior = valor;
             }
         }
 
-        return maior;
+        for (Venda v : vendas) {
+            if (v.getValorFinal() == maior) {
+                resultado.add(v);
+            }
+        }
+
+        return resultado;
     }
+
 
     public Queue<Venda> getVendas() {
         return vendas;

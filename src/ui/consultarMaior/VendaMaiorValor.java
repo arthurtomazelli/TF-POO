@@ -12,7 +12,6 @@ import java.util.Queue;
 public class VendaMaiorValor extends JDialogComFuncoes {
     private GerenciaVendas gerenciaVendas;
     private Queue<Venda> vendas;
-    private Venda vendaMaiorValor;
 
     public VendaMaiorValor(GerenciaVendas gerenciaVendas) {
         super();
@@ -49,19 +48,22 @@ public class VendaMaiorValor extends JDialogComFuncoes {
 
     @Override
     public void preencherCampos() {
-        vendaMaiorValor = gerenciaVendas.encontrarVendaComMaiorValor();
+        List<Venda> vendaMaiorValor = gerenciaVendas.encontrarVendaComMaiorValor();
 
         JTextArea areaTexto = getAreaTexto();
 
-        if (vendaMaiorValor != null) {
+        if (vendaMaiorValor.size() == 1) {
             areaTexto.setText(areaTexto.getText() + "=-=-=-=-=-=-= Venda Com Maior Valor =-=-=-=-=-=-=\n");
-            areaTexto.setText(areaTexto.getText() + vendaMaiorValor);
+            areaTexto.setText(areaTexto.getText() + vendaMaiorValor.getFirst() + "\n");
+            areaTexto.setText(areaTexto.getText() + "\nMaior valor: " + vendaMaiorValor.getFirst().getValorFinal());
         } else {
             areaTexto.setText(areaTexto.getText() + "=-=-=-=-=-=-= Venda (houve empate de maiores valores) =-=-=-=-=-=-=\n");
 
-            for (Venda v : vendas) {
+            for (Venda v : vendaMaiorValor) {
                 areaTexto.setText(areaTexto.getText() + v + "\n");
             }
+
+            areaTexto.setText(areaTexto.getText() + "\nMaior valor: " + vendaMaiorValor.getFirst().getValorFinal());
         }
     }
 }

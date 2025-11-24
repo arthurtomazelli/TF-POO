@@ -13,7 +13,6 @@ import java.util.List;
 public class FornecedorComMaisTecnologias extends JDialogComFuncoes {
     private List<Tecnologia> tecnologias;
     private GerenciaFornecedores gerenciaFornecedores;
-    private Fornecedor fornecedorMaisTec;
     private HashMap<Long, Integer> contagemPorFornecedor;
 
     public FornecedorComMaisTecnologias(List<Tecnologia> tecnologias, GerenciaFornecedores gerenciaFornecedores) {
@@ -51,20 +50,22 @@ public class FornecedorComMaisTecnologias extends JDialogComFuncoes {
     public void preencherCampos() {
         contagemPorFornecedor = new HashMap<>();
 
-        fornecedorMaisTec = gerenciaFornecedores.encontrarFornecedorComMaisTec(tecnologias, contagemPorFornecedor);
+        List<Fornecedor> fornecedorMaisTec = gerenciaFornecedores.encontrarFornecedorComMaisTec(tecnologias, contagemPorFornecedor);
 
         JTextArea areaTexto = getAreaTexto();
 
-        if (fornecedorMaisTec != null) {
+        if (fornecedorMaisTec.size() == 1) {
             areaTexto.setText(areaTexto.getText() + "=-=-=-=-=-=-= Fornecedor Com Mais Tecnologias =-=-=-=-=-=-=\n");
-            areaTexto.setText(areaTexto.getText() + fornecedorMaisTec.geraDescricao() + "\n");
-            areaTexto.setText(areaTexto.getText() + "N° de tecnologias: " + contagemPorFornecedor.get(fornecedorMaisTec.getCod()));
+            areaTexto.setText(areaTexto.getText() + fornecedorMaisTec.getFirst().geraDescricao() + "\n");
+            areaTexto.setText(areaTexto.getText() + "\nN° de tecnologias: " + contagemPorFornecedor.get(fornecedorMaisTec.getFirst().getCod()));
         } else {
-            areaTexto.setText(areaTexto.getText() + "=-=-=-=-=-=-= Fornecedores (houve empate de maiores valores) =-=-=-=-=-=-=\n");
+            areaTexto.setText(areaTexto.getText() + "=-=-=-=-=-=-= Fornecedores (houve empate de quantidade) =-=-=-=-=-=-=\n");
 
-            for (Tecnologia t : tecnologias) {
-                areaTexto.setText(areaTexto.getText() + t + "\n");
+            for (Fornecedor f : fornecedorMaisTec) {
+                areaTexto.setText(areaTexto.getText() + f.geraDescricao() + "\n");
             }
+
+            areaTexto.setText(areaTexto.getText() + "\nN° de tecnologias: " + contagemPorFornecedor.get(fornecedorMaisTec.getFirst().getCod()));
         }
     }
 }

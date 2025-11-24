@@ -11,7 +11,6 @@ import java.util.List;
 public class TecnologiaMaiorValor extends JDialogComFuncoes {
     private GerenciaTecnologias gerenciaTecnologias;
     private List<Tecnologia> tecnologias;
-    private Tecnologia tecMaiorValor;
 
     public TecnologiaMaiorValor(GerenciaTecnologias gerenciaTecnologias) {
         super();
@@ -47,19 +46,22 @@ public class TecnologiaMaiorValor extends JDialogComFuncoes {
 
     @Override
     public void preencherCampos() {
-        tecMaiorValor = gerenciaTecnologias.encontrarTecnologiaComMaiorValor();
+        List<Tecnologia> tecMaiorValor = gerenciaTecnologias.encontrarTecnologiaComMaiorValor();
 
         JTextArea areaTexto = getAreaTexto();
 
-        if (tecMaiorValor != null) {
+        if (tecMaiorValor.size() == 1) {
             areaTexto.setText(areaTexto.getText() + "=-=-=-=-=-=-= Tecnologia Com Maior Valor =-=-=-=-=-=-=\n");
-            areaTexto.setText(areaTexto.getText() + tecMaiorValor);
+            areaTexto.setText(areaTexto.getText() + tecMaiorValor.getFirst() + "\n");
+            areaTexto.setText(areaTexto.getText() + "\nMaior valor: " + tecMaiorValor.getFirst().getValorBase());
         } else {
             areaTexto.setText(areaTexto.getText() + "=-=-=-=-=-=-= Tecnologias (houve empate de maiores valores) =-=-=-=-=-=-=\n");
 
-            for (Tecnologia t : tecnologias) {
+            for (Tecnologia t : tecMaiorValor) {
                 areaTexto.setText(areaTexto.getText() + t + "\n");
             }
+
+            areaTexto.setText(areaTexto.getText() + "\nMaior valor: " + tecMaiorValor.getFirst().getValorBase());
         }
     }
 }

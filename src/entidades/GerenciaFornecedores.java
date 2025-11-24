@@ -108,9 +108,7 @@ public class GerenciaFornecedores {
         }
     }
 
-    public Fornecedor encontrarFornecedorComMaisTec(List<Tecnologia> tecnologias, HashMap<Long, Integer> contagemPorFornecedor) {
-        long codMaiorF = 0;
-
+    public List<Fornecedor> encontrarFornecedorComMaisTec(List<Tecnologia> tecnologias, HashMap<Long, Integer> contagemPorFornecedor) {
         for (Tecnologia t : tecnologias) {
             try {
                 Long codF = t.getFornecedor().getCod();
@@ -128,21 +126,24 @@ public class GerenciaFornecedores {
         }
 
         int maior = -9999;
+        List<Fornecedor> fornecedorComMaisTec = new ArrayList<>();
 
         for (Long cod : contagemPorFornecedor.keySet()) {
             int contagem = contagemPorFornecedor.get(cod);
 
             if (contagem > maior) {
                 maior = contagem;
-                codMaiorF = cod;
+
+                fornecedorComMaisTec.clear();
+                fornecedorComMaisTec.add(buscaFornecedorPorCod(cod));
                 continue;
             }
 
             if (contagem == maior) {
-                return null;
+                fornecedorComMaisTec.add(buscaFornecedorPorCod(cod));
             }
         }
-        return buscaFornecedorPorCod(codMaiorF);
+        return fornecedorComMaisTec;
     }
 
     public List<Fornecedor> getFornecedores() {

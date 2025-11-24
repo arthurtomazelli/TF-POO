@@ -62,25 +62,28 @@ public class GerenciaTecnologias {
         return fornecedoresAux;
     }
 
-    public Tecnologia encontrarTecnologiaComMaiorValor() {
-        Tecnologia maior = tecnologias.getFirst();
+    public List<Tecnologia> encontrarTecnologiaComMaiorValor() {
+        List<Tecnologia> tecComMaiorValor = new ArrayList<>();
 
-        int cont = 0;
+        double maior = -9999;
 
         for (Tecnologia t : tecnologias) {
-            if (t.getValorBase() > maior.getValorBase()) {
-                maior = t;
-            } else if (t.getValorBase() == maior.getValorBase()) {
-                cont++;
+            double valor = t.getValorBase();
 
-                if (cont > 1) {
-                    return null;
-                }
+            if (valor > maior) {
+                maior = valor;
             }
         }
 
-        return maior;
+        for (Tecnologia t : tecnologias) {
+            if (t.getValorBase() == maior) {
+                tecComMaiorValor.add(t);
+            }
+        }
+
+        return tecComMaiorValor;
     }
+
 
     public List<Tecnologia> getTecnologias() {
         return tecnologias;
